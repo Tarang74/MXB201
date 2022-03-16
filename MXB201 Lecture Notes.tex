@@ -3,7 +3,6 @@
 \usepackage{LaTeX-Submodule/template}
 
 % Additional packages & macros
-\usepackage{multicol}
 
 % Header and footer
 \newcommand{\unitName}{Advanced Linear Algebra}
@@ -45,6 +44,130 @@
 \tableofcontents
 \newpage
 %
-\section{Fundamental Subspaces}
-asdf
+\section{Fundamental Concepts of Linear Algebra}
+\subsection{Row Echelon Form}
+As studied in Linear Algebra, we can solve linear systems by
+applying the following elementary row operations to any matrix \(\symbf{A}\).
+\begin{enumerate}[label=Type \Roman*.]
+    \item Exchange any two rows.
+    \item Multiply any row by a constant.
+    \item Add a multiple of one row to another row.
+\end{enumerate}
+This allows us to reduce \(\symbf{A}\) into \textbf{row echelon form}
+such that the entries below the main diagonal are zero:
+\begin{equation*}
+    \symbf{R}_{\mathrm{ref}} =
+    \begin{bmatrix}
+        r_{11} & r_{12} & \cdots & r_{1n} \\
+               & r_{22} & \cdots & r_{2n} \\
+               &        & \ddots & \vdots \\
+               &        &        & r_{mn}
+    \end{bmatrix}
+\end{equation*}
+\subsection{Elementary Matrix}
+Mathematically, we can represent these row operations as a matrix
+which is left multiplied to \(\symbf{A}\).
+\begin{definition}[Elementary matrix]
+    An elementary matrix \(\symbf{E}_i\) is constructed by applying a row operation to the elementary matrix \(\symbf{I}_m\).
+    Consider a 3 by 4 matrix \(\symbf{A}\); a common first elementary row operation might be
+    \begin{equation*}
+        r_2 \leftarrow r_2 - \frac{a_{21}}{a_{11}} r_1
+    \end{equation*}
+    which when applied to \(\symbf{I}_3\) yields
+    \begin{equation*}
+        \symbf{E}_1 =
+        \begin{bmatrix}
+            1                      & 0 & 0 \\
+            -\frac{a_{21}}{a_{11}} & 1 & 0 \\
+            0                      & 0 & 1
+        \end{bmatrix}
+    \end{equation*}
+    where the 1 subscript simply indicates the first of many elementary row operations.
+    Left multiplying this to an arbitrary \(\symbf{A}\) gives
+    \begin{align*}
+        \symbf{E}_1 \symbf{A} & = 
+        \begin{bmatrix}
+            1                      & 0 & 0 \\
+            -\frac{a_{21}}{a_{11}} & 1 & 0 \\
+            0                      & 0 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            a_{11} & a_{12} & a_{13} & a_{14} \\
+            a_{21} & a_{22} & a_{23} & a_{24} \\
+            a_{31} & a_{32} & a_{33} & a_{34}
+        \end{bmatrix} \\
+        & =
+        \begin{bmatrix}
+            a_{11} & a_{12}                              & a_{13}                              & a_{14}                              \\
+            0      & a_{22}-\frac{a_{12} a_{21}}{a_{11}} & a_{23}-\frac{a_{13} a_{21}}{a_{11}} & a_{24}-\frac{a_{14} a_{21}}{a_{11}} \\
+            a_{31} & a_{32}                              & a_{33}                              & a_{34}
+        \end{bmatrix}
+    \end{align*}
+    which has the desired result of eliminating the first column of the second row.
+\end{definition}
+\subsection{Reduced Row Echelon Form}
+As there are infinitely many ways to reduce a matrix to row echelon form, we typically
+reduce \(\symbf{R}_{\mathrm{ref}}\) further into \textbf{reduced row echelon form} which is
+a unique reduction for every \(\symbf{A}\).
+
+This matrix \(\symbf{R}_{\mathrm{rref}}\) (or simply \(\symbf{R}\)) generally requires \(m \times n\)
+elementary row operations and is only useful for theoretical analysis.
+In reduced row echelon form, any entries in the same column as a pivot must be 0, and each pivot is 1.
+\subsection{Elimination Matrix}
+The elementary matrices involved in row reduction can be expressed as a single matrix containing every
+each row operation.
+\begin{align*}
+   \symbf{E}_9 \symbf{E}_8 \dots \symbf{E}_2 \symbf{E}_1 \symbf{A} & = \symbf{E} \symbf{A} \\
+                                                                   & = \symbf{R} 
+\end{align*}
+\subsection{Linear Systems}
+Given the linear system \(\symbf{A} \symbfit{x} = \symbfit{b}\)
+we can augment \(\symbf{A}\) with \(\symbfit{b}\) to draw conclusions about the solutions.
+
+If we left multiply the elimination matrix \(\symbf{E}\) to 
+\(\begin{bmatrix}[c|c]
+    \symbf{A} & \symbfit{b}    
+\end{bmatrix}\)
+we can apply the same operations to \(\symbfit{b}\).
+\begin{align*}
+    \symbf{E}
+    \begin{bmatrix}[c|c]
+        \symbf{A} & \symbfit{b}    
+    \end{bmatrix} & = 
+    \begin{bmatrix}[c|c]
+        \symbf{E} \symbf{A} & \symbf{E} \symbfit{b}
+    \end{bmatrix} \\
+    & = \begin{bmatrix}[c|c]
+        \symbf{R} & \symbfit{z}    
+    \end{bmatrix}
+\end{align*}
+Therefore
+\begin{equation*}
+    \symbf{R} \symbfit{x} = \symbfit{z}
+\end{equation*}
+\subsection{Consistency of a Linear System}
+After reducing the matrix \(\symbf{A}\) to \(\symbf{R}\), we can summarise 
+certain characteristics about \(\symbf{A}\).
+\subsubsection{Basic and Free Variables}
+Identifying the pivots in \(\symbf{R}\) allows us to determine
+the dimensions of various subspaces of \(\symbf{A}\).
+\begin{definition}[Basic variables]
+    The columns that a pivot corresponds to are known as basic variables (or leading variables).
+\end{definition}
+\begin{definition}[Free variables]
+    Any columns not corresponding to any pivots are known as free variables (or parameters).
+    Consequently, any variables that are not basic variables are free variables.
+\end{definition}
+In the following example, \(x_1\), \(x_3\), and \(x_4\) are basic variables, whereas \(x_2\) and \(x_5\) are free variables.
+\begin{equation*}
+    \begin{bmatrix}
+        1 & 2 & 3 & 4 & 5 \\
+        0 & 0 & 1 & 6 & 7 \\
+        0 & 0 & 0 & 1 & 8
+    \end{bmatrix}
+\end{equation*}
+When using backward substitution to solve \(\symbf{R} \symbfit{x} = \symbf{z}\), we assign new variables
+to any free variables to indicate that they are parameters to the system.
+\subsubsection{Singular Matrices}
+After reducing \(\symbf{A}\) to \(\symbf{R}\) we can consider its 
 \end{document}
