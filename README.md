@@ -14,7 +14,7 @@ This repository provides **lecture notes** for **MXB201 - Advanced Linear Algebr
 
 ## Contents
 
-1. Fundamental Subspaces
+1. Fundamental Concepts of Linear Algebra
 
 ---
 
