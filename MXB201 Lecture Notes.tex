@@ -85,7 +85,7 @@ which is left multiplied to \(\symbf{A}\).
     where the 1 subscript simply indicates the first of many elementary row operations.
     Left multiplying this to an arbitrary \(\symbf{A}\) gives
     \begin{align*}
-        \symbf{E}_1 \symbf{A} & = 
+        \symbf{E}_1 \symbf{A} & =
         \begin{bmatrix}
             1                      & 0 & 0 \\
             -\frac{a_{21}}{a_{11}} & 1 & 0 \\
@@ -96,7 +96,7 @@ which is left multiplied to \(\symbf{A}\).
             a_{21} & a_{22} & a_{23} & a_{24} \\
             a_{31} & a_{32} & a_{33} & a_{34}
         \end{bmatrix} \\
-        & =
+                              & =
         \begin{bmatrix}
             a_{11} & a_{12}                              & a_{13}                              & a_{14}                              \\
             0      & a_{22}-\frac{a_{12} a_{21}}{a_{11}} & a_{23}-\frac{a_{13} a_{21}}{a_{11}} & a_{24}-\frac{a_{14} a_{21}}{a_{11}} \\
@@ -117,36 +117,35 @@ In reduced row echelon form, any entries in the same column as a pivot must be 0
 The elementary matrices involved in row reduction can be expressed as a single matrix containing every
 each row operation.
 \begin{align*}
-   \symbf{E}_9 \symbf{E}_8 \dots \symbf{E}_2 \symbf{E}_1 \symbf{A} & = \symbf{E} \symbf{A} \\
-                                                                   & = \symbf{R} 
+    \symbf{E}_9 \symbf{E}_8 \dots \symbf{E}_2 \symbf{E}_1 \symbf{A} & = \symbf{E} \symbf{A} \\
+                                                                    & = \symbf{R}
 \end{align*}
 \subsection{Linear Systems}
 Given the linear system \(\symbf{A} \symbfit{x} = \symbfit{b}\)
 we can augment \(\symbf{A}\) with \(\symbfit{b}\) to draw conclusions about the solutions.
 
-If we left multiply the elimination matrix \(\symbf{E}\) to 
+If we left multiply the elimination matrix \(\symbf{E}\) to
 \(\begin{bmatrix}[c|c]
-    \symbf{A} & \symbfit{b}    
+    \symbf{A} & \symbfit{b}
 \end{bmatrix}\)
 we can apply the same operations to \(\symbfit{b}\).
 \begin{align*}
     \symbf{E}
     \begin{bmatrix}[c|c]
-        \symbf{A} & \symbfit{b}    
-    \end{bmatrix} & = 
+        \symbf{A} & \symbfit{b}
+    \end{bmatrix} & =
     \begin{bmatrix}[c|c]
         \symbf{E} \symbf{A} & \symbf{E} \symbfit{b}
-    \end{bmatrix} \\
-    & = \begin{bmatrix}[c|c]
-        \symbf{R} & \symbfit{z}    
-    \end{bmatrix}
+    \end{bmatrix}          \\
+                             & = \begin{bmatrix}[c|c]
+                                     \symbf{R} & \symbfit{z}
+                                 \end{bmatrix}
 \end{align*}
 Therefore
 \begin{equation*}
     \symbf{R} \symbfit{x} = \symbfit{z}
 \end{equation*}
-\subsection{Consistency of a Linear System}
-After reducing the matrix \(\symbf{A}\) to \(\symbf{R}\), we can summarise 
+After reducing the matrix \(\symbf{A}\) to \(\symbf{R}\), we can summarise
 certain characteristics about \(\symbf{A}\).
 \subsubsection{Basic and Free Variables}
 Identifying the pivots in \(\symbf{R}\) allows us to determine
@@ -158,16 +157,240 @@ the dimensions of various subspaces of \(\symbf{A}\).
     Any columns not corresponding to any pivots are known as free variables (or parameters).
     Consequently, any variables that are not basic variables are free variables.
 \end{definition}
-In the following example, \(x_1\), \(x_3\), and \(x_4\) are basic variables, whereas \(x_2\) and \(x_5\) are free variables.
-\begin{equation*}
-    \begin{bmatrix}
-        1 & 2 & 3 & 4 & 5 \\
-        0 & 0 & 1 & 6 & 7 \\
-        0 & 0 & 0 & 1 & 8
-    \end{bmatrix}
-\end{equation*}
 When using backward substitution to solve \(\symbf{R} \symbfit{x} = \symbf{z}\), we assign new variables
 to any free variables to indicate that they are parameters to the system.
 \subsubsection{Singular Matrices}
-After reducing \(\symbf{A}\) to \(\symbf{R}\) we can consider its 
+An \(n\) by \(n\) square matrix \(\symbf{A}\) is singular if its associated reduced matrix \(\symbf{R}\) has fewer than \(n\) basic variables.
+It follows that a singular matrix also has a determinant of 0 (as the product of the diagonal is 0) which means it is also noninvertible.
+\subsection{The Four Fundamental Subspaces}
+Consider
+\begin{align*}
+    \symbf{A} & =
+    \begin{bmatrix}
+        1 & 2 & 3 & 4 & 5 \\
+        0 & 0 & 1 & 4 & 5 \\
+        0 & 0 & 0 & 0 & 0
+    \end{bmatrix} \\
+    \symbf{R} & =
+    \begin{bmatrix}
+        1 & 2 & 0 & -2 & -1 \\
+        0 & 0 & 1 & 2  & 2  \\
+        0 & 0 & 0 & 0  & 0
+    \end{bmatrix}, \,
+    \symbf{E} =
+    \begin{bmatrix}
+        1 & -3 & 0 \\
+        0 & 1  & 0 \\
+        0 & 0  & 1
+    \end{bmatrix}
+\end{align*}
+so that \(x_1\) and \(x_3\) are basic variables, whereas \(x_2\), \(x_4\) and \(x_5\) are free variables.
+\subsubsection{Row space}
+The rows containing pivots form the basis vectors for the rowspace of \(\symbf{A}\), denoted \(\rowspace{A}\).
+\begin{equation*}
+    \rowspace{A} =
+    \vspan{\left\{
+        \begin{bmatrix}
+            1  \\
+            2  \\
+            0  \\
+            -2 \\
+            -1
+        \end{bmatrix},\,
+        \begin{bmatrix}
+            0 \\
+            0 \\
+            1 \\
+            2 \\
+            2
+        \end{bmatrix}
+        \right\}}
+\end{equation*}
+Note that the row vectors here are represented as column vectors
+to allows us to conveniently compare these vectors with other spaces.
+\subsubsection{Null space}
+The span of vectors that satisfy the homogeneous system \(\symbf{A}\symbfit{x} = \symbf{0}\), form the null space of \(\symbf{A}\), denoted \(\nullspace{A}\).
+\begin{equation*}
+    \nullspace{A} =
+    \vspan{\left\{
+        \begin{bmatrix}
+            -2 \\
+            1  \\
+            0  \\
+            0  \\
+            0
+        \end{bmatrix},\,
+        \begin{bmatrix}
+            2  \\
+            0  \\
+            -2 \\
+            1  \\
+            0
+        \end{bmatrix},\,
+        \begin{bmatrix}
+            1  \\
+            0  \\
+            -2 \\
+            0  \\
+            1
+        \end{bmatrix}
+        \right\}}
+\end{equation*}
+\subsubsection{Column space}
+By considering a general vector \(\symbfit{b}\), we can construct the column space of \(\symbf{A}\), denoted \(\columnspace{A}\).
+This is done by augmenting \(\symbf{A}\) with \(\symbfit{b}\), and appling the same elimination matrix \(\symbf{E}\).
+\begin{equation*}
+    \symbf{E}
+    \begin{bmatrix}[c|c]
+        \symbf{A} & \symbfit{b}
+    \end{bmatrix} =
+    \begin{bmatrix}[ccccc|c]
+        1 & 2 & 0 & -2 & -1 & b_1 - 3b_2 \\
+        0 & 0 & 1 & 2  & 2  & b_2        \\
+        0 & 0 & 0 & 0  & 0  & b_3
+    \end{bmatrix}
+\end{equation*}
+here we determine any constraints required to make \(\symbf{A}\symbfit{x} = \symbfit{b}\)
+consistent, resulting in
+\begin{equation*}
+    \symbfit{b} =
+    \begin{bmatrix}
+        b_1 \\
+        b_2 \\
+        0
+    \end{bmatrix}
+\end{equation*}
+This vector will guarantee a consistent solution for any \(b_1\) and \(b_2\), with \(b_3 = 0\).
+
+Rewriting \(\symbfit{b}\) in terms of its two parameters \(b_1\) and \(b_2\),
+we can construct the basis vectors for the column space of \(\symbf{A}\).
+\begin{equation*}
+    \columnspace{A} =
+    \vspan{\left\{
+        \begin{bmatrix}
+            1 \\
+            0 \\
+            0
+        \end{bmatrix},\,
+        \begin{bmatrix}
+            0 \\
+            1 \\
+            0
+        \end{bmatrix}
+        \right\}}
+\end{equation*}
+Note that we could have also calculated the column space by finding the rowspace of \(\symbf{A}^\top\).
+\subsubsection{Left-Null Space}
+Just as we found the null space for \(\symbf{A}\), we can find a null space for \(\symbf{A}^\top\).
+This is known as the left-null space, denoted \(\leftnullspace{A}\).
+\begin{equation*}
+    \leftnullspace{A} =
+    \vspan{\left\{
+        \begin{bmatrix}
+            0 \\
+            0 \\
+            1
+        \end{bmatrix}
+        \right\}}
+\end{equation*}
+These four spaces form the fundamental subspaces for any matrix \(\symbf{A}\).
+\subsubsection{Dimensions of Subspaces}
+For the matrix \(\symbf{A} \in \R^{m \times n}\):
+\begin{definition}[Rank]
+    The dimension of the row space is called the \textbf{rank} of a matrix.
+    \begin{equation*}
+        \vrank{\left( \symbf{A} \right)} = \dim{\left( \rowspace{A} \right)} = r
+    \end{equation*}
+    To determine the rank, we can count the number of basic variables in \(\symbf{R}\).
+
+    Note that the \(\vrank{\left( \symbf{A} \right)} = \vrank{\left( \symbf{A}^\top \right)}\).
+\end{definition}
+\begin{definition}[Nullity]
+    The dimension of the null space is called the \textbf{nullity} of the matrix.
+    \begin{equation*}
+        \vnull{\left( \symbf{A} \right)} = \dim{\left( \nullspace{A} \right)}
+    \end{equation*}
+\end{definition}
+\begin{definition}[Left nullity]
+    The dimension of the left null space is called the \textbf{left nullity} of the matrix.
+    \begin{equation*}
+        \vnull{\left( \symbf{A}^\top \right)} = \dim{\left( \leftnullspace{A} \right)}
+    \end{equation*}
+\end{definition}
+\begin{theorem}[Rank-nullity theorem]
+    The dimension of the domain of \(\symbf{A}\), \(\R^n\), is given by
+    the sum of the dimensions of the row space and null space of \(\symbf{A}\).
+    \begin{align*}
+        \dim{\left( \rowspace{A} \right)} + \dim{\left( \nullspace{A} \right)} & = \dim{\left( \R^n \right)} \\
+        \vrank{\left( \symbf{A} \right)} + \vnull{\left( \symbf{A} \right)}    & = n                         \\
+        r + \vnull{\left( \symbf{A} \right)}                                   & = n
+    \end{align*}
+    Therefore
+    \begin{equation*}
+        \vnull{\left( \symbf{A} \right)} = n - r
+    \end{equation*}
+\end{theorem}
+\begin{corollary}[Rank-nullity theorem for the transpose]
+    The dimension of the codomain of \(\symbf{A}\), \(\R^m\), is given by
+    the sum of the dimensions of the column space and left-null space of \(\symbf{A}\).
+    \begin{align*}
+        \dim{\left( \columnspace{A} \right)} + \dim{\left( \leftnullspace{A} \right)} & = \dim{\left( \R^m \right)} \\
+        \vrank{\left( \symbf{A}^\top \right)} + \vnull{\left( \symbf{A}^\top \right)} & = m                         \\
+        r + \vnull{\left( \symbf{A}^\top \right)}                                     & = m
+    \end{align*}
+    Therefore
+    \begin{equation*}
+        \vnull{\left( \symbf{A}^\top \right)} = m - r
+    \end{equation*}
+\end{corollary}
+\begin{theorem}[Orthogonality of subspaces]
+    The row space and null space are orthogonal complements in \(\R^n\).
+    \begin{equation*}
+        \rowspace{A}^\perp = \nullspace{A}
+    \end{equation*}
+    Similarly, the column space and left-null space are orthogonal complements in \(\R^m\).
+    \begin{equation*}
+        \columnspace{A}^\perp = \leftnullspace{A}
+    \end{equation*}
+\end{theorem}
+\subsection{Consistency of a Linear System}
+Given a matrix \(\symbf{A} \in \R^{m \times n}\), the linear system \(\symbf{A}\symbfit{x} = \symbfit{b}\),
+with any vector \(\symbfit{b}\) can be described as follows:
+\begin{enumerate}
+    \item Consistent with unique solution: 
+    \begin{equation*}
+        \vrank{\left( \symbf{A} \right)} = 
+        \vrank{\left( \begin{bmatrix}[c|c] 
+            \symbf{A} & \symbfit{b} 
+        \end{bmatrix} \right)}
+    \end{equation*}
+    \item Consistent with infinitely many solutions: 
+    \begin{equation*}
+        \vrank{\left( \symbf{A} \right)} = 
+        \vrank{\left( \begin{bmatrix}[c|c] 
+            \symbf{A} & \symbfit{b} 
+        \end{bmatrix} \right)}
+    \end{equation*}
+    \item Inconsistent with no solutions: 
+    \begin{equation*}
+        \vrank{\left( \symbf{A} \right)} \neq 
+        \vrank{\left( \begin{bmatrix}[c|c] 
+            \symbf{A} & \symbfit{b} 
+        \end{bmatrix} \right)}
+    \end{equation*}
+\end{enumerate}
+However, if \(\symbfit{b} \in \columnspace{{A}}\), the system must be consistent.
+\subsection{General Solution to a Linear System}
+Given \(\symbfit{b} \in \columnspace{A}\), the general solution to a system can be expressed as
+\begin{equation*}
+    \symbfit{x}_g = \symbfit{x}_p + \symbfit{x}_n
+\end{equation*}
+where \(\symbfit{x}_p\) is a particular solution obtained by backward substitution, and 
+\(\symbfit{x}_n\) represents the linear combination of all null space basis vectors.
+\subsection{Minimum Norm Solution}
+In general, the particular solution may contain a linear combination of
+null space basis vectors requiring \(\symbfit{x}_p \in \R^n\).
+
+If we consider the solution vector \(\symbfit{x}_r \in \rowspace{A}\), then this vector
+will be the minimum norm solution to \(\symbf{A}\symbfit{x} = \symbfit{b}\).
 \end{document}
