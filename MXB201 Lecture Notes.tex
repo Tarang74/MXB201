@@ -3,6 +3,8 @@
 \usepackage{LaTeX-Submodule/template}
 
 % Additional packages & macros
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
 
 % Header and footer
 \newcommand{\unitName}{Advanced Linear Algebra}
@@ -393,4 +395,51 @@ null space basis vectors requiring \(\symbfit{x}_p \in \R^n\).
 
 If we consider the solution vector \(\symbfit{x}_r \in \rowspace{A}\), then this vector
 will be the minimum norm solution to \(\symbf{A}\symbfit{x} = \symbfit{b}\).
+\section{Least Squares}
+Given an inconsistent system \(\symbf{A}\symbfit{x} = \symbfit{b}\), we can consider an approximate solution such that we
+minimise the norm of the residual:
+\begin{equation*}
+    \norm{\symbfit{b} - \symbf{A}\symbfit{x}}
+\end{equation*}
+Therefore we solve the following minimisation problem 
+\begin{equation*}
+    \symbfit{x} = \argmin_{\symbfit{x}^\ast \in \R^n} \norm{\symbfit{b} - \symbf{A}\symbfit{x}}
+\end{equation*}
+which is known as the \textbf{Least Squares} problem.
+\begin{theorem}[Minimum norm solution]
+    The solution to the least squares problem is obtained by the vector \(\symbfit{x}\) such 
+    that \(\symbfit{b} - \symbf{A}\symbfit{x}\) is orthogonal to the column space of \(\symbf{A}\).
+\end{theorem}
+\subsection{Normal Equations}
+Given that \(\symbfit{b} - \symbf{A}\symbfit{x}\) is orthogonal to \(\columnspace{A}\), it must lie in the
+left-null space of \(\symbfit{A}\). By orthogonality, we form the following relationship
+\begin{equation*}
+    \symbf{A}^\top \left( \symbfit{b} - \symbf{A}\symbfit{x} \right) = \symbfit{0}
+\end{equation*}
+which is equivalent to solving
+\begin{equation*}
+    \symbf{A}^\top \symbf{A}\symbfit{x} = \symbf{A}^\top \symbfit{b}.
+\end{equation*}
+This linear equation is known as the \textbf{Normal Equations}, which can be thought of as
+a generalisation of \(\symbf{A}\symbfit{x} = \symbfit{b}\). But whereas \(\symbf{A}\symbfit{x} = \symbfit{b}\)
+can be inconsistent, the normal equations are always consistent.
+\subsection{Orthogonal Projection}
+By rearranging the normal equations, we can directly compute the solution vector.
+\begin{equation*}
+    \symbfit{x} = \left( \symbf{A}^\top \symbf{A}\symbfit{x} \right)^{-1} \symbf{A}^\top \symbfit{b}
+\end{equation*}
+The projection of \(\symbfit{b}\) onto \(\columnspace{A}\) is therefore
+\begin{align*}
+    \symbfit{b}_p & = \proj_\columnspace{A} \left( \symbfit{b} \right) \\
+                  & = \symbf{A} \symbfit{x}                            \\
+                  & = \symbf{A} left( \symbf{A}^\top \symbf{A}\symbfit{x} \right)^{-1} \symbf{A}^\top \symbfit{b} 
+\end{align*}
+We can identify the matrix
+\begin{equation*}
+    \symbf{P} = \symbf{A} left( \symbf{A}^\top \symbf{A}\symbfit{x} \right)^{-1} \symbf{A}^\top
+\end{equation*}
+as the orthogonal projector onto the column space of \(\symbf{A}\), so that it operates on \(\symbfit{b}\):
+\begin{equation*}
+    \symbf{P} \symbfit{b} = \proj_\columnspace{A} \left( \symbfit{b} \right)
+\end{equation*}
 \end{document}
