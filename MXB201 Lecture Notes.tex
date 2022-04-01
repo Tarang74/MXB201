@@ -421,25 +421,90 @@ which is equivalent to solving
     \symbf{A}^\top \symbf{A}\symbfit{x} = \symbf{A}^\top \symbfit{b}.
 \end{equation*}
 This linear equation is known as the \textbf{Normal Equations}, which can be thought of as
-a generalisation of \(\symbf{A}\symbfit{x} = \symbfit{b}\). But whereas \(\symbf{A}\symbfit{x} = \symbfit{b}\)
+a \linebreak generalisation of \(\symbf{A}\symbfit{x} = \symbfit{b}\). But whereas \(\symbf{A}\symbfit{x} = \symbfit{b}\)
 can be inconsistent, the normal equations are always consistent.
 \subsection{Orthogonal Projection}
 By rearranging the normal equations, we can directly compute the solution vector.
 \begin{equation*}
-    \symbfit{x} = \left( \symbf{A}^\top \symbf{A}\symbfit{x} \right)^{-1} \symbf{A}^\top \symbfit{b}
+    \symbfit{x} = \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top \symbfit{b}
 \end{equation*}
 The projection of \(\symbfit{b}\) onto \(\columnspace{A}\) is therefore
 \begin{align*}
-    \symbfit{b}_p & = \proj_\columnspace{A} \left( \symbfit{b} \right) \\
+    \symbfit{b}_p & = \proj_{\columnspace{A}} \left( \symbfit{b} \right) \\
                   & = \symbf{A} \symbfit{x}                            \\
-                  & = \symbf{A} left( \symbf{A}^\top \symbf{A}\symbfit{x} \right)^{-1} \symbf{A}^\top \symbfit{b} 
+                  & = \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top \symbfit{b} 
 \end{align*}
 We can identify the matrix
 \begin{equation*}
-    \symbf{P} = \symbf{A} left( \symbf{A}^\top \symbf{A}\symbfit{x} \right)^{-1} \symbf{A}^\top
+    \symbf{P} = \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top
 \end{equation*}
 as the orthogonal projector onto the column space of \(\symbf{A}\), so that it operates on \(\symbfit{b}\):
 \begin{equation*}
-    \symbf{P} \symbfit{b} = \proj_\columnspace{A} \left( \symbfit{b} \right)
+    \symbf{P} \symbfit{b} = \proj_{\columnspace{A}} \left( \symbfit{b} \right)
 \end{equation*}
+\begin{definition}[Idempotent]
+    A matrix \(\symbf{P}\) is idempotent if it satisfies
+    \begin{equation*}
+        \symbf{P}^2 = \symbf{P}
+    \end{equation*}
+\end{definition}
+\begin{theorem}
+    Given that \(\symbf{P}\symbfit{b}\) produces the projection vector \(\symbfit{b}_p\),
+    taking the orthogonal projection of \(\symbfit{b}_p\) again results in the vector \(\symbfit{b}_p\).
+    \begin{align*}
+        \symbf{P} \symbfit{b}_p        & = \symbfit{b}_p \\
+        \symbf{P}\symbf{P} \symbfit{b} & = \symbf{P} \symbfit{b} \\
+        \symbf{P}^2 \symbfit{b} & = \symbf{P} \symbfit{b}
+    \end{align*}
+    Therefore orthogonal projectors are idempotent matrices as \(\symbf{P}^2 = \symbf{P}\).
+\end{theorem}
+\begin{proof}
+    If we express the orthogonal projector in its full form, we can verify the result from above
+    \begin{align*}
+        \symbf{P}^2 & = \symbf{P} \symbf{P} \\
+                    & = \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top \\
+                    & = \symbf{A} \cancel{\left( \symbf{A}^\top \symbf{A} \right)^{-1}} \cancel{\symbf{A}^\top \symbf{A}} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top \\
+                    & = \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top \\
+                    & = \symbf{P}
+    \end{align*}
+\end{proof}
+\subsection{Dependent Columns}
+If \(\symbf{A}\) has dependent columns, then we will obtain an infinite family of Least 
+Squares solutions. However there will only be one projection vector \(\symbfit{b}_p\).
+
+This arises from \(\nullspace{A} = \mathcal{N}\left(\symbf{A}^\top \symbf{A}\right)\), so that
+the solution to the Normal Equations yields
+\begin{equation*}
+    \symbfit{x} = \symbfit{x}_p + \symbfit{x}_n
+\end{equation*}
+where \(\symbfit{x}_p\) is the particular Least Squares solution, and \(\symbfit{x}_n\) represents
+any linear combination of null space vectors.
+\subsection{Orthogonal Projector onto the Column Space}
+To obtain a unique solution to the Normal Equations, we can form the matrix \(\symbf{W}\)
+such that it has full column rank and it spans the column space of \(\symbf{A}\). 
+Then the orthogonal projector is given by
+\begin{equation*}
+    \symbf{P} = \symbf{W} \left( \symbf{W}^\top \symbf{W} \right)^{-1} \symbf{W}^\top
+\end{equation*}
+\subsection{Orthogonal Projectors onto other Spaces}
+Given the orthogonal projector \(\symbf{P} = \proj_V\) onto a subspace \(V\), the 
+orthogonal projector \(\symbf{Q} = \proj_{V^\perp}\) onto \(V^\perp\) is given by 
+\begin{equation*}
+    \symbf{Q} = \symbf{I} - \symbf{P}
+\end{equation*}
+This is because the vector \(\symbfit{b}\) can be represented as the 
+sum of the projections onto \(V\) and \(V^\perp\)
+\begin{equation*}
+    \symbfit{b} = \symbf{P}\symbfit{b} + \symbf{Q}\symbfit{b}.
+\end{equation*}
+The dot product of these two vectors is therefore also zero, given that 
+both projections lie in orthogonal subspaces.
+\begin{equation*}
+    \left( \symbf{P}\symbfit{b} \right)^\top \symbf{Q}\symbfit{b} = \symbf{0}
+\end{equation*}
+or 
+\begin{equation*}
+    \symbf{P} \symbf{Q} = \symbf{0}
+\end{equation*}
+where \(\symbf{0}\) is the zero matrix.
 \end{document}
