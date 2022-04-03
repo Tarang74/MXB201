@@ -507,4 +507,128 @@ or
     \symbf{P} \symbf{Q} = \symbf{0}
 \end{equation*}
 where \(\symbf{0}\) is the zero matrix.
+\section{Orthogonal Matrices}
+\subsection{Standard Basis Vectors}
+The standard basis vectors are constructed by placing a \(1\)
+in the \(n\)th row of the \(n\)th basis vector in \(\R^n\).
+\begin{equation*}
+    \symbfit{e}_1 =
+    \begin{bmatrix}
+        1      \\
+        0      \\
+        \vdots \\
+        0
+    \end{bmatrix}
+    ,\: \dots,\: \symbfit{e}_n =
+    \begin{bmatrix}
+        0      \\
+        0      \\
+        \vdots \\
+        1
+    \end{bmatrix}
+\end{equation*}
+\subsection{Standard Basis}
+In \(\R^n\), the standard basis \(S\) consists of the vectors
+\begin{equation*}
+    S = \left\{ \symbfit{e}_1,\: \dots,\: \symbfit{e}_n \right\}
+\end{equation*}
+where the coefficients of a column vector implicitly represent the coefficients
+of the linear \linebreak combination of basis vectors in \(S\).
+
+For example, the vector \(\symbfit{b}_S\) in the standard basis 
+\begin{equation*}
+    \symbfit{b}_S = b_1 \symbfit{e}_1 + \cdots + b_n \symbfit{e}_n
+\end{equation*}
+can be represented as a column vector
+\begin{equation*}
+    \symbfit{b}_S = \begin{bmatrix}
+        b_1 \\
+        \vdots \\
+        b_n
+    \end{bmatrix}
+\end{equation*}
+where \(b_1,\: \dots,\: b_n\) are the entries of \(\symbfit{b}_S\). 
+\subsection{Change of Basis}
+If we wanted to represent the vector \(\symbfit{b}_S\) in terms of another basis
+\(W\), where
+\begin{equation*}
+    W = \left\{ \symbfit{w}_1,\: \dots,\: \symbfit{w}_n \right\}
+\end{equation*}
+we would do so by solving the following linear system
+\begin{align*}
+    c_1 \symbfit{w}_1 + \cdots + c_n \symbfit{w}_n & = \symbfit{b}_S \\
+    \begin{bmatrix}
+        \symbfit{w}_1 & \cdots & \symbfit{w}_n
+    \end{bmatrix} \begin{bmatrix}
+        c_1 \\
+        \vdots \\
+        c_n
+    \end{bmatrix} & = \symbfit{b}_S \\
+    \symbf{W} \symbfit{c} & = \symbfit{b}_S
+\end{align*}
+The solution to this system allows us to represent \(\symbfit{b}_S\) as 
+\(\symbfit{b}_W\), where the value of \(\symbfit{b}\) remains the same, but 
+it is represented using a different basis.
+\begin{equation*}
+    \symbfit{b}_W = \begin{bmatrix}
+        c_1 \symbfit{w}_1 \\
+        \vdots \\
+        c_n \symbfit{w}_n
+    \end{bmatrix}
+\end{equation*}
+\subsection{Orthonormal Basis}
+If we consider a basis \(Q\), such that every basis vector is normalised
+and orthogonal to every other basis vector, then \(Q\) is an orthonormal basis.
+\begin{definition}[Kronecker delta]
+    We can summarise such a basis using the Kronecker delta \(\delta_{ij}\),
+    which is defined 
+    \begin{equation*}
+        \delta_{ij} = \begin{cases}
+            1, & i = j \\
+            0, & i \ne j
+        \end{cases}
+    \end{equation*}
+    so that in an orthonormal basis \(Q\) with basis vectors 
+    \(\left\{ \symbfit{q}_1,\: \dots,\: \symbfit{q}_n \right\}\)
+    \begin{equation*}
+        \symbfit{q}_i \cdot \symbfit{q}_j = \delta_{ij}
+    \end{equation*}
+\end{definition}
+By using an orthonormal basis, we can determine the coefficients of \(\symbfit{b}_Q\) without
+solve a linear system. For example, the \(i\)th coefficient can be determined as 
+follows
+\begin{align*}
+    c_1 \symbfit{q}_1 + \cdots + c_i \symbfit{q}_i + \cdots + c_n \symbfit{q}_n & = \symbfit{b}_S \\
+    \symbfit{q}_i \cdot \left( c_1 \symbfit{q}_1 + \cdots + c_i \symbfit{q}_i + \cdots + c_n \symbfit{q}_n \right) & = \symbfit{q}_i \cdot \symbfit{b}_S \\
+    c_1 \cancelto{0}{\symbfit{q}_i \cdot \symbfit{q}_1} + \cdots + c_i \cancelto{1}{\symbfit{q}_i \cdot \symbfit{q}_i} + \cdots + c_n \cancelto{0}{\symbfit{q}_i \cdot \symbfit{q}_n} & = \symbfit{q}_i \cdot \symbfit{b}_S \\
+    c_i & = \symbfit{q}_i \cdot \symbfit{b}_S
+\end{align*}
+Therefore 
+\begin{align*}
+    \symbfit{b}_Q & = \begin{bmatrix}
+        \symbfit{q}_i \cdot \symbfit{b}_S \\
+        \vdots \\
+        \symbfit{q}_n \cdot \symbfit{b}_S
+    \end{bmatrix} \\
+    & = \begin{bmatrix}
+        \symbfit{q}_i^\top \symbfit{b}_S \\
+        \vdots \\
+        \symbfit{q}_n^\top \symbfit{b}_S
+    \end{bmatrix} \\
+    & = \begin{bmatrix}
+        \symbfit{q}_i^\top \symbfit{b}_S \\
+        \vdots \\
+        \symbfit{q}_n^\top \symbfit{b}_S
+    \end{bmatrix} \\
+    & = \symbf{Q}^\top \symbfit{b}_S
+\end{align*}
+\subsection{Projection onto a Vector}
+
+\subsection{Gram-Schmidt Process}
+In order to convert an arbitrary basis to an orthonormal basis, we 
+must develop a process that is generalisable to any basis.
+
+In this process, we begin with a basis \(W\), and construct an orthogonal basis
+\(V\). To do so, we choose a basis in \(W\) to be the reference vector, then
+for the \(i\)th basis in \(V\) we subtract the projection onto the previous 
 \end{document}
