@@ -359,27 +359,27 @@ For the matrix \(\symbf{A} \in \R^{m \times n}\):
 Given a matrix \(\symbf{A} \in \R^{m \times n}\), the linear system \(\symbf{A}\symbfit{x} = \symbfit{b}\),
 with any vector \(\symbfit{b}\) can be described as follows:
 \begin{enumerate}
-    \item Consistent with unique solution: 
-    \begin{equation*}
-        \vrank{\left( \symbf{A} \right)} = 
-        \vrank{\left( \begin{bmatrix}[c|c] 
-            \symbf{A} & \symbfit{b} 
-        \end{bmatrix} \right)}
-    \end{equation*}
-    \item Consistent with infinitely many solutions: 
-    \begin{equation*}
-        \vrank{\left( \symbf{A} \right)} = 
-        \vrank{\left( \begin{bmatrix}[c|c] 
-            \symbf{A} & \symbfit{b} 
-        \end{bmatrix} \right)}
-    \end{equation*}
-    \item Inconsistent with no solutions: 
-    \begin{equation*}
-        \vrank{\left( \symbf{A} \right)} \neq 
-        \vrank{\left( \begin{bmatrix}[c|c] 
-            \symbf{A} & \symbfit{b} 
-        \end{bmatrix} \right)}
-    \end{equation*}
+    \item Consistent with unique solution:
+          \begin{equation*}
+              \vrank{\left( \symbf{A} \right)} =
+              \vrank{\left( \begin{bmatrix}[c|c]
+                      \symbf{A} & \symbfit{b}
+                  \end{bmatrix} \right)}
+          \end{equation*}
+    \item Consistent with infinitely many solutions:
+          \begin{equation*}
+              \vrank{\left( \symbf{A} \right)} =
+              \vrank{\left( \begin{bmatrix}[c|c]
+                      \symbf{A} & \symbfit{b}
+                  \end{bmatrix} \right)}
+          \end{equation*}
+    \item Inconsistent with no solutions:
+          \begin{equation*}
+              \vrank{\left( \symbf{A} \right)} \neq
+              \vrank{\left( \begin{bmatrix}[c|c]
+                      \symbf{A} & \symbfit{b}
+                  \end{bmatrix} \right)}
+          \end{equation*}
 \end{enumerate}
 However, if \(\symbfit{b} \in \columnspace{{A}}\), the system must be consistent.
 \subsection{General Solution to a Linear System}
@@ -387,7 +387,7 @@ Given \(\symbfit{b} \in \columnspace{A}\), the general solution to a system can 
 \begin{equation*}
     \symbfit{x}_g = \symbfit{x}_p + \symbfit{x}_n
 \end{equation*}
-where \(\symbfit{x}_p\) is a particular solution obtained by backward substitution, and 
+where \(\symbfit{x}_p\) is a particular solution obtained by backward substitution, and
 \(\symbfit{x}_n\) represents the linear combination of all null space basis vectors.
 \subsection{Minimum Norm Solution}
 In general, the particular solution may contain a linear combination of
@@ -401,13 +401,13 @@ minimise the norm of the residual:
 \begin{equation*}
     \norm{\symbfit{b} - \symbf{A}\symbfit{x}}
 \end{equation*}
-Therefore we solve the following minimisation problem 
+Therefore we solve the following minimisation problem
 \begin{equation*}
     \symbfit{x} = \argmin_{\symbfit{x}^\ast \in \R^n} \norm{\symbfit{b} - \symbf{A}\symbfit{x}}
 \end{equation*}
 which is known as the \textbf{Least Squares} problem.
 \begin{theorem}[Minimum norm solution]
-    The solution to the least squares problem is obtained by the vector \(\symbfit{x}\) such 
+    The solution to the least squares problem is obtained by the vector \(\symbfit{x}\) such
     that \(\symbfit{b} - \symbf{A}\symbfit{x}\) is orthogonal to the column space of \(\symbf{A}\).
 \end{theorem}
 \subsection{Normal Equations}
@@ -430,9 +430,9 @@ By rearranging the normal equations, we can directly compute the solution vector
 \end{equation*}
 The projection of \(\symbfit{b}\) onto \(\columnspace{A}\) is therefore
 \begin{align*}
-    \symbfit{b}_p & = \proj_{\columnspace{A}} \left( \symbfit{b} \right) \\
-                  & = \symbf{A} \symbfit{x}                            \\
-                  & = \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top \symbfit{b} 
+    \symbfit{b}_p & = \proj_{\columnspace{A}} \left( \symbfit{b} \right)                                \\
+                  & = \symbf{A} \symbfit{x}                                                             \\
+                  & = \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top \symbfit{b}
 \end{align*}
 We can identify the matrix
 \begin{equation*}
@@ -452,24 +452,24 @@ as the orthogonal projector onto the column space of \(\symbf{A}\), so that it o
     Given that \(\symbf{P}\symbfit{b}\) produces the projection vector \(\symbfit{b}_p\),
     taking the orthogonal projection of \(\symbfit{b}_p\) again results in the vector \(\symbfit{b}_p\).
     \begin{align*}
-        \symbf{P} \symbfit{b}_p        & = \symbfit{b}_p \\
+        \symbf{P} \symbfit{b}_p        & = \symbfit{b}_p         \\
         \symbf{P}\symbf{P} \symbfit{b} & = \symbf{P} \symbfit{b} \\
-        \symbf{P}^2 \symbfit{b} & = \symbf{P} \symbfit{b}
+        \symbf{P}^2 \symbfit{b}        & = \symbf{P} \symbfit{b}
     \end{align*}
     Therefore orthogonal projectors are idempotent matrices as \(\symbf{P}^2 = \symbf{P}\).
 \end{theorem}
 \begin{proof}
     If we express the orthogonal projector in its full form, we can verify the result from above
     \begin{align*}
-        \symbf{P}^2 & = \symbf{P} \symbf{P} \\
-                    & = \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top \\
+        \symbf{P}^2 & = \symbf{P} \symbf{P}                                                                                                                                           \\
+                    & = \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top                   \\
                     & = \symbf{A} \cancel{\left( \symbf{A}^\top \symbf{A} \right)^{-1}} \cancel{\symbf{A}^\top \symbf{A}} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top \\
-                    & = \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top \\
+                    & = \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top                                                                                         \\
                     & = \symbf{P}
     \end{align*}
 \end{proof}
 \subsection{Dependent Columns}
-If \(\symbf{A}\) has dependent columns, then we will obtain an infinite family of Least 
+If \(\symbf{A}\) has dependent columns, then we will obtain an infinite family of Least
 Squares solutions. However there will only be one projection vector \(\symbfit{b}_p\).
 
 This arises from \(\nullspace{A} = \mathcal{N}\left(\symbf{A}^\top \symbf{A}\right)\), so that
@@ -481,28 +481,28 @@ where \(\symbfit{x}_p\) is the particular Least Squares solution, and \(\symbfit
 any linear combination of null space vectors.
 \subsection{Orthogonal Projector onto the Column Space}
 To obtain a unique solution to the Normal Equations, we can form the matrix \(\symbf{W}\)
-such that it has full column rank and it spans the column space of \(\symbf{A}\). 
+such that it has full column rank and it spans the column space of \(\symbf{A}\).
 Then the orthogonal projector is given by
 \begin{equation*}
     \symbf{P} = \symbf{W} \left( \symbf{W}^\top \symbf{W} \right)^{-1} \symbf{W}^\top
 \end{equation*}
 \subsection{Orthogonal Projectors onto other Spaces}
-Given the orthogonal projector \(\symbf{P} = \proj_V\) onto a subspace \(V\), the 
-orthogonal projector \(\symbf{Q} = \proj_{V^\perp}\) onto \(V^\perp\) is given by 
+Given the orthogonal projector \(\symbf{P} = \proj_V\) onto a subspace \(V\), the
+orthogonal projector \(\symbf{Q} = \proj_{V^\perp}\) onto \(V^\perp\) is given by
 \begin{equation*}
     \symbf{Q} = \symbf{I} - \symbf{P}
 \end{equation*}
-This is because the vector \(\symbfit{b}\) can be represented as the 
+This is because the vector \(\symbfit{b}\) can be represented as the
 sum of the projections onto \(V\) and \(V^\perp\)
 \begin{equation*}
     \symbfit{b} = \symbf{P}\symbfit{b} + \symbf{Q}\symbfit{b}.
 \end{equation*}
-The dot product of these two vectors is therefore also zero, given that 
+The dot product of these two vectors is therefore also zero, given that
 both projections lie in orthogonal subspaces.
 \begin{equation*}
     \left( \symbf{P}\symbfit{b} \right)^\top \symbf{Q}\symbfit{b} = \symbf{0}
 \end{equation*}
-or 
+or
 \begin{equation*}
     \symbf{P} \symbf{Q} = \symbf{0}
 \end{equation*}
@@ -535,19 +535,19 @@ In \(\R^n\), the standard basis \(S\) consists of the vectors
 where the coefficients of a column vector implicitly represent the coefficients
 of the linear \linebreak combination of basis vectors in \(S\).
 
-For example, the vector \(\symbfit{b}_S\) in the standard basis 
+For example, the vector \(\symbfit{b}_S\) in the standard basis
 \begin{equation*}
     \symbfit{b}_S = b_1 \symbfit{e}_1 + \cdots + b_n \symbfit{e}_n
 \end{equation*}
 can be represented as a column vector
 \begin{equation*}
     \symbfit{b}_S = \begin{bmatrix}
-        b_1 \\
+        b_1    \\
         \vdots \\
         b_n
     \end{bmatrix}
 \end{equation*}
-where \(b_1,\: \dots,\: b_n\) are the entries of \(\symbfit{b}_S\). 
+where \(b_1,\: \dots,\: b_n\) are the entries of \(\symbfit{b}_S\).
 \subsection{Change of Basis}
 If we wanted to represent the vector \(\symbfit{b}_S\) in terms of another basis
 \(W\), where
@@ -560,19 +560,19 @@ we would do so by solving the following linear system
     \begin{bmatrix}
         \symbfit{w}_1 & \cdots & \symbfit{w}_n
     \end{bmatrix} \begin{bmatrix}
-        c_1 \\
-        \vdots \\
-        c_n
-    \end{bmatrix} & = \symbfit{b}_S \\
-    \symbf{W} \symbfit{c} & = \symbfit{b}_S
+                      c_1    \\
+                      \vdots \\
+                      c_n
+                  \end{bmatrix}        & = \symbfit{b}_S             \\
+    \symbf{W} \symbfit{c}                          & = \symbfit{b}_S
 \end{align*}
-The solution to this system allows us to represent \(\symbfit{b}_S\) as 
-\(\symbfit{b}_W\), where the value of \(\symbfit{b}\) remains the same, but 
+The solution to this system allows us to represent \(\symbfit{b}_S\) as
+\(\symbfit{b}_W\), where the value of \(\symbfit{b}\) remains the same, but
 it is represented using a different basis.
 \begin{equation*}
     \symbfit{b}_W = \begin{bmatrix}
         c_1 \symbfit{w}_1 \\
-        \vdots \\
+        \vdots            \\
         c_n \symbfit{w}_n
     \end{bmatrix}
 \end{equation*}
@@ -581,54 +581,68 @@ If we consider a basis \(Q\), such that every basis vector is normalised
 and orthogonal to every other basis vector, then \(Q\) is an orthonormal basis.
 \begin{definition}[Kronecker delta]
     We can summarise such a basis using the Kronecker delta \(\delta_{ij}\),
-    which is defined 
+    which is defined
     \begin{equation*}
         \delta_{ij} = \begin{cases}
-            1, & i = j \\
+            1, & i = j   \\
             0, & i \ne j
         \end{cases}
     \end{equation*}
-    so that in an orthonormal basis \(Q\) with basis vectors 
+    so that in an orthonormal basis \(Q\) with basis vectors
     \(\left\{ \symbfit{q}_1,\: \dots,\: \symbfit{q}_n \right\}\)
     \begin{equation*}
         \symbfit{q}_i \cdot \symbfit{q}_j = \delta_{ij}
     \end{equation*}
 \end{definition}
 By using an orthonormal basis, we can determine the coefficients of \(\symbfit{b}_Q\) without
-solve a linear system. For example, the \(i\)th coefficient can be determined as 
+solve a linear system. For example, the \(i\)th coefficient can be determined as
 follows
 \begin{align*}
-    c_1 \symbfit{q}_1 + \cdots + c_i \symbfit{q}_i + \cdots + c_n \symbfit{q}_n & = \symbfit{b}_S \\
-    \symbfit{q}_i \cdot \left( c_1 \symbfit{q}_1 + \cdots + c_i \symbfit{q}_i + \cdots + c_n \symbfit{q}_n \right) & = \symbfit{q}_i \cdot \symbfit{b}_S \\
+    c_1 \symbfit{q}_1 + \cdots + c_i \symbfit{q}_i + \cdots + c_n \symbfit{q}_n                                                                                                       & = \symbfit{b}_S                     \\
+    \symbfit{q}_i \cdot \left( c_1 \symbfit{q}_1 + \cdots + c_i \symbfit{q}_i + \cdots + c_n \symbfit{q}_n \right)                                                                    & = \symbfit{q}_i \cdot \symbfit{b}_S \\
     c_1 \cancelto{0}{\symbfit{q}_i \cdot \symbfit{q}_1} + \cdots + c_i \cancelto{1}{\symbfit{q}_i \cdot \symbfit{q}_i} + \cdots + c_n \cancelto{0}{\symbfit{q}_i \cdot \symbfit{q}_n} & = \symbfit{q}_i \cdot \symbfit{b}_S \\
-    c_i & = \symbfit{q}_i \cdot \symbfit{b}_S
+    c_i                                                                                                                                                                               & = \symbfit{q}_i \cdot \symbfit{b}_S
 \end{align*}
-Therefore 
+Therefore
 \begin{align*}
     \symbfit{b}_Q & = \begin{bmatrix}
-        \symbfit{q}_i \cdot \symbfit{b}_S \\
-        \vdots \\
-        \symbfit{q}_n \cdot \symbfit{b}_S
-    \end{bmatrix} \\
-    & = \begin{bmatrix}
-        \symbfit{q}_i^\top \symbfit{b}_S \\
-        \vdots \\
-        \symbfit{q}_n^\top \symbfit{b}_S
-    \end{bmatrix} \\
-    & = \begin{bmatrix}
-        \symbfit{q}_i^\top \symbfit{b}_S \\
-        \vdots \\
-        \symbfit{q}_n^\top \symbfit{b}_S
-    \end{bmatrix} \\
-    & = \symbf{Q}^\top \symbfit{b}_S
+                          \symbfit{q}_i \cdot \symbfit{b}_S \\
+                          \vdots                            \\
+                          \symbfit{q}_n \cdot \symbfit{b}_S
+                      \end{bmatrix} \\
+                  & = \begin{bmatrix}
+                          \symbfit{q}_i^\top \symbfit{b}_S \\
+                          \vdots                           \\
+                          \symbfit{q}_n^\top \symbfit{b}_S
+                      \end{bmatrix}  \\
+                  & = \begin{bmatrix}
+                          \symbfit{q}_i^\top \symbfit{b}_S \\
+                          \vdots                           \\
+                          \symbfit{q}_n^\top \symbfit{b}_S
+                      \end{bmatrix}  \\
+                  & = \symbf{Q}^\top \symbfit{b}_S
 \end{align*}
 \subsection{Projection onto a Vector}
-
+Consider a subspace which consists of one vector \(\symbfit{a}\), the projection of \(\symbfit{b}\)
+onto \(\symbfit{a}\) is given by
+\begin{align*}
+    \proj_{\symbfit{a}} \left( \symbfit{b} \right) = \symbfit{b}_P & = \symbfit{a} \left( \symbfit{a}^\top \symbfit{a} \right)^{-1} \symbfit{a}^\top \symbfit{b} \\
+                                                                   & = \frac{\symbfit{a}}{\norm{\symbfit{a}}^2} \symbfit{a} \cdot \symbfit{b}
+\end{align*}
+If we instead project \(\symbfit{b}\) onto a unit vector \(\symbfit{q}\), then this simplifies to
+\begin{equation*}
+    \proj_{\symbfit{q}} \left( \symbfit{b} \right) = \symbfit{q} \left( \symbfit{q} \cdot \symbfit{b} \right)
+\end{equation*}
 \subsection{Gram-Schmidt Process}
-In order to convert an arbitrary basis to an orthonormal basis, we 
+To convert an arbitrary basis \(W\) to an orthonormal basis \(Q\), we
 must develop a process that is generalisable to any basis.
 
-In this process, we begin with a basis \(W\), and construct an orthogonal basis
-\(V\). To do so, we choose a basis in \(W\) to be the reference vector, then
-for the \(i\)th basis in \(V\) we subtract the projection onto the previous 
+We construct \(Q\) as follows
+\begin{align*}
+    \symbfit{v}_1 & = \symbfit{w}_1                                                                                                           & \symbfit{q}_1 & = \frac{\symbfit{v}_1}{\norm{\symbfit{v}_1}} \\
+    \symbfit{v}_2 & = \symbfit{w}_2 - \proj_{\symbfit{q}_1} \left( \symbfit{w}_2 \right)                                                      & \symbfit{q}_2 & = \frac{\symbfit{v}_2}{\norm{\symbfit{v}_2}} \\
+    \symbfit{v}_3 & = \symbfit{w}_3 - \proj_{\symbfit{q}_1} \left( \symbfit{w}_3 \right) - \proj_{\symbfit{q}_2} \left( \symbfit{w}_3 \right) & \symbfit{q}_3 & = \frac{\symbfit{v}_3}{\norm{\symbfit{v}_3}} \\
+                  & \vdots                                                                                                                    &               & \vdots                                       \\
+    \symbfit{v}_i & = \symbfit{w}_i - \sum_{j = 1}^{i - 1} \proj_{\symbfit{q}_j} \left( \symbfit{w}_i \right)                                 & \symbfit{q}_i & = \frac{\symbfit{v}_i}{\norm{\symbfit{v}_i}} 
+\end{align*}
 \end{document}
