@@ -6,6 +6,12 @@
 
 ---
 
+## Downloads
+
+Lecture notes download: [MXB201 Lecture Notes PDF](MXB201%20Lecture%20Notes.pdf)
+
+---
+
 This repository provides **lecture notes** for **MXB201 - Advanced Linear Algebra**.
 
 *The contents of the lecture notes are described below.*
@@ -16,6 +22,7 @@ This repository provides **lecture notes** for **MXB201 - Advanced Linear Algebr
 
 1. Fundamental Concepts of Linear Algebra
 2. Least Squares
+3. Orthogonal Matrices
 
 ---
 
