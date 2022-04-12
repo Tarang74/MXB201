@@ -3,6 +3,8 @@
 \usepackage{LaTeX-Submodule/template}
 
 % Additional packages & macros
+\usepackage{mathdots}
+
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
 
@@ -595,7 +597,7 @@ and orthogonal to every other basis vector, then \(Q\) is an orthonormal basis.
     \end{equation*}
 \end{definition}
 By using an orthonormal basis, we can determine the coefficients of \(\symbfit{b}_Q\) without
-solve a linear system. For example, the \(i\)th coefficient can be determined as
+solving a linear system. For example, the \(i\)th coefficient can be determined as
 follows
 \begin{align*}
     c_1 \symbfit{q}_1 + \cdots + c_i \symbfit{q}_i + \cdots + c_n \symbfit{q}_n                                                                                                       & = \symbfit{b}_S                     \\
@@ -606,22 +608,59 @@ follows
 Therefore
 \begin{align*}
     \symbfit{b}_Q & = \begin{bmatrix}
-                          \symbfit{q}_i \cdot \symbfit{b}_S \\
+                          \symbfit{q}_1 \cdot \symbfit{b}_S \\
                           \vdots                            \\
                           \symbfit{q}_n \cdot \symbfit{b}_S
-                      \end{bmatrix} \\
+                      \end{bmatrix}                \\
                   & = \begin{bmatrix}
-                          \symbfit{q}_i^\top \symbfit{b}_S \\
+                          \symbfit{q}_1^\top \symbfit{b}_S \\
                           \vdots                           \\
                           \symbfit{q}_n^\top \symbfit{b}_S
-                      \end{bmatrix}  \\
+                      \end{bmatrix}                 \\
                   & = \begin{bmatrix}
-                          \symbfit{q}_i^\top \symbfit{b}_S \\
-                          \vdots                           \\
-                          \symbfit{q}_n^\top \symbfit{b}_S
-                      \end{bmatrix}  \\
+                          \symbfit{q}_1^\top & \cdots & \symbfit{q}_n^\top
+                      \end{bmatrix} \symbfit{b}_S \\
                   & = \symbf{Q}^\top \symbfit{b}_S
 \end{align*}
+\subsection{Orthogonal Matrices}
+To confirm that \(Q = \left\{ \symbfit{q}_1,\: \dots,\: \symbfit{q}_n \right\}\) is an orthonormal basis, we need to confirm that \(\symbfit{q}_i \cdot \symbfit{q}_j = \delta_{ij}\) holds.
+To do so, we can construct the matrix product \(\symbf{Q}^\top \symbf{Q}\), so that
+\begin{align*}
+    \symbf{Q}^\top \symbf{Q} & = \begin{bmatrix}
+                                     \symbfit{q}_1 & \cdots & \symbfit{q}_n
+                                 \end{bmatrix} \begin{bmatrix}
+                                                   \symbfit{q}_1 \\
+                                                   \vdots        \\
+                                                   \symbfit{q}_n
+                                               \end{bmatrix}                                         \\
+                             & = \begin{bmatrix}
+                                     \symbfit{q}_1 \cdot \symbfit{q}_1 & \cdots & \symbfit{q}_1 \cdot \symbfit{q}_n \\
+                                     \vdots                            & \ddots & \vdots                            \\
+                                     \symbfit{q}_n \cdot \symbfit{q}_1 & \cdots & \symbfit{q}_n \cdot \symbfit{q}_n
+                                 \end{bmatrix} \\
+                             & = \begin{bmatrix}
+                                     1      & 0      & \cdots & 0      \\
+                                     0      & 1      & \ddots & \vdots \\
+                                     \vdots & \ddots & \ddots & 0      \\
+                                     0      & \cdots & 0      & 1
+                                 \end{bmatrix}                                              \\
+                             & = \symbf{I}.
+\end{align*}
+\begin{definition}[Orthogonal Matrices]
+    A square matrix \(\symbf{Q}\) is \textit{orthogonal} if it satisfies
+    \begin{equation*}
+        \symbf{Q}^\top = \symbf{Q}^{-1}.
+    \end{equation*}
+    This results in
+    \begin{align*}
+        \symbf{Q}\symbf{Q}^\top & = \symbf{Q}\symbf{Q}^{-1} \\
+                                & =\symbf{I}
+    \end{align*}
+    so that
+    \begin{equation*}
+        \symbf{Q}^\top \symbf{Q} = \symbf{Q}\symbf{Q}^\top = \symbf{I}.
+    \end{equation*}
+\end{definition}
 \subsection{Projection onto a Vector}
 Consider a subspace which consists of one vector \(\symbfit{a}\), the projection of \(\symbfit{b}\)
 onto \(\symbfit{a}\) is given by
@@ -634,15 +673,100 @@ If we instead project \(\symbfit{b}\) onto a unit vector \(\symbfit{q}\), then t
     \proj_{\symbfit{q}} \left( \symbfit{b} \right) = \symbfit{q} \left( \symbfit{q} \cdot \symbfit{b} \right)
 \end{equation*}
 \subsection{Gram-Schmidt Process}
-To convert an arbitrary basis \(W\) to an orthonormal basis \(Q\), we
+To convert an arbitrary basis \(W\)\footnote{Here we use \(W\) to denote the set of vectors that span \(\columnspace{A}\).} to an orthonormal basis \(Q\), we
 must develop a process that is generalisable to any basis.
 
 We construct \(Q\) as follows
 \begin{align*}
-    \symbfit{v}_1 & = \symbfit{w}_1                                                                                                           & \symbfit{q}_1 & = \frac{\symbfit{v}_1}{\norm{\symbfit{v}_1}} \\
-    \symbfit{v}_2 & = \symbfit{w}_2 - \proj_{\symbfit{q}_1} \left( \symbfit{w}_2 \right)                                                      & \symbfit{q}_2 & = \frac{\symbfit{v}_2}{\norm{\symbfit{v}_2}} \\
-    \symbfit{v}_3 & = \symbfit{w}_3 - \proj_{\symbfit{q}_1} \left( \symbfit{w}_3 \right) - \proj_{\symbfit{q}_2} \left( \symbfit{w}_3 \right) & \symbfit{q}_3 & = \frac{\symbfit{v}_3}{\norm{\symbfit{v}_3}} \\
-                  & \vdots                                                                                                                    &               & \vdots                                       \\
-    \symbfit{v}_i & = \symbfit{w}_i - \sum_{j = 1}^{i - 1} \proj_{\symbfit{q}_j} \left( \symbfit{w}_i \right)                                 & \symbfit{q}_i & = \frac{\symbfit{v}_i}{\norm{\symbfit{v}_i}} 
+    \symbfit{v}_1 & = \symbfit{w}_1                                                                                                           & \symbfit{q}_1 & = \frac{\symbfit{v}_1}{\norm{\symbfit{v}_1}}  \\
+    \symbfit{v}_2 & = \symbfit{w}_2 - \proj_{\symbfit{q}_1} \left( \symbfit{w}_2 \right)                                                      & \symbfit{q}_2 & = \frac{\symbfit{v}_2}{\norm{\symbfit{v}_2}}  \\
+    \symbfit{v}_3 & = \symbfit{w}_3 - \proj_{\symbfit{q}_1} \left( \symbfit{w}_3 \right) - \proj_{\symbfit{q}_2} \left( \symbfit{w}_3 \right) & \symbfit{q}_3 & = \frac{\symbfit{v}_3}{\norm{\symbfit{v}_3}}  \\
+                  & \vdotswithin{=}                                                                                                           &               & \vdotswithin{=}                               \\
+    \symbfit{v}_i & = \symbfit{w}_i - \sum_{j = 1}^{i - 1} \proj_{\symbfit{q}_j} \left( \symbfit{w}_i \right)                                 & \symbfit{q}_i & = \frac{\symbfit{v}_i}{\norm{\symbfit{v}_i}}.
 \end{align*}
+Using the projection definition for orthogonal vectors, we can simplify this to
+\begin{align*}
+    \symbfit{v}_1 & = \symbfit{w}_1                                                                                                                                   & \symbfit{q}_1 & = \frac{\symbfit{v}_1}{\norm{\symbfit{v}_1}}  \\
+    \symbfit{v}_2 & = \symbfit{w}_2 - \symbfit{q}_1 \left( \symbfit{q}_1 \cdot \symbfit{w}_2 \right)                                                                  & \symbfit{q}_2 & = \frac{\symbfit{v}_2}{\norm{\symbfit{v}_2}}  \\
+    \symbfit{v}_3 & = \symbfit{w}_3 - \symbfit{q}_1 \left( \symbfit{q}_1 \cdot \symbfit{w}_3 \right) - \symbfit{q}_2 \left( \symbfit{q}_2 \cdot \symbfit{w}_3 \right) & \symbfit{q}_3 & = \frac{\symbfit{v}_3}{\norm{\symbfit{v}_3}}  \\
+                  & \vdotswithin{=}                                                                                                                                   &               & \vdotswithin{=}                               \\
+    \symbfit{v}_i & = \symbfit{w}_i - \sum_{j = 1}^{i - 1} \symbfit{q}_j \left( \symbfit{q}_j \cdot \symbfit{w}_i \right)                                             & \symbfit{q}_i & = \frac{\symbfit{v}_i}{\norm{\symbfit{v}_i}}.
+\end{align*}
+This produces two sets of mutually orthogonal vectors that span the same space as \(W\). Here \(V = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_n \right\}\) is an orthogonal basis,
+and \(Q = \left\{ \symbfit{q}_1,\: \dots,\: \symbfit{q}_n \right\}\) is an orthonormal basis.
+\subsection{Least Squares using Orthogonal Matrices}
+Consider \(\symbfit{u} \notin \columnspace{A} \implies \symbfit{u} \notin \vspan{\left( W \right)}\), then there are no solutions to the linear system:
+\begin{equation*}
+    \symbf{A} \symbfit{c} = \symbfit{u}.
+\end{equation*}
+If instead, we use the orthonormal basis \(Q\), then
+\begin{equation*}
+    \symbfit{c}^\ast = \symbf{Q}^\top \symbfit{u}
+\end{equation*}
+despite the inconsistency of the equation
+\begin{equation*}
+    \symbf{Q} \symbfit{c} = \symbfit{u}.
+\end{equation*}
+This is because the vector \(\symbfit{u}_P = \symbf{Q} \symbfit{c}^\ast\) is the orthogonal projection of \(\symbfit{u}\) onto \(\vspan{\left( Q \right)}\).
+\begin{align*}
+    \symbf{P} & = \symbf{Q} \left( \symbf{Q}^\top \symbf{Q} \right)^{-1} \symbf{Q}^\top \\
+              & = \symbf{Q} \symbf{I}^{-1} \symbf{Q}^\top                               \\
+              & = \symbf{Q} \symbf{Q}^\top
+\end{align*}
+so that
+\begin{align*}
+    \symbfit{u}_P & = \symbf{P} \symbfit{u}                \\
+                  & = \symbf{Q} \symbf{Q}^\top \symbfit{u} \\
+                  & = \symbf{Q} \symbfit{c}^\ast.
+\end{align*}
+Therefore
+\begin{align*}
+    \symbfit{u} \in \vspan{\left( W \right)}    & \implies \symbf{P} \symbfit{u} = \symbfit{u}   \\
+    \symbfit{u} \notin \vspan{\left( W \right)} & \implies \symbf{P} \symbfit{u} = \symbfit{u}_P
+\end{align*}
+\subsection{QR Decomposition}
+If we rearrange the steps in the Gram-Schmidt process to solve for \(\symbfit{w}_i\), we get
+\begin{align*}
+    \symbfit{w}_1 & = \symbfit{q}_1 \norm{\symbfit{v}_1}                                                                                                                                   \\
+    \symbfit{w}_2 & = \symbfit{q}_2 \norm{\symbfit{v}_2} + \symbfit{q}_1 \left( \symbfit{q}_1 \cdot \symbfit{w}_2 \right)                                                                  \\
+    \symbfit{w}_3 & = \symbfit{q}_3 \norm{\symbfit{v}_3} + \symbfit{q}_1 \left( \symbfit{q}_1 \cdot \symbfit{w}_3 \right) + \symbfit{q}_2 \left( \symbfit{q}_2 \cdot \symbfit{w}_3 \right) \\
+                  &                                                                                                                                                                        \\
+    \symbfit{w}_i & = \symbfit{q}_i \norm{\symbfit{v}_i} + \sum_{j = 1}^{i - 1} \symbfit{q}_j \left( \symbfit{q}_j \cdot \symbfit{w}_i \right)
+\end{align*}
+Due to the properties of \(\symbfit{q}_i\), we can also express \(\symbfit{w}_i\) as
+\begin{equation*}
+    \symbfit{w}_i = \sum_{j = 1}^{i} \symbfit{q}_j \left( \symbfit{q}_j \cdot \symbfit{w}_i \right).
+\end{equation*}
+And in vector form:
+\begin{align*}
+    \begin{bmatrix}
+        \symbfit{w}_1 & \symbfit{w}_2 & \cdots & \symbfit{w}_n
+    \end{bmatrix} & = \begin{bmatrix}
+                          \symbfit{q}_1 & \symbfit{q}_2 & \cdots & \symbfit{q}_n
+                      \end{bmatrix} \begin{bmatrix}
+                                        \norm{\symbfit{v}_1} & \symbfit{q}_1 \cdot \symbfit{w}_2 & \cdots & \symbfit{q}_1 \cdot \symbfit{w}_n       \\[0.2cm]
+                                        0                    & \norm{\symbfit{v}_2}              & \ddots & \vdots                                  \\[0.2cm]
+                                        \vdots               & \ddots                            & \ddots & \symbfit{q}_{n - 1} \cdot \symbfit{w}_n \\[0.2cm]
+                                        0                    & \cdots                            & 0      & \norm{\symbfit{v}_n}
+                                    \end{bmatrix} \\
+    \symbf{W}                                               & = \symbf{Q} \symbf{R}
+\end{align*}
+\subsection{Least Squares using QR Decomposition}
+Consider \(\symbfit{u} \notin \columnspace{A}\), by using the QR decomposition of \(\symbf{A}\), we have
+\begin{align*}
+    \symbf{A} \symbfit{c}                          & = \symbfit{u}                 \\
+    \left( \symbf{Q} \symbf{R} \right) \symbfit{c} & = \symbfit{u}                 \\
+    \symbf{Q}^\top \symbf{Q} \symbf{R} \symbfit{c} & = \symbf{Q}^\top \symbfit{u}  \\
+    \symbf{R} \symbfit{c}                          & = \symbf{Q}^\top \symbfit{u}.
+\end{align*}
+Instead if we use the Normal Equations,
+\begin{align*}
+    \symbf{A}^\top \symbf{A} \symbfit{c}                                                   & = \symbf{A}^\top \symbfit{u}                                                   \\
+    \left( \symbf{Q} \symbf{R} \right)^\top \left( \symbf{Q} \symbf{R} \right) \symbfit{c} & = \left( \symbf{Q} \symbf{R} \right)^\top \symbfit{u}                          \\
+    \symbf{R}^\top \symbf{Q}^\top \symbf{Q} \symbf{R} \symbfit{c}                          & = \symbf{R}^\top \symbf{Q}^\top \symbfit{u}                                    \\
+    \symbf{R}^\top \symbf{R} \symbfit{c}                                                   & = \symbf{R}^\top \symbf{Q}^\top \symbfit{u}                                    \\
+    \left( \symbf{R}^\top \right)^{-1} \symbf{R}^\top \symbf{R} \symbfit{c}                & = \left( \symbf{R}^\top \right)^{-1} \symbf{R}^\top \symbf{Q}^\top \symbfit{u} \\
+    \symbf{R} \symbfit{c}                                                                  & = \symbf{Q}^\top \symbfit{u}                                                   
+\end{align*}
+Therefore by using the QR decomposition of \(\symbf{A}\) we can find the Least Squares solution \(\symbfit{c}^\ast\), using backward-substitution.
 \end{document}
