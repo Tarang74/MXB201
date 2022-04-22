@@ -23,6 +23,7 @@ This repository provides **lecture notes** for **MXB201 - Advanced Linear Algebr
 1. Fundamental Concepts of Linear Algebra
 2. Least Squares
 3. Orthogonal Matrices
+4. Eigenvalues and Eigenvectors
 
 ---
 
