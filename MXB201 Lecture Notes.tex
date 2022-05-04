@@ -912,8 +912,8 @@ Given a diagonalisable matrix \(\symbf{A} = \symbf{V}\symbf{D}\symbf{V}^{-1}\), 
 \end{align*}
 Using \(\symbf{D} = \symbf{V}^{-1} \symbf{A} \symbf{V}\),
 \begin{align*}
-    \symbf{B} & = \symbf{W} \symbf{D} \symbf{W}^{-1}                                              \\
-              & = \symbf{W} \left( \symbf{V}^{-1} \symbf{A} \symbf{V} \right) \symbf{W}^{-1}      \\
+    \symbf{B} & = \symbf{W} \symbf{D} \symbf{W}^{-1}                                               \\
+              & = \symbf{W} \left( \symbf{V}^{-1} \symbf{A} \symbf{V} \right) \symbf{W}^{-1}       \\
               & = \left( \symbf{V} \symbf{W}^{-1} \right)^{-1} \symbf{A} \symbf{V} \symbf{W}^{-1}.
 \end{align*}
 Let \(\symbf{P} = \symbf{V} \symbf{W}^{-1}\), so that
@@ -921,4 +921,80 @@ Let \(\symbf{P} = \symbf{V} \symbf{W}^{-1}\), so that
     \symbf{B} = \symbf{P}^{-1} \symbf{A} \symbf{P}.
 \end{equation*}
 This result shows us that \(\symbf{A}\) and \(\symbf{B}\) are similar matrices.
+\subsection{Symmetric Matrices}
+Consider the symmetric matrix \(\symbf{A}\in\R^{n \times n}\) where \(\symbf{A}^\top = \symbf{A}\).
+Then:
+\begin{enumerate}
+    \item \(\symbf{A}\) is always diagonalisable.
+    \item The eigenvalues and eigenvectors of symmetric matrices are always real.
+    \item The eigenspaces of a symmetric matrix are orthogonal for \(\lambda_i \neq \lambda_j\).
+\end{enumerate}
+\subsection{Orthogonal Matrices}
+By applying the Gram-Schmidt process to the eigenvectors of a symmetric matrix, we obtain the decomposition
+\begin{equation*}
+    \symbf{A} = \symbf{Q} \symbf{D} \symbf{Q}^\top
+\end{equation*}
+where \(\symbf{Q}\) is a diagonal matrix that satisfies \(\symbf{Q}^{-1} = \symbf{Q}^\top\).
+\subsection{Definite Matrices}
+Symmetric matrices are also known as definite matrices, and can be classified into four categories.
+\begin{enumerate}
+    \item Positive definite matrices: All eigenvalues are positive.
+    \item Positive semidefinite matrices: All eigenvalues are nonnegative.
+    \item Negative definite matrices: All eigenvalues are nonpositive.
+    \item Negative semidefinite matrices: All eigenvalues are negative.
+\end{enumerate}
+\subsection{Eigenbases}
+When \(\symbf{A}\) has \(n\) linearly independent eigenvectors, the columns of \(\symbf{V}\) represent the eigenbasis of \(\symbf{A}\).
+
+Given the linear map \(\symbf{A}\symbfit{x} = \symbfit{b}\), if \(\symbfit{x} = \symbf{V} \symbfit{c}\) and \(\symbfit{b} = \symbf{V} \symbfit{k}\),
+then
+\begin{align*}
+    \symbf{A} \symbfit{x}                          & = \symbfit{b}           \\
+    \symbf{A} \symbf{V} \symbfit{c}                & = \symbf{V} \symbfit{k} \\
+    \symbf{V}^{-1} \symbf{A} \symbf{V} \symbfit{c} & = \symbfit{k}           \\
+    \symbf{D} \symbfit{c}                          & = \symbfit{k}
+\end{align*}
+so that, with respect to the eigenbasis, a linear map from \(\R^n\) to \(\R^n\) is represented by \(\symbf{D}\).
+\subsection{Matrix Functions}
+Given a nondefective \(\symbf{A} \in \R^{n \times n}\) with the eigendecomposition \(\symbf{A} = \symbf{V} \symbf{D} \symbf{V}^{-1}\),
+we can form the following equalities.
+\subsubsection{Powers}
+For \(k \in \N\),
+\begin{equation*}
+    \symbf{A}^k = \symbf{V} \symbf{D}^k \symbf{V}^{-1} = \symbf{V} \diag{\left( \lambda_1^k,\: \ldots,\: \lambda_n^k \right)} \symbf{V}^{-1}.
+\end{equation*}
+\begin{proof}
+    We can prove the above theorem using a recursive construction of \(\symbf{A}^k\).
+    \begin{align*}
+        \symbf{A}^2 = \symbf{A} \symbf{A}   & = \symbf{V} \symbf{D} \cancel{\symbf{V}^{-1} \symbf{V}} \symbf{D} \symbf{V}^{-1} = \symbf{V} \symbf{D}^2 \symbf{V}^{-1}   \\
+        \symbf{A}^3 = \symbf{A}^2 \symbf{A} & = \symbf{V} \symbf{D}^2 \cancel{\symbf{V}^{-1} \symbf{V}} \symbf{D} \symbf{V}^{-1} = \symbf{V} \symbf{D}^3 \symbf{V}^{-1}
+    \end{align*}
+    so that for a positive integer \(k \in \N\),
+    \begin{equation*}
+        \symbf{A}^k = \symbf{A}^{k - 1} \symbf{A} = \symbf{V} \symbf{D}^{k - 1} \cancel{\symbf{V}^{-1} \symbf{V}} \symbf{D} \symbf{V}^{-1} = \symbf{V} \symbf{D}^k \symbf{V}^{-1}.
+    \end{equation*}
+\end{proof}
+\subsubsection{Polynomials}
+Let \(p\left( t \right) = c_0 + c_1 t + c_2 t^2 + \cdots + c_k t^k\) denote a polynomial of degree \(k\), then the matrix polynomial
+\(p\left( \symbf{A} \right)\) can be expressed as
+\begin{align*}
+    p\left( \symbf{A} \right) & = c_0 \symbf{I} + c_1 \symbf{A} + c_2 \symbf{A}^2 + \cdots + c_k \symbf{A}^k                                                                                                     \\
+                              & = c_0 \symbf{V} \symbf{I} \symbf{V}^{-1} + c_1 \symbf{V} \symbf{D} \symbf{V}^{-1} + c_2 \symbf{V} \symbf{D}^2 \symbf{V}^{-1} + \cdots + c_k \symbf{V} \symbf{D}^k \symbf{V}^{-1} \\
+                              & = \symbf{V} \left( c_0 \symbf{I} + c_1 \symbf{D} + c_2 \symbf{D}^2 + \cdots + c_k \symbf{D}^k \right) \symbf{V}^{-1}                                                             \\
+                              & = \symbf{V} p\left( \symbf{D} \right) \symbf{V}^{-1}                                                                                                                             \\
+                              & = \symbf{V} \diag{\left( p\left( \lambda_1 \right),\: \ldots,\: p\left( \lambda_n \right) \right)} \symbf{V}^{-1}.
+\end{align*}
+\subsection{Analytic Functions}
+An analytic function can be represented by its Taylor series expansion, allowing us to operate analytic functions on \(\symbf{A}\).
+\begin{align*}
+    f\left( \symbf{A} \right) & = \symbf{V} f\left( \symbf{D} \right) \symbf{V}^{-1}                                                               \\
+                              & = \symbf{V} \diag{\left( f\left( \lambda_1 \right),\: \ldots,\: f\left( \lambda_n \right) \right)} \symbf{V}^{-1}.
+\end{align*}
+\begin{theorem}[Cayley-Hamilton theorem]
+    The characteristic polynomial of a square matrix \(\symbf{A}\) (that is not necessarily diagonalisable)
+    is equal to the zero matrix.
+    \begin{equation*}
+        P\left( \symbf{A} \right) = \symbfup{0}
+    \end{equation*}
+\end{theorem}
 \end{document}

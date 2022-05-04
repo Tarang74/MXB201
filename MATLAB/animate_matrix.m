@@ -205,7 +205,7 @@ end
                 end
             case '-'
                 if paused
-                    i = mod(i, numpts) - 1;
+                    i = mod(i - 2, numpts) + 1;
                     drawframe;
                 end
             case {' ', 'q'}
