@@ -439,7 +439,7 @@ By rearranging the normal equations, we can directly compute the solution vector
 \end{equation*}
 The projection of \(\symbfit{b}\) onto \(\columnspace{A}\) is therefore
 \begin{align*}
-    \symbfit{b}_p & = \proj_{\columnspace{A}} \left( \symbfit{b} \right)                                \\
+    \symbfit{b}_P & = \proj_{\columnspace{A}} \left( \symbfit{b} \right)                                \\
                   & = \symbf{A} \symbfit{x}                                                             \\
                   & = \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top \symbfit{b}
 \end{align*}
@@ -458,10 +458,10 @@ as the orthogonal projector onto the column space of \(\symbf{A}\), so that it o
     \end{equation*}
 \end{definition}
 \begin{theorem}
-    Given that \(\symbf{P}\symbfit{b}\) produces the projection vector \(\symbfit{b}_p\),
-    taking the orthogonal projection of \(\symbfit{b}_p\) again results in the vector \(\symbfit{b}_p\).
+    Given that \(\symbf{P}\symbfit{b}\) produces the projection vector \(\symbfit{b}_P\),
+    taking the orthogonal projection of \(\symbfit{b}_P\) again results in the vector \(\symbfit{b}_P\).
     \begin{align*}
-        \symbf{P} \symbfit{b}_p        & = \symbfit{b}_p         \\
+        \symbf{P} \symbfit{b}_P        & = \symbfit{b}_P         \\
         \symbf{P}\symbf{P} \symbfit{b} & = \symbf{P} \symbfit{b} \\
         \symbf{P}^2 \symbfit{b}        & = \symbf{P} \symbfit{b}
     \end{align*}
@@ -479,7 +479,7 @@ as the orthogonal projector onto the column space of \(\symbf{A}\), so that it o
 \end{proof}
 \subsection{Dependent Columns}
 If \(\symbf{A}\) has dependent columns, then we will obtain an infinite family of Least
-Squares solutions. However there will only be one projection vector \(\symbfit{b}_p\).
+Squares solutions. However there will only be one projection vector \(\symbfit{b}_P\).
 
 This arises from \(\nullspace{A} = \mathcal{N}\left(\symbf{A}^\top \symbf{A}\right)\), so that
 the solution to the Normal Equations yields
@@ -1057,15 +1057,15 @@ with
                                      \symbfit{u}_1 & \cdots & \symbfit{u}_r & \symbfit{u}_{r+1} & \cdots & \symbfit{u}_m \\
                                      \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar
                                  \end{bmatrix} \begin{bmatrix}
-                                                   \sigma_{1} &        &            &   &        &   \\
-                                                              & \ddots &            &   &        &   \\
-                                                              &        & \sigma_{r} &   &        &   \\
-                                                              &        &            & 0 &        &   \\
-                                                              &        &            &   & \ddots &   \\
-                                                              &        &            &   &        & 0 \\
-                                                              &        &            &   &        &   \\
-                                                              &        &            &   &        &   \\
-                                                              &        &            &   &        &
+                                                   \sigma_1 &        &          &   &        &   \\
+                                                            & \ddots &          &   &        &   \\
+                                                            &        & \sigma_r &   &        &   \\
+                                                            &        &          & 0 &        &   \\
+                                                            &        &          &   & \ddots &   \\
+                                                            &        &          &   &        & 0 \\
+                                                            &        &          &   &        &   \\
+                                                            &        &          &   &        &   \\
+                                                            &        &          &   &        &
                                                \end{bmatrix}
     \setlength{\arraycolsep}{0pt} % Avoid any column space in arrays that follow
     \begin{array}{ l }
@@ -1125,12 +1125,12 @@ additional ``0'' rows of \(\symbf{\Sigma}\). This results in \(\symbf{U} \in \R^
         \symbfit{u}_1 & \cdots & \symbfit{u}_r & \symbfit{u}_{r+1} & \cdots & \symbfit{u}_n \\
         \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar
     \end{bmatrix} \begin{bmatrix}
-        \sigma_{1} &        &            &   &        &   \\
-                   & \ddots &            &   &        &   \\
-                   &        & \sigma_{r} &   &        &   \\
-                   &        &            & 0 &        &   \\
-                   &        &            &   & \ddots &   \\
-                   &        &            &   &        & 0 
+        \sigma_1 &        &          &   &        &   \\
+                 & \ddots &          &   &        &   \\
+                 &        & \sigma_r &   &        &   \\
+                 &        &          & 0 &        &   \\
+                 &        &          &   & \ddots &   \\
+                 &        &          &   &        & 0
     \end{bmatrix}
     \setlength{\arraycolsep}{0pt} % Avoid any column space in arrays that follow
     \begin{array}{ l }
@@ -1140,7 +1140,7 @@ additional ``0'' rows of \(\symbf{\Sigma}\). This results in \(\symbf{U} \in \R^
                           0 \\ % Third row
                           0     % Fourth/last row
                       \end{array}}
-        \right\}\text{\(r\) rows}     \\
+        \right\}\text{\(r\) rows} \\
         \left.\kern-\nulldelimiterspace
         \vphantom{\begin{array}{ c }
                           0 \\ % Second row
@@ -1151,4 +1151,116 @@ additional ``0'' rows of \(\symbf{\Sigma}\). This results in \(\symbf{U} \in \R^
     \end{array}
 \end{equation*}
 The reduced SVD also removes the \(m - n\) left-null space basis vectors \(\left\{ \symbfit{u}_{n < i \leq m} \right\}\) from \(\symbf{U}\).
+\subsection{Pseudoinverse}
+% Given the linear system \(\symbf{A} \symbfit{x} = \symbfit{b}\) with \(\symbf{A} \in \R^{m \times n}\), 
+% then we can use the SVD to form a generalisation of the system.
+Using the orthogonal basis vectors obtained through the SVD of \(\symbf{A} \in \R^{m \times n}\), we can show that
+\(\symbfit{v}_i \mapsto \sigma_i \symbfit{u}_i\) for all \(i \leq r\). Therefore
+\begin{equation*}
+    \symbf{A} \symbfit{v}_i = \sigma_i \symbfit{u}_i.
+\end{equation*}
+If we consider the inverse mapping \(\symbfit{u}_i \mapsto \frac{1}{\sigma_i} \symbfit{v}_i\), then
+\begin{equation*}
+    \symbf{A}^\dagger \symbfit{u}_i = \frac{1}{\sigma_i} \symbfit{v}_i
+\end{equation*}
+where \(\symbf{A}^\dagger\) is the pseudoinverse of \(\symbf{A}\). To determine \(\symbf{A}^\dagger\),
+the above relationship must hold for all \(i \leq r\). If we multiply the RHS by \(\symbfit{u}^\top_i \symbfit{u}_i\)
+\begin{equation*}
+    \symbf{A}^\dagger \symbfit{u}_i = \frac{1}{\sigma_i} \symbfit{v}_i \symbfit{u}^\top_i \symbfit{u}_i
+\end{equation*}
+we can show that \(\symbf{A}^\dagger\) takes the form \(\frac{1}{\sigma_i} \symbfit{v}_i \symbfit{u}^\top_i\).
+Using the Kronecker Delta definition of orthonormal vectors, we know that the product of two orthonormal basis vectors is 1
+for \(i = j\) and 0 for \(i \neq j\). Therefore by taking the sum of all \(\frac{1}{\sigma_i} \symbfit{v}_i \symbfit{u}^\top_i\),
+we have
+\begin{align*}
+    \symbf{A}^\dagger \symbfit{u}_1 & = \left( \frac{1}{\sigma_1} \symbfit{v}_1 \symbfit{u}^\top_1 + \cdots + \frac{1}{\sigma_r} \symbfit{v}_r \symbfit{u}^\top_r \right) \symbfit{u}_1 = \frac{1}{\sigma_1} \symbfit{v}_1 \cancelto{1}{\symbfit{u}^\top_1 \symbfit{u}_1} + \cdots + \frac{1}{\sigma_r} \symbfit{v}_r \cancelto{0}{\symbfit{u}^\top_r \symbfit{u}_1} = \frac{1}{\sigma_1} \symbfit{v}_1 \\
+                                    & \vdotswithin{=}                                                                                                                                                                                                                                                                                                                                                   \\
+    \symbf{A}^\dagger \symbfit{u}_r & = \left( \frac{1}{\sigma_1} \symbfit{v}_1 \symbfit{u}^\top_1 + \cdots + \frac{1}{\sigma_r} \symbfit{v}_r \symbfit{u}^\top_r \right) \symbfit{u}_r = \frac{1}{\sigma_1} \symbfit{v}_1 \cancelto{0}{\symbfit{u}^\top_1 \symbfit{u}_r} + \cdots + \frac{1}{\sigma_r} \symbfit{v}_r \cancelto{1}{\symbfit{u}^\top_r \symbfit{u}_r} = \frac{1}{\sigma_r} \symbfit{v}_r
+\end{align*}
+Therefore the pseudoinverse is given by
+\begin{equation*}
+    \symbf{A}^\dagger = \sum_{i = 1}^r \frac{1}{\sigma_i} \symbfit{v}_i \symbfit{u}^\top_i
+\end{equation*}
+which is equivalent to
+\begin{align*}
+    \symbf{A}^\dagger & = \symbf{V} \begin{bmatrix}
+                                        \frac{1}{\sigma_1} &        &                    &   &        &   &  &  & \\
+                                                           & \ddots &                    &   &        &   &  &  & \\
+                                                           &        & \frac{1}{\sigma_r} &   &        &   &  &  & \\
+                                                           &        &                    & 0 &        &   &  &  & \\
+                                                           &        &                    &   & \ddots &   &  &  & \\
+                                                           &        &                    &   &        & 0 &  &  &
+                                    \end{bmatrix} \symbf{U}^\top \\
+\end{align*}
+If we consider the SVD of \(\symbf{\Sigma}\):
+\begin{equation*}
+    \symbf{\Sigma} = \symbf{U}_\Sigma \symbf{\Sigma}_\Sigma \symbf{V}^\top_\Sigma.
+\end{equation*}
+we have \(\symbf{U}_\Sigma = \symbf{I}_m\), \(\symbf{\Sigma}_\Sigma = \symbf{\Sigma}\), and \(\symbf{V}_\Sigma = \symbf{I}_n\).
+Then the pseudoinverse of this matrix is then
+\begin{align*}
+    \symbf{\Sigma}^\dagger & = \sum_{i = 1}^r \frac{1}{\sigma_i} \symbfit{v}_{\Sigma,\:i} \symbfit{u}^\top_{\Sigma,\:i} \\
+                           & = \begin{bmatrix}
+                                   \frac{1}{\sigma_1} &        &                    &   &        &   &  & \\
+                                                      & \ddots &                    &   &        &   &  & \\
+                                                      &        & \frac{1}{\sigma_r} &   &        &   &  & \\
+                                                      &        &                    & 0 &        &   &  & \\
+                                                      &        &                    &   & \ddots &   &  & \\
+                                                      &        &                    &   &        & 0 &  &
+                               \end{bmatrix}
+\end{align*}
+so that the pseudoinverse of \(\symbf{A}\) can be determined using
+\begin{equation*}
+    \symbf{A}^\dagger = \symbf{V} \symbf{\Sigma}^\dagger \symbf{U}^\top.
+\end{equation*}
+Note that the pseudoinverse can also be obtained using the reduced SVD or by using the first \(r\) columns of \(\symbf{U}\) and \(\symbf{V}\) with the \(r \times r\) submatrix of \(\symbf{\Sigma}\).
+\subsection{Truncated SVD}
+By expanding the SVD of \(\symbf{A}\), we can express it as the sum of rank-1 matrices:
+\begin{equation*}
+    \symbf{A} = \sum_{i = 1}^n \sigma_i \symbfit{u}_i \symbfit{v}^\top_i.
+\end{equation*}
+However if \(r < n\), then
+\begin{equation*}
+    \symbf{A} = \sum_{i = 1}^r \sigma_i \symbfit{u}_i \symbfit{v}^\top_i
+\end{equation*}
+as \(\sigma_{r < i \leq n} = 0\). As the singular values are ordered from largest to smallest, if we wished to approximate \(\symbf{A}\)
+by a matrix of lower rank, we can truncate this sum even further at \(i = \nu\) for \(\nu < r\), to generate a rank-\(\nu\) approximation of \(\symbf{A}\):
+\begin{equation*}
+    \tilde{\symbf{A}} = \sum_{i = 1}^\nu \sigma_i \symbfit{u}_i \symbfit{v}^\top_i.
+\end{equation*}
+This allows us to represent the matrix \(\symbf{A}\) using only \(\nu\) singular values and \(2\nu\) singular vectors 
+(\(\symbfit{u}_i\) and \(\symbfit{v}_i\) for \(i = 1 \ldots \nu\)). This approximate decomposition is known as the truncated SVD\@.
+\subsection{Principal Component Analysis}
+To summarise, the SVD of \(\symbf{A}\) has three variations in which the dimensions of the decomposition matrices change.
+\begin{itemize}
+    \item Full SVD\@:
+    \begin{equation*}
+        \underset{m \times n}{\symbf{A}} = \underset{m \times m}{\symbf{U}} \quad \underset{m \times n}{\symbf{\Sigma}} \quad \underset{n \times n}{\symbf{V}}^\top
+    \end{equation*}
+    \item Reduced SVD\@:
+    \begin{equation*}
+        \underset{m \times n}{\symbf{A}} = \underset{m \times n}{\symbf{U}} \quad \underset{n \times n}{\symbf{\Sigma}} \quad \underset{n \times n}{\symbf{V}}^\top
+    \end{equation*}
+    \item Truncated SVD\@:
+    \begin{equation*}
+        \underset{m \times n}{\symbf{A}} = \underset{m \times \nu}{\symbf{U}} \quad \underset{\nu \times \nu}{\symbf{\Sigma}} \quad \underset{n \times \nu}{\symbf{V}}^\top
+    \end{equation*}
+\end{itemize}
+Consider the \(i\)th column of \(\symbf{A}\) in the truncated SVD,
+\begin{equation*}
+    \tilde{\symbf{A}}_{:,\:i} = \symbf{U} \symbf{\Sigma} \symbf{V}_{i,\: :}^\top
+\end{equation*}
+If we let \(\symbf{x}_i = \symbf{\Sigma} \symbf{V}_{i,\: :}^\top\), then
+\begin{equation*}
+    \tilde{\symbf{A}}_{:,\:i} = \symbf{U} \symbfit{x}_i
+\end{equation*}
+so that \(\symbfit{x}_i \in \R^{\nu}\) is the coordinate vector of \(\tilde{\symbf{A}}_{:,\:i}\) with respect to the basis of left 
+singular vectors \(\symbf{U}_{:,\: i \leq \nu}\). In statistics or machine learning, the columns of \(\symbf{U}\) are called ``features'' 
+as they are the most important singular vectors used to construct \(\symbf{A}\). The vector \(\symbf{x}_i\) is then the coordinate
+vector of \(\symbf{A}\)'s projection onto the ``feature space''.
+
+In data analysis, this process is referred to as Principal Componenet Analysis (PCA) where the matrix 
+\(\symbf{A}\) represents a set of observations in which each column contains a particular explanatory variable
+that one might be interested in. The model shown above can be used to explain the observations from each
+variable in that dataset. 
 \end{document}
