@@ -300,6 +300,11 @@ This is known as the left-null space, denoted \(\leftnullspace{A}\).
         \right\}}
 \end{equation*}
 These four spaces form the fundamental subspaces for any matrix \(\symbf{A}\).
+\begin{figure}[H]
+    \centering
+    \includegraphics[height = 8cm, keepaspectratio = true]{figures/fundamental_subspaces.pdf}
+    \caption{The four fundamental subspaces.} % \label{}
+\end{figure}
 \subsubsection{Dimensions of Subspaces}
 For the matrix \(\symbf{A} \in \R^{m \times n}\):
 \begin{definition}[Rank]
@@ -998,4 +1003,152 @@ An analytic function can be represented by its Taylor series expansion, allowing
         P\left( \symbf{A} \right) = \symbfup{0}
     \end{equation*}
 \end{theorem}
+\section{Singular Value Decomposition}
+The singular value decomposition (SVD) of \(\symbf{A} \in \R^{m \times n}\) is given by
+\begin{equation*}
+    \symbf{A} = \symbf{U} \symbf{\Sigma} \symbf{V}^\top
+\end{equation*}
+where \(\symbf{U} \in \R^{n \times n}\) is an orthogonal matrix, \(\symbf{\Sigma} \in \R^{m \times n}\)
+is a diagonal matrix, and \(\symbf{V} \in  \R^{m \times m}\) is
+an orthogonal matrix.
+\(\symbf{U}\) is known as the left-singular matrix and \(\symbf{V}\) is the right-singular matrix,
+corresponding to how these matrices are multiplied to \(\symbf{\Sigma}\).
+
+\(\symbf{\Sigma}\) consists of the \textbf{singular values} \(\sigma_i\) of \(\symbf{A}\), which can be determined
+using the following process:
+\begin{align*}
+    \symbf{A}^\top \symbf{A} & = \left( \symbf{U} \symbf{\Sigma} \symbf{V}^\top \right)^\top \left( \symbf{U} \symbf{\Sigma} \symbf{V}^\top \right) \\
+                             & = \symbf{V} \symbf{\Sigma}^\top \symbf{U}^\top \symbf{U} \symbf{\Sigma} \symbf{V}^\top                               \\
+                             & = \symbf{V} \symbf{\Sigma}^\top \symbf{\Sigma} \symbf{V}^\top
+\end{align*}
+similarly,
+\begin{align*}
+    \symbf{A} \symbf{A}^\top & = \left( \symbf{U} \symbf{\Sigma} \symbf{V}^\top \right) \left( \symbf{U} \symbf{\Sigma} \symbf{V}^\top \right)^\top \\
+                             & = \symbf{U} \symbf{\Sigma} \symbf{V}^\top \symbf{V} \symbf{\Sigma}^\top \symbf{U}^\top                               \\
+                             & = \symbf{U} \symbf{\Sigma} \symbf{\Sigma}^\top \symbf{U}^\top
+\end{align*}
+In both instances, we form an orthogonal eigendecomposition where
+\(\symbf{\Sigma}^\top \symbf{\Sigma}\) and \(\symbf{\Sigma} \symbf{\Sigma}^\top\) are the eigenvalues of
+\(\symbf{A}^\top\symbf{A}\) and \(\symbf{A}\symbf{A}^\top\), respectively.
+But because the eigenvalues of \(\symbf{A}^\top\symbf{A}\) and \(\symbf{A}\symbf{A}^\top\)
+are equal, \(\symbf{\Sigma}^\top \symbf{\Sigma} = \symbf{\Sigma} \symbf{\Sigma}^\top\).
+
+The singular values are non-negative constants and the entries of \(\symbf{\Sigma}\)
+are always non-increasing: \(\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r > 0\)
+where \(r\) is the rank of \(\symbf{A}\).
+\subsection{Orthonormal Bases for the Fundamental Subspaces}
+For \(\symbf{A}\in\R^{m \times n}\) with \(\vrank{\left( \symbf{A} \right)} = r \leq n\):
+\begin{equation*}
+    \symbf{A} \symbf{V} = \symbf{U} \symbf{\Sigma}
+\end{equation*}
+with
+\begin{align*}
+    \symbf{A} \symbf{V}      & = \begin{bmatrix}
+                                     \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar      \\
+                                     \symbfit{a}_1 & \cdots & \symbfit{a}_r & \symbfit{a}_{r+1} & \cdots & \symbfit{a}_n \\
+                                     \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar
+                                 \end{bmatrix} \begin{bmatrix}
+                                                   \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar      \\
+                                                   \symbfit{v}_1 & \cdots & \symbfit{v}_r & \symbfit{v}_{r+1} & \cdots & \symbfit{v}_n \\
+                                                   \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar
+                                               \end{bmatrix} \\
+    \symbf{U} \symbf{\Sigma} & = \begin{bmatrix}
+                                     \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar      \\
+                                     \symbfit{u}_1 & \cdots & \symbfit{u}_r & \symbfit{u}_{r+1} & \cdots & \symbfit{u}_m \\
+                                     \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar
+                                 \end{bmatrix} \begin{bmatrix}
+                                                   \sigma_{1} &        &            &   &        &   \\
+                                                              & \ddots &            &   &        &   \\
+                                                              &        & \sigma_{r} &   &        &   \\
+                                                              &        &            & 0 &        &   \\
+                                                              &        &            &   & \ddots &   \\
+                                                              &        &            &   &        & 0 \\
+                                                              &        &            &   &        &   \\
+                                                              &        &            &   &        &   \\
+                                                              &        &            &   &        &
+                                               \end{bmatrix}
+    \setlength{\arraycolsep}{0pt} % Avoid any column space in arrays that follow
+    \begin{array}{ l }
+        \left.\kern-\nulldelimiterspace
+        \vphantom{\begin{array}{ c }
+                          0 \\ % Second row
+                          0 \\ % Third row
+                          0     % Fourth/last row
+                      \end{array}}
+        \right\}\text{\(r\) rows}     \\
+        \left.\kern-\nulldelimiterspace
+        \vphantom{\begin{array}{ c }
+                          0 \\ % Second row
+                          0 \\ % Third row
+                          0     % Fourth/last row
+                      \end{array}}
+        \right\}\text{\(n - r\) rows} \\
+        \left.\kern-\nulldelimiterspace
+        \vphantom{\begin{array}{ c }
+                          0 \\ % Second row
+                          0 \\ % Third row
+                          0     % Fourth/last row
+                      \end{array}}
+        \right\}\text{\(m - n\) rows}
+    \end{array}
+\end{align*}
+where we have \(r\) singular values because \(\vrank{\symbf{A}} = \vrank{\symbf{A}^\top \symbf{A}}\).
+If we express each equation separately, then
+\begin{align*}
+    \symbf{A} \symbfit{v}_1       & = \sigma_1 \symbfit{u}_1 \\
+                                  & \vdotswithin{=}          \\
+    \symbf{A} \symbfit{v}_r       & = \sigma_2 \symbfit{u}_r \\
+    \symbf{A} \symbfit{v}_{r + 1} & = \symbfup{0}            \\
+                                  & \vdotswithin{=}          \\
+    \symbf{A} \symbfit{v}_{n}     & = \symbfup{0}
+\end{align*}
+which shows us that \(\left\{\symbfit{v}_{r+1},\: \dots,\: \symbfit{v}_{n}\right\}\) forms a basis for the null space of \(\symbf{A}\),
+requiring the remaining columns of \(\symbf{V}\) to form a basis for the row space of \(\symbf{A}\).
+
+This means that \(\left\{\symbfit{u}_{1},\: \dots,\: \symbfit{u}_{r}\right\}\) also forms a basis for the column space of \(\symbf{A}\),
+and hence, the remaining columns of \(\symbf{U}\) form a basis for the left-null space of \(\symbf{A}\).
+
+To summarise:
+\begin{align*}
+    \rowspace{A}  & = \vspan{\left( \left\{ \symbfit{v}_{i \leq r} \right\} \right)}     & \columnspace{A}   & = \vspan{\left( \left\{ \symbfit{u}_{i \leq r} \right\} \right)}     \\
+    \nullspace{A} & = \vspan{\left( \left\{ \symbfit{v}_{r < i \leq n} \right\} \right)} & \leftnullspace{A} & = \vspan{\left( \left\{ \symbfit{u}_{r < i \leq m} \right\} \right)}
+\end{align*}
+for \(i \in \N\). Additionally, \(\symbf{V}\) forms an orthonormal basis for \(\R^n\) while
+\(\symbf{U}\) forms an orthonormal basis for \(\R^m\).
+\subsection{Reduced SVD}
+By ignoring the additional \(m - n\) rows in \(\symbf{\Sigma}\), we can form the reduced SVD which removes the
+additional ``0'' rows of \(\symbf{\Sigma}\). This results in \(\symbf{U} \in \R^{m \times n}\) and
+\(\symbf{\Sigma} \in \R^{n \times n}\).
+\begin{equation*}
+    \symbf{U} \symbf{\Sigma} = \begin{bmatrix}
+        \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar      \\
+        \symbfit{u}_1 & \cdots & \symbfit{u}_r & \symbfit{u}_{r+1} & \cdots & \symbfit{u}_n \\
+        \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar
+    \end{bmatrix} \begin{bmatrix}
+        \sigma_{1} &        &            &   &        &   \\
+                   & \ddots &            &   &        &   \\
+                   &        & \sigma_{r} &   &        &   \\
+                   &        &            & 0 &        &   \\
+                   &        &            &   & \ddots &   \\
+                   &        &            &   &        & 0 
+    \end{bmatrix}
+    \setlength{\arraycolsep}{0pt} % Avoid any column space in arrays that follow
+    \begin{array}{ l }
+        \left.\kern-\nulldelimiterspace
+        \vphantom{\begin{array}{ c }
+                          0 \\ % Second row
+                          0 \\ % Third row
+                          0     % Fourth/last row
+                      \end{array}}
+        \right\}\text{\(r\) rows}     \\
+        \left.\kern-\nulldelimiterspace
+        \vphantom{\begin{array}{ c }
+                          0 \\ % Second row
+                          0 \\ % Third row
+                          0     % Fourth/last row
+                      \end{array}}
+        \right\}\text{\(n - r\) rows}
+    \end{array}
+\end{equation*}
+The reduced SVD also removes the \(m - n\) left-null space basis vectors \(\left\{ \symbfit{u}_{n < i \leq m} \right\}\) from \(\symbf{U}\).
 \end{document}
