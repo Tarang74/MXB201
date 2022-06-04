@@ -1230,4 +1230,47 @@ In data analysis, this process is referred to as Principal Componenet Analysis (
 \(\symbf{A}\) represents a set of observations in which each column contains a particular explanatory variable
 that one might be interested in. The model shown above can be used to explain the observations from each
 variable in that dataset.
+\section{General Vector Spaces}
+\subsection{Vector Space Axioms}
+A set \(V\) of objects are called ``vectors'' if the following additive and multiplicative axioms
+are satisfied \(\forall \symbfit{u}, \symbfit{v}, \symbfit{w} \in V\) and \(\forall k, m \in \R\).
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c}
+        \toprule
+        \textbf{Axiom}                      & \textbf{Meaning}                                                                                                    \\
+        \midrule
+        Closure under vector addition       & \(\symbfit{u} + \symbfit{v} \in V\)                                                                                 \\
+        Commutativity of vector addition    & \(\symbfit{u} + \symbfit{v} = \symbfit{v} + \symbfit{u}\)                                                           \\
+        Associativity of vector addition    & \(\symbfit{u} + \left( \symbfit{v} + \symbfit{w} \right) = \left( \symbfit{u} + \symbfit{v} \right) + \symbfit{w}\) \\
+        Identity element of vector addition & \(\exists \symbfup{0} \in V : \symbfit{u} + \symbfup{0} = \symbfup{0} + \symbfit{u} = \symbfit{u}\)                 \\
+        Inverse elements of vector addition & \(\exists \left( -\symbfit{u} \right) \in V : \symbfit{u} + \left( -\symbfit{u} \right) = \symbfup{0}\)             \\
+        \bottomrule
+    \end{tabular}
+    \caption{Additive axioms.} % \label{}
+\end{table}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c}
+        \toprule
+        \textbf{Axiom}                                               & \textbf{Meaning}                                                             \\
+        \midrule
+        Closure under scalar multiplication                          & \(k \symbfit{u} \in V\)                                                      \\
+        Distributivity of scalar multiplication with vector addition & \(k \left( \symbfit{u} + \symbfit{v} \right) = k\symbfit{u} + k\symbfit{v}\) \\
+        Distributivity of scalar multiplication with scalar addition & \(\left( k + m \right) \symbfit{u} = k\symbfit{u} + m\symbfit{u}\)           \\
+        Associativity of scalar multiplication                       & \(k \left( m\symbfit{u} \right) = \left( k m \right) \symbfit{u}\)           \\
+        Identity element of scalar multiplication                    & \(1 \symbfit{u} = \symbfit{u}\)                                              \\
+        \bottomrule
+    \end{tabular}
+    \caption{Multiplicative axioms.} % \label{}
+\end{table}
+If these axioms are satisfied, the objects called ``vectors'' and the operators ``addition'' (\(+\)) and ``scalar multiplication'' (denoted by juxtaposition) form a general vector space \(V\).
+It follows that the operations of addition and scalar multiplication need not resemble those in \(\R^n\) to satisfy the 10 axioms described above.
+Rather any set with two operations can form a vector space if they satisfy the 10 axioms above.
+\subsection{Examples of Vector Spaces}
+Aside from the familiar vector space \(\R^n\), we can also consider the following spaces which satisfy the 10 axioms above.
+\begin{enumerate}
+    \item The set of \(m \times n\) matrices \(\mathscr{M}_{mn}\) with matrix addition and scalar multiplication.
+    \item The set of functions \(\mathscr{F}\left( \Omega \right) : \Omega \to \R\) with addition and scalar multiplication defined pointwise.
+\end{enumerate}
 \end{document}
