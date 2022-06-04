@@ -544,46 +544,44 @@ In \(\R^n\), the standard basis \(S\) consists of the vectors
 where the coefficients of a column vector implicitly represent the coefficients
 of the linear \linebreak combination of basis vectors in \(S\).
 
-For example, the vector \(\symbfit{b}_S\) in the standard basis
+For example, the vector \(\symbfit{b}\) in the standard basis
 \begin{equation*}
-    \symbfit{b}_S = b_1 \symbfit{e}_1 + \cdots + b_n \symbfit{e}_n
+    \symbfit{b} = b_1 \symbfit{e}_1 + \cdots + b_n \symbfit{e}_n
 \end{equation*}
-can be represented as a column vector
+can be explicitly represented as a column vector
 \begin{equation*}
-    \symbfit{b}_S = \begin{bmatrix}
+    \left( \symbfit{b} \right)_S = \begin{bmatrix}
         b_1    \\
         \vdots \\
         b_n
     \end{bmatrix}
 \end{equation*}
-where \(b_1,\: \dots,\: b_n\) are the entries of \(\symbfit{b}_S\).
+where \(b_1,\: \dots,\: b_n\) are the entries of \(\left( \symbfit{b} \right)_S\) with respect to the standard basis \(S\).
 \subsection{Change of Basis}
-If we wanted to represent the vector \(\symbfit{b}_S\) in terms of another basis
+To represent the vector \(\symbfit{b}\) in terms of another basis
 \(W\), where
 \begin{equation*}
     W = \left\{ \symbfit{w}_1,\: \dots,\: \symbfit{w}_n \right\}
 \end{equation*}
-we would do so by solving the following linear system
+we must determine the components of each basis vector in \(W\) that
+contributes to \(\symbfit{b}\). This is represented by the system:
 \begin{align*}
-    c_1 \symbfit{w}_1 + \cdots + c_n \symbfit{w}_n & = \symbfit{b}_S \\
-    \begin{bmatrix}
-        \symbfit{w}_1 & \cdots & \symbfit{w}_n
-    \end{bmatrix} \begin{bmatrix}
-                      c_1    \\
-                      \vdots \\
-                      c_n
-                  \end{bmatrix}        & = \symbfit{b}_S             \\
-    \symbf{W} \symbfit{c}                          & = \symbfit{b}_S
+    \symbfit{b} & = c_1 \symbfit{w}_1 + \cdots + c_n \symbfit{w}_n \\
+    \symbfit{b} & = \begin{bmatrix}
+                        \vertbar      &        & \vertbar      \\
+                        \symbfit{w}_1 & \cdots & \symbfit{w}_n \\
+                        \vertbar      &        & \vertbar
+                    \end{bmatrix} \begin{bmatrix}
+                                      c_1    \\
+                                      \vdots \\
+                                      c_n
+                                  \end{bmatrix}         \\
+    \symbfit{b} & = \symbf{W} \symbfit{c}
 \end{align*}
-The solution to this system allows us to represent \(\symbfit{b}_S\) as
-\(\symbfit{b}_W\), where the value of \(\symbfit{b}\) remains the same, but
-it is represented using a different basis.
+The component vector \(\symbfit{c}\) is precisely the representation of \(\symbfit{b}\)
+with respect to the basis \(W\), so that
 \begin{equation*}
-    \symbfit{b}_W = \begin{bmatrix}
-        c_1 \symbfit{w}_1 \\
-        \vdots            \\
-        c_n \symbfit{w}_n
-    \end{bmatrix}
+    \left( \symbfit{b} \right)_W = \symbfit{c}.
 \end{equation*}
 \subsection{Orthonormal Basis}
 If we consider a basis \(Q\), such that every basis vector is normalised
@@ -600,69 +598,55 @@ and orthogonal to every other basis vector, then \(Q\) is an orthonormal basis.
     so that in an orthonormal basis \(Q\) with basis vectors
     \(\left\{ \symbfit{q}_1,\: \dots,\: \symbfit{q}_n \right\}\)
     \begin{equation*}
-        \symbfit{q}_i \cdot \symbfit{q}_j = \delta_{ij}
+        \symbfit{q}_i^\top \symbfit{q}_j = \delta_{ij}
     \end{equation*}
 \end{definition}
-By using an orthonormal basis, we can determine the coefficients of \(\symbfit{b}_Q\) without
-solving a linear system. For example, the \(i\)th coefficient can be determined as
+By using an orthonormal basis, we can determine the coefficients of \(\left( \symbfit{b} \right)_Q\) without
+the need to solve a linear system. For example, the \(i\)th coefficient can be determined as
 follows
 \begin{align*}
-    c_1 \symbfit{q}_1 + \cdots + c_i \symbfit{q}_i + \cdots + c_n \symbfit{q}_n                                                                                                       & = \symbfit{b}_S                     \\
-    \symbfit{q}_i \cdot \left( c_1 \symbfit{q}_1 + \cdots + c_i \symbfit{q}_i + \cdots + c_n \symbfit{q}_n \right)                                                                    & = \symbfit{q}_i \cdot \symbfit{b}_S \\
-    c_1 \cancelto{0}{\symbfit{q}_i \cdot \symbfit{q}_1} + \cdots + c_i \cancelto{1}{\symbfit{q}_i \cdot \symbfit{q}_i} + \cdots + c_n \cancelto{0}{\symbfit{q}_i \cdot \symbfit{q}_n} & = \symbfit{q}_i \cdot \symbfit{b}_S \\
-    c_i                                                                                                                                                                               & = \symbfit{q}_i \cdot \symbfit{b}_S
+    \symbfit{b}                    & = c_1 \symbfit{q}_1 + \cdots + c_n \symbfit{q}_n                                                                                                                                 \\
+    \symbfit{q}_i^\top \symbfit{b} & = \symbfit{q}_i^\top \left( c_1 \symbfit{q}_1 + \cdots + c_i \symbfit{q}_i + \cdots + c_n \symbfit{q}_n \right)                                                                  \\
+    \symbfit{q}_i^\top \symbfit{b} & = c_1 \cancelto{0}{\symbfit{q}_i^\top \symbfit{q}_1} + \cdots + c_i \cancelto{1}{\symbfit{q}_i^\top \symbfit{q}_i} + \cdots + c_n \cancelto{0}{\symbfit{q}_i^\top \symbfit{q}_n} \\
+    \symbfit{q}_i^\top \symbfit{b} & = c_i                                                                                                                                                                            \\
+    \symbf{Q}^\top \symbfit{b}     & = \symbfit{c}
 \end{align*}
 Therefore
 \begin{align*}
-    \symbfit{b}_Q & = \begin{bmatrix}
-                          \symbfit{q}_1 \cdot \symbfit{b}_S \\
-                          \vdots                            \\
-                          \symbfit{q}_n \cdot \symbfit{b}_S
-                      \end{bmatrix}                \\
-                  & = \begin{bmatrix}
-                          \symbfit{q}_1^\top \symbfit{b}_S \\
-                          \vdots                           \\
-                          \symbfit{q}_n^\top \symbfit{b}_S
-                      \end{bmatrix}                 \\
-                  & = \begin{bmatrix}
-                          \symbfit{q}_1^\top & \cdots & \symbfit{q}_n^\top
-                      \end{bmatrix} \symbfit{b}_S \\
-                  & = \symbf{Q}^\top \symbfit{b}_S
+    \left( \symbfit{b} \right)_Q & = \symbf{Q}^\top \symbfit{b}
 \end{align*}
 \subsection{Orthogonal Matrices}
-To confirm that \(Q = \left\{ \symbfit{q}_1,\: \dots,\: \symbfit{q}_n \right\}\) is an orthonormal basis, we need to confirm that \(\symbfit{q}_i \cdot \symbfit{q}_j = \delta_{ij}\) holds.
+To confirm that \(Q = \left\{ \symbfit{q}_1,\: \dots,\: \symbfit{q}_n \right\}\) is an orthonormal basis, we need to confirm that \(\symbfit{q}_i^\top \symbfit{q}_j = \delta_{ij}\) holds for
+all basis vectors \(\symbfit{q}_i\).
 To do so, we can construct the matrix product \(\symbf{Q}^\top \symbf{Q}\), so that
 \begin{align*}
     \symbf{Q}^\top \symbf{Q} & = \begin{bmatrix}
-                                     \symbfit{q}_1 & \cdots & \symbfit{q}_n
+                                     \horzbar & \symbfit{q}_1 & \horzbar \\
+                                              & \vdots                   \\
+                                     \horzbar & \symbfit{q}_n & \horzbar
                                  \end{bmatrix} \begin{bmatrix}
-                                                   \symbfit{q}_1 \\
-                                                   \vdots        \\
-                                                   \symbfit{q}_n
-                                               \end{bmatrix}                                         \\
+                                                   \vertbar      &        & \vertbar      \\
+                                                   \symbfit{q}_1 & \cdots & \symbfit{q}_n \\
+                                                   \vertbar      &        & \vertbar
+                                               \end{bmatrix}                         \\
                              & = \begin{bmatrix}
-                                     \symbfit{q}_1 \cdot \symbfit{q}_1 & \cdots & \symbfit{q}_1 \cdot \symbfit{q}_n \\
-                                     \vdots                            & \ddots & \vdots                            \\
-                                     \symbfit{q}_n \cdot \symbfit{q}_1 & \cdots & \symbfit{q}_n \cdot \symbfit{q}_n
+                                     \symbfit{q}_1^\top \symbfit{q}_1 & \cdots & \symbfit{q}_1^\top\symbfit{q}_n  \\
+                                     \vdots                           & \ddots & \vdots                           \\
+                                     \symbfit{q}_n^\top \symbfit{q}_1 & \cdots & \symbfit{q}_n^\top \symbfit{q}_n
                                  \end{bmatrix} \\
                              & = \begin{bmatrix}
                                      1      & 0      & \cdots & 0      \\
                                      0      & 1      & \ddots & \vdots \\
                                      \vdots & \ddots & \ddots & 0      \\
                                      0      & \cdots & 0      & 1
-                                 \end{bmatrix}                                              \\
+                                 \end{bmatrix}                                            \\
                              & = \symbf{I}.
 \end{align*}
 \begin{definition}[Orthogonal Matrices]
     A square matrix \(\symbf{Q}\) is \textit{orthogonal} if it satisfies
     \begin{equation*}
-        \symbf{Q}^\top = \symbf{Q}^{-1}.
+        \symbf{Q}^\top = \symbf{Q}^{-1}
     \end{equation*}
-    This results in
-    \begin{align*}
-        \symbf{Q}\symbf{Q}^\top & = \symbf{Q}\symbf{Q}^{-1} \\
-                                & =\symbf{I}
-    \end{align*}
     so that
     \begin{equation*}
         \symbf{Q}^\top \symbf{Q} = \symbf{Q}\symbf{Q}^\top = \symbf{I}.
@@ -701,36 +685,6 @@ Using the projection definition for orthogonal vectors, we can simplify this to
 \end{align*}
 This produces two sets of mutually orthogonal vectors that span the same space as \(W\). Here \(V = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_n \right\}\) is an orthogonal basis,
 and \(Q = \left\{ \symbfit{q}_1,\: \dots,\: \symbfit{q}_n \right\}\) is an orthonormal basis.
-\subsection{Least Squares using Orthogonal Matrices}
-Consider \(\symbfit{u} \notin \columnspace{A} \implies \symbfit{u} \notin \vspan{\left( W \right)}\), then there are no solutions to the linear system:
-\begin{equation*}
-    \symbf{A} \symbfit{c} = \symbfit{u}.
-\end{equation*}
-If instead, we use the orthonormal basis \(Q\), then
-\begin{equation*}
-    \symbfit{c}^\ast = \symbf{Q}^\top \symbfit{u}
-\end{equation*}
-despite the inconsistency of the equation
-\begin{equation*}
-    \symbf{Q} \symbfit{c} = \symbfit{u}.
-\end{equation*}
-This is because the vector \(\symbfit{u}_P = \symbf{Q} \symbfit{c}^\ast\) is the orthogonal projection of \(\symbfit{u}\) onto \(\vspan{\left( Q \right)}\).
-\begin{align*}
-    \symbf{P} & = \symbf{Q} \left( \symbf{Q}^\top \symbf{Q} \right)^{-1} \symbf{Q}^\top \\
-              & = \symbf{Q} \symbf{I}^{-1} \symbf{Q}^\top                               \\
-              & = \symbf{Q} \symbf{Q}^\top
-\end{align*}
-so that
-\begin{align*}
-    \symbfit{u}_P & = \symbf{P} \symbfit{u}                \\
-                  & = \symbf{Q} \symbf{Q}^\top \symbfit{u} \\
-                  & = \symbf{Q} \symbfit{c}^\ast.
-\end{align*}
-Therefore
-\begin{align*}
-    \symbfit{u} \in \vspan{\left( W \right)}    & \implies \symbf{P} \symbfit{u} = \symbfit{u}   \\
-    \symbfit{u} \notin \vspan{\left( W \right)} & \implies \symbf{P} \symbfit{u} = \symbfit{u}_P
-\end{align*}
 \subsection{QR Decomposition}
 If we rearrange the steps in the Gram-Schmidt process to solve for \(\symbfit{w}_i\), we get
 \begin{align*}
@@ -766,7 +720,7 @@ Consider \(\symbfit{u} \notin \columnspace{A}\), by using the QR decomposition o
     \symbf{Q}^\top \symbf{Q} \symbf{R} \symbfit{c} & = \symbf{Q}^\top \symbfit{u}  \\
     \symbf{R} \symbfit{c}                          & = \symbf{Q}^\top \symbfit{u}.
 \end{align*}
-Instead if we use the Normal Equations,
+Alternatively, consider the Normal Equations,
 \begin{align*}
     \symbf{A}^\top \symbf{A} \symbfit{c}                                                   & = \symbf{A}^\top \symbfit{u}                                                   \\
     \left( \symbf{Q} \symbf{R} \right)^\top \left( \symbf{Q} \symbf{R} \right) \symbfit{c} & = \left( \symbf{Q} \symbf{R} \right)^\top \symbfit{u}                          \\
@@ -952,15 +906,17 @@ Symmetric matrices are also known as definite matrices, and can be classified in
 \subsection{Eigenbases}
 When \(\symbf{A}\) has \(n\) linearly independent eigenvectors, the columns of \(\symbf{V}\) represent the eigenbasis of \(\symbf{A}\).
 
-Given the linear map \(\symbf{A}\symbfit{x} = \symbfit{b}\), if \(\symbfit{x} = \symbf{V} \symbfit{c}\) and \(\symbfit{b} = \symbf{V} \symbfit{k}\),
+Let the basis \(V\) be the columns of \(\symbf{V}\) so that for the linear system \(\symbf{A}\symbfit{x} = \symbfit{b}\),
+\(\left[ \symbfit{x} \right]_V = \symbfit{c}\) and \(\left[ \symbfit{b} \right]_V = \symbfit{k}\),
 then
 \begin{align*}
-    \symbf{A} \symbfit{x}                          & = \symbfit{b}           \\
-    \symbf{A} \symbf{V} \symbfit{c}                & = \symbf{V} \symbfit{k} \\
-    \symbf{V}^{-1} \symbf{A} \symbf{V} \symbfit{c} & = \symbfit{k}           \\
-    \symbf{D} \symbfit{c}                          & = \symbfit{k}
+    \symbf{A} \symbfit{x}                          & = \symbfit{b}                  \\
+    \symbf{A} \symbf{V} \symbfit{c}                & = \symbf{V} \symbfit{k}        \\
+    \symbf{V}^{-1} \symbf{A} \symbf{V} \symbfit{c} & = \symbfit{k}                  \\
+    \symbf{D} \symbfit{c}                          & = \symbfit{k}                  \\
+    \symbf{D} \left( \symbfit{x} \right)_V         & = \left( \symbfit{b} \right)_V
 \end{align*}
-so that, with respect to the eigenbasis, a linear map from \(\R^n\) to \(\R^n\) is represented by \(\symbf{D}\).
+so that, with respect to the eigenbasis, a linear map from \(\R^n\) to \(\R^n\) is represented by the matrix \(\symbf{D}\).
 \subsection{Matrix Functions}
 Given a nondefective \(\symbf{A} \in \R^{n \times n}\) with the eigendecomposition \(\symbf{A} = \symbf{V} \symbf{D} \symbf{V}^{-1}\),
 we can form the following equalities.
@@ -1115,6 +1071,19 @@ To summarise:
 \end{align*}
 for \(i \in \N\). Additionally, \(\symbf{V}\) forms an orthonormal basis for \(\R^n\) while
 \(\symbf{U}\) forms an orthonormal basis for \(\R^m\).
+\subsection{Singular Bases}
+Consider the bases \(V\) and \(U\) from the columns of the orthogonal matrices \(\symbf{V}\) and \(\symbf{U}\), respectively.
+Let \(\left( \symbfit{x} \right)_V = \symbfit{c}\) and \(\left( \symbfit{b} \right)_U = \symbfit{k}\),
+so that the system \(\symbf{A} \symbfit{x} = \symbfit{b}\) becomes
+\begin{align*}
+    \symbf{A} \symbfit{x}                          & = \symbfit{b}                   \\
+    \symbf{A} \symbf{V} \symbfit{c}                & = \symbf{U} \symbfit{k}         \\
+    \symbf{U}^\top \symbf{A} \symbf{V} \symbfit{c} & = \symbfit{k}                   \\
+    \symbf{\Sigma} \symbfit{c}                     & = \symbfit{k}                   \\
+    \symbf{\Sigma} \left( \symbfit{x} \right)_V    & = \left( \symbfit{b} \right)_U.
+\end{align*}
+Therefore, with respect to the orthogonal bases \(V\) and \(U\), the linear map from \(\R^n\) to \(\R^m\) is represented
+by the matrix \(\symbf{\Sigma}\).
 \subsection{Reduced SVD}
 By ignoring the additional \(m - n\) rows in \(\symbf{\Sigma}\), we can form the reduced SVD which removes the
 additional ``0'' rows of \(\symbf{\Sigma}\). This results in \(\symbf{U} \in \R^{m \times n}\) and
@@ -1132,28 +1101,26 @@ additional ``0'' rows of \(\symbf{\Sigma}\). This results in \(\symbf{U} \in \R^
                  &        &          &   & \ddots &   \\
                  &        &          &   &        & 0
     \end{bmatrix}
-    \setlength{\arraycolsep}{0pt} % Avoid any column space in arrays that follow
+    \setlength{\arraycolsep}{0pt}
     \begin{array}{ l }
         \left.\kern-\nulldelimiterspace
         \vphantom{\begin{array}{ c }
-                          0 \\ % Second row
-                          0 \\ % Third row
-                          0     % Fourth/last row
+                          0 \\
+                          0 \\
+                          0
                       \end{array}}
         \right\}\text{\(r\) rows} \\
         \left.\kern-\nulldelimiterspace
         \vphantom{\begin{array}{ c }
-                          0 \\ % Second row
-                          0 \\ % Third row
-                          0     % Fourth/last row
+                          0 \\
+                          0 \\
+                          0
                       \end{array}}
         \right\}\text{\(n - r\) rows}
     \end{array}
 \end{equation*}
 The reduced SVD also removes the \(m - n\) left-null space basis vectors \(\left\{ \symbfit{u}_{n < i \leq m} \right\}\) from \(\symbf{U}\).
 \subsection{Pseudoinverse}
-% Given the linear system \(\symbf{A} \symbfit{x} = \symbfit{b}\) with \(\symbf{A} \in \R^{m \times n}\), 
-% then we can use the SVD to form a generalisation of the system.
 Using the orthogonal basis vectors obtained through the SVD of \(\symbf{A} \in \R^{m \times n}\), we can show that
 \(\symbfit{v}_i \mapsto \sigma_i \symbfit{u}_i\) for all \(i \leq r\). Therefore
 \begin{equation*}
@@ -1228,39 +1195,39 @@ by a matrix of lower rank, we can truncate this sum even further at \(i = \nu\) 
 \begin{equation*}
     \tilde{\symbf{A}} = \sum_{i = 1}^\nu \sigma_i \symbfit{u}_i \symbfit{v}^\top_i.
 \end{equation*}
-This allows us to represent the matrix \(\symbf{A}\) using only \(\nu\) singular values and \(2\nu\) singular vectors 
+This allows us to represent the matrix \(\symbf{A}\) using only \(\nu\) singular values and \(2\nu\) singular vectors
 (\(\symbfit{u}_i\) and \(\symbfit{v}_i\) for \(i = 1 \ldots \nu\)). This approximate decomposition is known as the truncated SVD\@.
 \subsection{Principal Component Analysis}
 To summarise, the SVD of \(\symbf{A}\) has three variations in which the dimensions of the decomposition matrices change.
 \begin{itemize}
     \item Full SVD\@:
-    \begin{equation*}
-        \underset{m \times n}{\symbf{A}} = \underset{m \times m}{\symbf{U}} \quad \underset{m \times n}{\symbf{\Sigma}} \quad \underset{n \times n}{\symbf{V}}^\top
-    \end{equation*}
+          \begin{equation*}
+              \underset{m \times n}{\symbf{A}} = \underset{m \times m}{\symbf{U}} \quad \underset{m \times n}{\symbf{\Sigma}} \quad \underset{n \times n}{\symbf{V}}^\top
+          \end{equation*}
     \item Reduced SVD\@:
-    \begin{equation*}
-        \underset{m \times n}{\symbf{A}} = \underset{m \times n}{\symbf{U}} \quad \underset{n \times n}{\symbf{\Sigma}} \quad \underset{n \times n}{\symbf{V}}^\top
-    \end{equation*}
+          \begin{equation*}
+              \underset{m \times n}{\symbf{A}} = \underset{m \times n}{\symbf{U}} \quad \underset{n \times n}{\symbf{\Sigma}} \quad \underset{n \times n}{\symbf{V}}^\top
+          \end{equation*}
     \item Truncated SVD\@:
-    \begin{equation*}
-        \underset{m \times n}{\symbf{A}} = \underset{m \times \nu}{\symbf{U}} \quad \underset{\nu \times \nu}{\symbf{\Sigma}} \quad \underset{n \times \nu}{\symbf{V}}^\top
-    \end{equation*}
+          \begin{equation*}
+              \underset{m \times n}{\symbf{A}} = \underset{m \times \nu}{\symbf{U}} \quad \underset{\nu \times \nu}{\symbf{\Sigma}} \quad \underset{n \times \nu}{\symbf{V}}^\top
+          \end{equation*}
 \end{itemize}
 Consider the \(i\)th column of \(\symbf{A}\) in the truncated SVD,
 \begin{equation*}
     \tilde{\symbf{A}}_{:,\:i} = \symbf{U} \symbf{\Sigma} \symbf{V}_{i,\: :}^\top
 \end{equation*}
-If we let \(\symbf{x}_i = \symbf{\Sigma} \symbf{V}_{i,\: :}^\top\), then
+If we let \(\symbfit{x}_i = \symbf{\Sigma} \symbf{V}_{i,\: :}^\top\), then
 \begin{equation*}
     \tilde{\symbf{A}}_{:,\:i} = \symbf{U} \symbfit{x}_i
 \end{equation*}
-so that \(\symbfit{x}_i \in \R^{\nu}\) is the coordinate vector of \(\tilde{\symbf{A}}_{:,\:i}\) with respect to the basis of left 
-singular vectors \(\symbf{U}_{:,\: i \leq \nu}\). In statistics or machine learning, the columns of \(\symbf{U}\) are called ``features'' 
-as they are the most important singular vectors used to construct \(\symbf{A}\). The vector \(\symbf{x}_i\) is then the coordinate
+so that \(\symbfit{x}_i \in \R^{\nu}\) is the coordinate vector of \(\tilde{\symbf{A}}_{:,\:i}\) with respect to the basis of left
+singular vectors \(\symbf{U}_{:,\: i \leq \nu}\). In statistics or machine learning, the columns of \(\symbf{U}\) are called ``features''
+as they are the most important singular vectors used to construct \(\symbf{A}\). The vector \(\symbfit{x}_i\) is then the coordinate
 vector of \(\symbf{A}\)'s projection onto the ``feature space''.
 
-In data analysis, this process is referred to as Principal Componenet Analysis (PCA) where the matrix 
+In data analysis, this process is referred to as Principal Componenet Analysis (PCA) where the matrix
 \(\symbf{A}\) represents a set of observations in which each column contains a particular explanatory variable
 that one might be interested in. The model shown above can be used to explain the observations from each
-variable in that dataset. 
+variable in that dataset.
 \end{document}
