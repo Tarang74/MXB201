@@ -8,7 +8,7 @@
 
 ## Downloads
 
-Lecture notes download: [MXB201 Lecture Notes PDF](MXB201%20Lecture%20Notes.pdf)
+Lecture notes download: [MXB201 Lecture Notes PDF](https://www.github.com/Tarang74/MXB201/raw/main/MXB201%20Lecture%20Notes.pdf)
 
 ---
 
