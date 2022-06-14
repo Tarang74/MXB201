@@ -1273,4 +1273,212 @@ Aside from the familiar vector space \(\R^n\), we can also consider the followin
     \item The set of \(m \times n\) matrices \(\mathscr{M}_{mn}\) with matrix addition and scalar multiplication.
     \item The set of functions \(\mathscr{F}\left( \Omega \right) : \Omega \to \R\) with addition and scalar multiplication defined pointwise.
 \end{enumerate}
+\subsection{Subspaces}
+Consider the subset \(W\) of a vector space \(V\), so that \(W \subset V\).
+For \(W\) to be a subspace of \(V\), it must also satisfy the 10 axioms shown above.
+Now as \(W\) is a subset of \(V\), 6 axioms are automatically inherited from the enclosing space \(V\).
+
+Therefore only the following axioms need to be satisfied in \(W\):
+\begin{itemize}
+    \item Axiom 1: Closure under vector addition
+    \item Axiom 4: Identity element of vector addition
+    \item Axiom 5: Inverse elements of vector addition
+    \item Axiom 6: Close under scalar multiplication
+\end{itemize}
+However, if Axioms 1 and 6 are established, then Axioms 4 and 5 will inherit from
+the vector space structure of \(V\). So it suffices to check only Axioms 1 and 6.
+
+Therefore any subset \(W\) of a vector that is closed under vector addition and scalar multiplication is a subspace
+of that vector space.
+\subsubsection{Examples of Subspaces}
+Subspaces of \(\R^n\):
+\begin{enumerate}
+    \item Lines, planes and higher-dimensional analogues in \(\R^n\) \emph{passing through the origin}.
+\end{enumerate}
+Subspaces of \(\mathscr{M}_{mn}\):
+\begin{enumerate}
+    \item The set of all \emph{symmetric} \(n \times n\) matrices \(\symbf{A}\) such that \(\symbf{A} = \symbf{A}^\top\), denoted \(\mathscr{S}_n \subset \mathscr{M}_{nn}\).
+    \item The set of all \emph{skew symmetric} \(n \times n\) matrices \(\symbf{A}\) such that \(\symbf{A} = -\symbf{A}^\top\), denoted \(\mathscr{K}_n \subset \mathscr{M}_{nn}\).
+\end{enumerate}
+Subspaces of \(\mathscr{F}\left( \Omega \right)\):
+\begin{enumerate}
+    \item The set of all \emph{polynomials} of degree \(n\) or less, denoted \(\mathscr{P}_n \subset \mathrm{F}\left( \Omega \right)\).
+    \item The set of all \emph{continuous functions}, denoted \(C\left( \Omega \right) \subset \mathscr{F}\left( \Omega \right)\).
+    \item The set of all functions with \emph{continuous derivatives} on \(\Omega\), for example, \(C^1\left( \Omega \right) \subset C\left( \Omega \right)\)
+          is the set of all functions with continuous first derivatives.
+    \item The set of all functions \(f\) defined on \(\interval{0}{1}\) satisfying \(f\left( 0 \right) = f\left( 1 \right)\).
+\end{enumerate}
+\subsection{General Vector Space Terminology}
+The notions of linear combination, linear independence and span are all unchanged for general vector spaces.
+
+Let \(c_1,\: \dots,\: c_k \in \R\) be scalars:
+\begin{itemize}
+    \item The linear combination of a set of vector \(S = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_k \right\}\)
+          is a vector of the form \(\symbfit{v} = c_1 \symbfit{v}_1 + \cdots + c_k \symbfit{v}_k\).
+    \item A set of vectors \(S = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_k \right\}\) is linearly independent if
+          the only solution to \(c_1 \symbfit{v}_1 + \cdots + c_k \symbfit{v}_k = \symbfup{0}\) is the trivial solution \(c_1 = \cdots = c_k = 0\).
+    \item The span of a set of vectors \(S = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_k \right\}\) is the set of all linear combinations of
+          that set, denoted \(\vspan{\left( S \right)}\).
+\end{itemize}
+A set of vectors \(S = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_k \right\}\) is a \textit{basis} for a vector space \(V\) if
+\begin{itemize}
+    \item \(S\) is linearly independent.
+    \item \(\vspan{\left( S \right)} = V\).
+\end{itemize}
+The vector space is of dimension \(k\) there are \(k\) vectors in its basis. Note that not all vector spaces have a basis. For example, function spaces, such as \(C\)
+are infinite-dimensional.
+
+The standard bases for some vector spaces are shown below:
+\begin{itemize}
+    \item \(\R^3\): \(S = \left\{ \begin{bmatrix*}
+              1 \\ 0 \\ 0
+          \end{bmatrix*},\: \begin{bmatrix*}
+              0 \\ 1 \\ 0
+          \end{bmatrix*},\: \begin{bmatrix*}
+              0 \\ 0 \\ 1
+          \end{bmatrix*} \right\}\)
+    \item \(\mathscr{M}_{22}\): \(S = \left\{ \begin{bmatrix*}
+              1 & 0 \\
+              0 & 0
+          \end{bmatrix*},\: \begin{bmatrix*}
+              0 & 0 \\
+              1 & 0
+          \end{bmatrix*},\: \begin{bmatrix*}
+              0 & 1 \\
+              0 & 0
+          \end{bmatrix*},\: \begin{bmatrix*}
+              0 & 0 \\
+              0 & 1
+          \end{bmatrix*} \right\}\)
+    \item \(\mathscr{S}_{22}\): \(S = \left\{ \begin{bmatrix*}
+              1 & 0 \\
+              0 & 0
+          \end{bmatrix*},\: \begin{bmatrix*}
+              0 & 1 \\
+              1 & 0
+          \end{bmatrix*},\: \begin{bmatrix*}
+              0 & 0 \\
+              0 & 1
+          \end{bmatrix*} \right\}\)
+    \item \(\mathscr{K}_{22}\): \(S = \left\{ \begin{bmatrix*}
+              0 & 1 \\
+              -1 & 0
+          \end{bmatrix*}\right\}\)
+    \item \(\mathscr{P}_3\): \(S = \left\{ 1,\: x,\: x^2,\: x^3 \right\}\)
+\end{itemize}
+\subsection{Linear Transformations}
+A linear transformation \(T\) is a mapping from a vector space \(V\) to a vector space \(W\)
+\begin{equation*}
+    T:V \to W
+\end{equation*}
+satisfying the following properties for all \(\symbfit{u},\: \symbfit{v} \in V\) and all
+scalars \(k \in \R\):
+\begin{enumerate}
+    \item \(T\left( k\symbfit{u} \right) = k T\left( \symbfit{u} \right)\)
+    \item \(T\left( \symbfit{u} + \symbfit{v} \right) = T\left( \symbfit{u} \right) + T\left( \symbfit{v} \right)\)
+\end{enumerate}
+These defining properties allow us to characterise a linear transformation completely
+by considering how the basis vectors from \(V\) map to \(W\). Any vector \(\symbfit{v} \in V\)
+can be written in terms of a basis \(B = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_n \right\}\), such that
+\begin{equation*}
+    \symbfit{v} = x_1 \symbfit{v}_1 + \cdots + x_n \symbfit{v}_n.
+\end{equation*}
+Therefore
+\begin{align*}
+    T\left( \symbfit{v} \right) & = T\left( x_1 \symbfit{v}_1 + \cdots + x_n \symbfit{v}_n \right)                 \\
+                                & = T\left( x_1 \symbfit{v}_1 \right) + \cdots + T\left( x_n \symbfit{v}_n \right) \\
+                                & = x_1 T\left( \symbfit{v}_1 \right) + \cdots + x_n T\left( \symbfit{v}_n \right)
+\end{align*}
+Now consider the coordinate vector of \(\symbfit{w} \in W\) relative to the basis \(B' = \left\{ \symbfit{w}_1,\: \dots,\: \symbfit{w}_m \right\}\) is
+\begin{align*}
+    \symbfit{w} & = b_1 \symbfit{w}_1 + \cdots + b_m \symbfit{w}_m \\
+                & = B' \symbfit{b}                                 \\
+                & = B' \left( \symbfit{w} \right)_{B'}
+\end{align*}
+so that the linear transformation can be expressed as follows
+\begin{align*}
+    T\left( \symbfit{v} \right)                                                                                       & = \symbfit{w}                                    \\
+    x_1 T\left( \symbfit{v}_1 \right) + \cdots + x_n T\left( \symbfit{v}_n \right)                                    & = b_1 \symbfit{w}_1 + \cdots + b_m \symbfit{w}_m \\
+    \begin{bmatrix}
+        \vertbar                      &        & \vertbar                      \\
+        T\left( \symbfit{v}_1 \right) & \cdots & T\left( \symbfit{v}_n \right) \\
+        \vertbar                      &        & \vertbar
+    \end{bmatrix} \symbfit{x}                                         & = B' \symbfit{b}                                                                                 \\
+    \begin{bmatrix}
+        \vertbar                                          &        & \vertbar                                          \\
+        \left( T\left( \symbfit{v}_1 \right) \right)_{B'} & \cdots & \left( T\left( \symbfit{v}_n \right) \right)_{B'} \\
+        \vertbar                                          &        & \vertbar
+    \end{bmatrix} \symbfit{x} & = \symbfit{b}                                                       \\
+    \symbf{A} \symbfit{x}                                                                                             & = \symbfit{b}                                    \\
+    \left( T \right)_{B',\: B} \left( \symbfit{v} \right)_B                                                           & = \left( \symbfit{w} \right)_{B'}.
+\end{align*}
+Therefore the linear transformation between the vector spaces \(V\) and \(W\)
+can be represented as the transformation of coordinate vectors relative to the bases \(B\) and \(B'\), denoted \(\left( T \right)_{B',\: B}\), that is, the matrix \(\symbf{A}\).
+\begin{definition}[Isomorphism]
+    A linear transformation \(T : V \to W\) is an isomorphism between \(V\) and \(W\) if there exists a bijection between the two vector spaces.
+
+    All \(n\) dimensional vector spaces \(V\) are isomorphic to \(\R^n\). This is a result of the coordinate vectors of \(V\) with respect
+    to the basis \(B\) that allow us to represent each vector \(\symbfit{v} \in V\) as a linear combination of the standard basis vectors in \(\R^n\).
+\end{definition}
+\subsection{Fundamental Subspaces of \texorpdfstring{\(T\)}{T}}
+The four fundamental subspaces also generalise to arbitrary linear transformations.
+
+Given the linear transformation \(T:V \to W\):
+\begin{itemize}
+    \item The set of all vectors in \(V\) that map to \(W\) is the \textbf{image} of \(T\), denoted \(\vim{\left( T \right)}\).
+    \item The set of all vectors in \(W\) that is mapped to by a vector in \(V\) is the \textbf{range} of \(T\), denoted \(\vrange{\left( T \right)}\).
+    \item The set of all vectors in \(V\) that \(T\) maps to \(\symbfup{0}_W\) is the \textbf{kernel} of \(T\), denoted \(\vker{\left( T \right)}\).
+\end{itemize}
+If the range of \(T\) is finite-dimensional, its dimension is the \textbf{rank} of \(T\), and
+if the kernel of \(T\) is finite-dimensional, its dimension is the \textbf{nullity} of \(T\), so
+that the rank-nullity theorem continues to hold.
+\begin{equation*}
+    \vrank{\left( T \right)} + \nullity{\left( T \right)} = \dim{\left( V \right)}.
+\end{equation*}
+\subsection{Inner Product Spaces}
+To describe geometric properties of vector spaces, we introduce an operation called
+the inner product that acts on the vectors in a vector space. The inner product associates a pair of vectors
+to a real number, and is delimited by angle brackets
+\begin{equation*}
+    \abracket*{\cdot,\: \cdot} : V \times V \to \R.
+\end{equation*}
+This operation must satisfy the following axioms. For \(\symbfit{u},\: \symbfit{v},\: \symbfit{w} \in V\)
+and \(k \in \R\):
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c}
+        \toprule
+        \textbf{Axiom}                  & \textbf{Meaning}                                                                                                                           \\
+        \midrule
+        Symmetry                        & \(\abracket*{\symbfit{u},\: \symbfit{v}} = \abracket*{\symbfit{v},\: \symbfit{u}}\)                                                        \\
+        Linearity in the first argument & \(\abracket*{\symbfit{u} + \symbfit{v},\: \symbfit{w}} = \abracket*{\symbfit{u},\: \symbfit{w}} + \abracket*{\symbfit{v},\: \symbfit{w}}\) \\
+        Linearity in the first argument & \(\abracket*{k \symbfit{u},\: \symbfit{v}} = k\abracket*{\symbfit{u},\: \symbfit{v}}\)                                                     \\
+        Positive semi-definitiveness         & \(\abracket*{\symbfit{u},\: \symbfit{u}} \geq 0\), \(\abracket*{\symbfit{u},\: \symbfit{u}} = 0 \iff \symbfit{u} = \symbfup{0}\)                                                                                             \\
+        \bottomrule
+    \end{tabular}
+    \caption{Inner product axioms.} % \label{}
+\end{table}
+A vector space that defines such an operation called an inner product space.
+\subsubsection{Examples of Inner Products}
+In \(\R^n\):
+\begin{itemize}
+    \item \(\abracket*{\symbfit{u},\: \symbfit{v}} = \symbfit{u} \cdot \symbfit{v} = \symbfit{u}^\top \symbfit{v}\). This is the standard inner product called the ``dot product''.
+    \item \(\abracket*{\symbfit{u},\: \symbfit{v}} = \symbfit{u}^\top \symbf{A} \symbfit{v}\) where \(\symbf{A}\) is positive definite. This is a weighted inner product, which can be used in weighted least squares.
+\end{itemize}
+For matrices \(\symbf{A},\: \symbf{B} \in \mathscr{M}_{mn}\), the standard inner product is defined
+\begin{equation*}
+    \abracket*{\symbf{A},\: \symbf{B}} = \Tr{\left( \symbf{A}^\top \symbf{B} \right)}.
+\end{equation*}
+For continuous function spaces, consider \(f,\: g \in C\left( \interval{a}{b} \right)\) where 
+the inner product operation is defined by the integral 
+\begin{equation*}
+    \abracket*{f,\: g} = \int_a^b f\left( x \right) g\left( x \right) \odif{x}.
+\end{equation*}
+As the vector spaces \(\mathscr{M}_{mn}\) and \(\mathscr{P}_n\) are isomorphic to \(\R^{mn}\) and \(\R^{n + 1}\) respectively,
+we can use the inner product definitions from \(\R^n\) for these spaces also.
+
+Likewise we can also consider the following integral definition with a continuous weight function \(w\left( x \right)\) that is positive for all \(x \in \interval{a}{b}\):
+\begin{equation*}
+    \abracket*{f,\: g} = \int_a^b f\left( x \right) g\left( x \right) w\left( x \right) \odif{x}.
+\end{equation*}
 \end{document}
