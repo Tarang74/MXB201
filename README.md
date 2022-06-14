@@ -25,6 +25,7 @@ This repository provides **lecture notes** for **MXB201 - Advanced Linear Algebr
 3. Orthogonal Matrices
 4. Eigenvalues and Eigenvectors
 5. Singular Value Decomposition
+6. General Vector Spaces
 
 ---
 
