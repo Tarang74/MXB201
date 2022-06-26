@@ -1,0 +1,1068 @@
+%!TEX TS-program = xelatex
+%!TEX options = -aux-directory=Debug -shell-escape -file-line-error -interaction=nonstopmode -halt-on-error -synctex=1 "%DOC%"
+\documentclass{article}
+\input{LaTeX-Submodule/template.tex}
+
+% Additional packages & macros
+\usepackage{mathdots}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\nullity}{nullity}
+
+\usepackage{changepage} % Modify page width
+\usepackage{multicol} % Use multiple columns
+\usepackage[explicit]{titlesec} % Modify section heading styles
+
+\titleformat{\section}{\raggedright\normalfont\bfseries}{}{0em}{#1}
+\titleformat{\subsection}{\raggedright\normalfont\small\bfseries}{}{0em}{#1}
+
+%% A4 page
+\geometry{
+a4paper,
+margin = 10mm
+}
+
+%% Hide horizontal rule 
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead{}
+
+%% Hide page numbers
+\pagenumbering{gobble}
+
+%% Multi-columns setup
+\setlength\columnsep{4pt}
+
+%% Paragraph setup
+\setlength\parindent{0pt}
+\setlength\parskip{0pt}
+
+%% Customise section heading styles
+% \titleformat*\section{\raggedright\bfseries}
+
+\begin{document}
+% Modify spacing
+\titlespacing*\section{0pt}{1ex}{1ex}
+\titlespacing*\subsection{0pt}{1ex}{1ex}
+%
+\setlength\abovecaptionskip{8pt}
+\setlength\belowcaptionskip{-15pt}
+\setlength\textfloatsep{0pt}
+%
+\setlength\abovedisplayskip{1pt}
+\setlength\belowdisplayskip{1pt}
+
+\begin{multicols*}{3}
+    % \section{Fundamental Concepts of Linear Algebra}
+    % \subsection{Row Echelon Form}
+    % As studied in Linear Algebra, we can solve linear systems by
+    % applying the following elementary row operations to any matrix \(\symbf{A}\).
+    % \begin{enumerate}[label=Type \Roman*.]
+    %     \item Exchange any two rows.
+    %     \item Multiply any row by a constant.
+    %     \item Add a multiple of one row to another row.
+    % \end{enumerate}
+    % This allows us to reduce \(\symbf{A}\) into \textbf{row echelon form}
+    % such that the entries below the main diagonal are zero:
+    % \begin{equation*}
+    %     \symbf{R}_{\mathrm{ref}} =
+    %     \begin{bmatrix}
+    %         r_{11} & r_{12} & \cdots & r_{1n} \\
+    %                & r_{22} & \cdots & r_{2n} \\
+    %                &        & \ddots & \vdots \\
+    %                &        &        & r_{mn}
+    %     \end{bmatrix}
+    % \end{equation*}
+    % \subsection{Elementary Matrix}
+    % Mathematically, we can represent these row operations as a matrix
+    % which is left multiplied to \(\symbf{A}\).
+    % \begin{definition}[Elementary matrix]
+    %     An elementary matrix \(\symbf{E}_i\) is constructed by applying a row operation to the elementary matrix \(\symbf{I}_m\).
+    %     Consider a 3 by 4 matrix \(\symbf{A}\); a common first elementary row operation might be
+    %     \begin{equation*}
+    %         r_2 \leftarrow r_2 - \frac{a_{21}}{a_{11}} r_1
+    %     \end{equation*}
+    %     which when applied to \(\symbf{I}_3\) yields
+    %     \begin{equation*}
+    %         \symbf{E}_1 =
+    %         \begin{bmatrix}
+    %             1                      & 0 & 0 \\
+    %             -\frac{a_{21}}{a_{11}} & 1 & 0 \\
+    %             0                      & 0 & 1
+    %         \end{bmatrix}
+    %     \end{equation*}
+    %     where the 1 subscript simply indicates the first of many elementary row operations.
+    %     Left multiplying this to an arbitrary \(\symbf{A}\) gives
+    %     \begin{align*}
+    %         \symbf{E}_1 \symbf{A} & =
+    %         \begin{bmatrix}
+    %             1                      & 0 & 0 \\
+    %             -\frac{a_{21}}{a_{11}} & 1 & 0 \\
+    %             0                      & 0 & 1
+    %         \end{bmatrix}
+    %         \begin{bmatrix}
+    %             a_{11} & a_{12} & a_{13} & a_{14} \\
+    %             a_{21} & a_{22} & a_{23} & a_{24} \\
+    %             a_{31} & a_{32} & a_{33} & a_{34}
+    %         \end{bmatrix} \\
+    %                               & =
+    %         \begin{bmatrix}
+    %             a_{11} & a_{12}                              & a_{13}                              & a_{14}                              \\
+    %             0      & a_{22}-\frac{a_{12} a_{21}}{a_{11}} & a_{23}-\frac{a_{13} a_{21}}{a_{11}} & a_{24}-\frac{a_{14} a_{21}}{a_{11}} \\
+    %             a_{31} & a_{32}                              & a_{33}                              & a_{34}
+    %         \end{bmatrix}
+    %     \end{align*}
+    %     which has the desired result of eliminating the first column of the second row.
+    % \end{definition}
+    % \subsection{Reduced Row Echelon Form}
+    % As there are infinitely many ways to reduce a matrix to row echelon form, we typically
+    % reduce \(\symbf{R}_{\mathrm{ref}}\) further into \textbf{reduced row echelon form} which is
+    % a unique reduction for every \(\symbf{A}\).
+
+    % This matrix \(\symbf{R}_{\mathrm{rref}}\) (or simply \(\symbf{R}\)) generally requires \(m \times n\)
+    % elementary row operations and is only useful for theoretical analysis.
+    % In reduced row echelon form, any entries in the same column as a pivot must be 0, and each pivot is 1.
+    % \subsection{Elimination Matrix}
+    % The elementary matrices involved in row reduction can be expressed as a single matrix containing every
+    % each row operation.
+    % \begin{align*}
+    %     \symbf{E}_9 \symbf{E}_8 \dots \symbf{E}_2 \symbf{E}_1 \symbf{A} & = \symbf{E} \symbf{A} \\
+    %                                                                     & = \symbf{R}
+    % \end{align*}
+    % \subsection{Linear Systems}
+    % Given the linear system \(\symbf{A} \symbfit{x} = \symbfit{b}\)
+    % we can augment \(\symbf{A}\) with \(\symbfit{b}\) to draw conclusions about the solutions.
+
+    % If we left multiply the elimination matrix \(\symbf{E}\) to
+    % \(\begin{bmatrix}[c|c]
+    %     \symbf{A} & \symbfit{b}
+    % \end{bmatrix}\)
+    % we can apply the same operations to \(\symbfit{b}\).
+    % \begin{align*}
+    %     \symbf{E}
+    %     \begin{bmatrix}[c|c]
+    %         \symbf{A} & \symbfit{b}
+    %     \end{bmatrix} & =
+    %     \begin{bmatrix}[c|c]
+    %         \symbf{E} \symbf{A} & \symbf{E} \symbfit{b}
+    %     \end{bmatrix}          \\
+    %                              & = \begin{bmatrix}[c|c]
+    %                                      \symbf{R} & \symbfit{z}
+    %                                  \end{bmatrix}
+    % \end{align*}
+    % Therefore
+    % \begin{equation*}
+    %     \symbf{R} \symbfit{x} = \symbfit{z}
+    % \end{equation*}
+    % After reducing the matrix \(\symbf{A}\) to \(\symbf{R}\), we can summarise
+    % certain characteristics about \(\symbf{A}\).
+    % \subsubsection{Basic and Free Variables}
+    % Identifying the pivots in \(\symbf{R}\) allows us to determine
+    % the dimensions of various subspaces of \(\symbf{A}\).
+    % \begin{definition}[Basic variables]
+    %     The columns that a pivot corresponds to are known as basic variables (or leading variables).
+    % \end{definition}
+    % \begin{definition}[Free variables]
+    %     Any columns not corresponding to any pivots are known as free variables (or parameters).
+    %     Consequently, any variables that are not basic variables are free variables.
+    % \end{definition}
+    % When using backward substitution to solve \(\symbf{R} \symbfit{x} = \symbfit{z}\), we assign new variables
+    % to any free variables to indicate that they are parameters to the system.
+    % \subsubsection{Singular Matrices}
+    % An \(n\) by \(n\) square matrix \(\symbf{A}\) is singular if its associated reduced matrix \(\symbf{R}\) has fewer than \(n\) basic variables.
+    % It follows that a singular matrix also has a determinant of 0 (as the product of the diagonal is 0) which means it is also noninvertible.
+    % \subsection{The Four Fundamental Subspaces}
+    % Consider
+    % \begin{align*}
+    %     \symbf{A} & =
+    %     \begin{bmatrix}
+    %         1 & 2 & 3 & 4 & 5 \\
+    %         0 & 0 & 1 & 4 & 5 \\
+    %         0 & 0 & 0 & 0 & 0
+    %     \end{bmatrix} \\
+    %     \symbf{R} & =
+    %     \begin{bmatrix}
+    %         1 & 2 & 0 & -2 & -1 \\
+    %         0 & 0 & 1 & 2  & 2  \\
+    %         0 & 0 & 0 & 0  & 0
+    %     \end{bmatrix}, \,
+    %     \symbf{E} =
+    %     \begin{bmatrix}
+    %         1 & -3 & 0 \\
+    %         0 & 1  & 0 \\
+    %         0 & 0  & 1
+    %     \end{bmatrix}
+    % \end{align*}
+    % so that \(x_1\) and \(x_3\) are basic variables, whereas \(x_2\), \(x_4\) and \(x_5\) are free variables.
+    % \subsection{Pivots}
+    % First nonzero entry in each row when reduced to row-echelon form.
+    For the matrix \(\symbf{A} \in \R^{m \times n}\):
+    % \subsection{Row space \texorpdfstring{\(\rowspace{A}\)}{C(A')}}
+    % Span of rows containing pivots.
+    % \subsection{Null space \texorpdfstring{\(\nullspace{A}\)}{N(A)}}
+    % The span of vectors that satisfy \(\symbf{A}\symbfit{x} = \symbf{0}\).
+    % \subsection{Column space \texorpdfstring{\(\columnspace{A}\)}{C(A)}}
+    % The general vector \(\symbfit{b}\) that makes \(\symbf{A}\symbfit{x} = \symbfit{b}\) consistent, or the row space of \(\symbf{A}^\top\).
+    % \subsection{Left-Null space \texorpdfstring{\(\leftnullspace{A}\)}{N(A')}}
+    % Null space of \(\symbf{A}^\top\).
+    % \subsection{Rank}
+    % \begin{align*}
+    %     \vrank{\left( \symbf{A} \right)} = \dim{\left( \rowspace{A} \right)}         & = r \\
+    %     \vrank{\left( \symbf{A}^\top \right)} = \dim{\left( \columnspace{A} \right)} & = r
+    % \end{align*}
+    % Number of basic variables in \(\symbf{R}\).
+    % \subsection{Nullity}
+    % \begin{align*}
+    %     \nullity{\left( \symbf{A} \right)} = \dim{\left( \nullspace{A} \right)}          & = n - r \\
+    %     \nullity{\left( \symbf{A}^\top \right)} = \dim{\left( \leftnullspace{A} \right)} & = m - r
+    % \end{align*}
+    % \subsection{Rank-Nullity Theorem}
+    % \begin{align*}
+    %     \vrank{\left( \symbf{A} \right)} + \nullity{\left( \symbf{A} \right)}           & = n \\
+    %     \vrank{\left( \symbf{A}^\top \right)} + \nullity{\left( \symbf{A}^\top \right)} & = m
+    % \end{align*}
+    % \subsection{Orthogonal Complements}
+    % \begin{align*}
+    %     \rowspace{A}^\perp    & = \nullspace{A}     \\
+    %     \columnspace{A}^\perp & = \leftnullspace{A}
+    % \end{align*}
+    % \subsection{Consistency of a Linear System}
+    % Consistent (unique solution):
+    % \begin{equation*}
+    %     \vrank{\left( \symbf{A} \right)} =
+    %     \vrank{\left( \begin{bmatrix}[c|c]
+    %             \symbf{A} & \symbfit{b}
+    %         \end{bmatrix} \right)} = n
+    % \end{equation*}
+    % Consistent (infinite solutions):
+    % \begin{equation*}
+    %     \vrank{\left( \symbf{A} \right)} =
+    %     \vrank{\left( \begin{bmatrix}[c|c]
+    %             \symbf{A} & \symbfit{b}
+    %         \end{bmatrix} \right)} < n
+    % \end{equation*}
+    % Inconsistent (no solutions):
+    % \begin{equation*}
+    %     \vrank{\left( \symbf{A} \right)} \neq
+    %     \vrank{\left( \begin{bmatrix}[c|c]
+    %             \symbf{A} & \symbfit{b}
+    %         \end{bmatrix} \right)}
+    % \end{equation*}
+    % If \(\symbfit{b} \in \columnspace{{A}}\), the system is consistent.
+    \subsection{General Solution to a Linear System}
+    If \(\symbfit{b} \in \columnspace{A}\)
+    \begin{equation*}
+        \symbfit{x}_g = \symbfit{x}_p + \symbfit{x}_n
+    \end{equation*}
+    where \(\symbfit{x}_p \in \R^n\) is a particular solution obtained by backward substitution, and
+    \(\symbfit{x}_n \in \nullspace{A}\).
+    \subsection{Minimum Norm Solution}
+    \(\symbfit{x}_r \in \rowspace{A}\) where \(\symbfit{x}_r = \proj_{\rowspace{A}}{\left( \symbfit{x}_g \right)}\).
+    \section{Least Squares}
+    For \(\symbfit{b} \not\in \columnspace{A}\), find \(\symbfit{x}\):
+    \begin{equation*}
+        \symbfit{x} = \argmin_{\symbfit{x}^\ast \in \R^n} \norm{\symbfit{b} - \symbf{A}\symbfit{x}^\ast}
+    \end{equation*}
+    so that \(\symbfit{b} - \symbf{A}\symbfit{x}\) is orthogonal to \(\columnspace{A}\).
+    \begin{align*}
+        \symbf{A}^\top \left( \symbfit{b} - \symbf{A}\symbfit{x} \right) & = \symbfup{0}                                                              \\
+        \symbf{A}^\top \symbf{A}\symbfit{x}                              & = \symbf{A}^\top \symbfit{b}                                               \\
+        \symbfit{x}                                                      & = \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top \symbfit{b}.
+    \end{align*}
+    \subsection{Orthogonal Projection}
+    \begin{equation*}
+        \symbf{P} = \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top
+    \end{equation*}
+    \(\symbf{P}\) operates on \(\symbfit{b}\):
+    \begin{align*}
+        \symbfit{b}_P & = \symbf{P} \symbfit{b} = \proj_{\columnspace{A}} \left( \symbfit{b} \right) = \symbf{A}\symbfit{x} \\
+                      & = \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top \symbfit{b}
+    \end{align*}
+    \(\symbf{P}\) is idempotent, \(\symbf{P}^2 = \symbf{P}\).
+    \subsection{Dependent Columns}
+    If \(\nullity{\left( \symbf{A} \right)} > 0\), the Normal Equations yields infinitely many solutions
+    \begin{equation*}
+        \symbfit{x} = \symbfit{x}_p + \symbfit{x}_n
+    \end{equation*}
+    because \(\nullspace{A} = \mathcal{N}\left(\symbf{A}^\top \symbf{A}\right)\).
+    \subsection{Orthogonal Complement Projections}
+    Given \(\symbf{P} = \proj_V\):
+    \begin{equation*}
+        \symbf{Q} = \proj_{V^\perp} = \symbf{I} - \symbf{P}
+    \end{equation*}
+    because
+    \begin{equation*}
+        \symbfit{b} = \proj_V(\symbfit{b}) + \proj_{V^\perp}(\symbfit{b}) = \symbf{P}\symbfit{b} + \symbf{Q}\symbfit{b}.
+    \end{equation*}
+    Additionally,
+    \begin{align*}
+        \left( \symbf{P}\symbfit{b} \right)^\top \symbf{Q}\symbfit{b} & = 0         \\
+        \symbf{P} \symbf{Q}                                           & = \symbf{0}
+    \end{align*}
+    where \(\symbf{0}\) is the zero matrix.
+    \section{Orthogonal Matrices}
+    \subsection{Change of Basis}
+    Given the basis \(W = \left\{ \symbfit{w}_1,\: \dots,\: \symbfit{w}_n \right\}\)
+    solve:
+    \begin{align*}
+        \symbfit{b}                  & = c_1 \symbfit{w}_1 + \cdots + c_n \symbfit{w}_n \\
+        % \symbfit{b}                  & = \begin{bmatrix}
+        %                                      \vertbar      &        & \vertbar      \\
+        %                                      \symbfit{w}_1 & \cdots & \symbfit{w}_n \\
+        %                                      \vertbar      &        & \vertbar
+                                        %  \end{bmatrix} \begin{bmatrix}
+                                        %                    c_1    \\
+                                        %                    \vdots \\
+                                        %                    c_n
+                                        %                \end{bmatrix}         \\
+        \symbfit{b}                  & = \symbf{W} \symbfit{c}                          \\
+        \left( \symbfit{b} \right)_W & = \symbfit{c}.
+    \end{align*}
+    \subsection{Orthonormal Basis}
+    Every basis vector is normalised and orthogonal to every other basis vector.
+    For \(Q = \left\{ \symbfit{q}_1,\: \dots,\: \symbfit{q}_n \right\}\),
+    \(\symbfit{q}_i^\top \symbfit{q}_j = \delta_{ij}\), where
+    \begin{equation*}
+        \delta_{ij} = \begin{cases}
+            1, & i = j   \\
+            0, & i \ne j
+        \end{cases}
+    \end{equation*}
+    Solving a system:
+    \begin{align*}
+        \symbfit{b}                    & = c_1 \symbfit{q}_1 + \cdots + c_n \symbfit{q}_n \\
+        \symbfit{q}_i^\top \symbfit{b} & = c_i                                            \\
+        \symbf{Q}^\top \symbfit{b}     & = \symbfit{c} = \left( \symbfit{b} \right)_Q
+    \end{align*}
+    \subsection{Orthogonal Matrices}
+    \begin{equation*}
+        \symbf{Q}^\top = \symbf{Q}^{-1}
+        \iff
+        \symbf{Q}^\top \symbf{Q} = \symbf{Q}\symbf{Q}^\top = \symbf{I}.
+    \end{equation*}
+    \subsection{Projection onto a Vector}
+    \begin{align*}
+        \proj_{\symbfit{a}} \left( \symbfit{b} \right) = \symbfit{b}_P & = \symbfit{a} \left( \symbfit{a}^\top \symbfit{a} \right)^{-1} \symbfit{a}^\top \symbfit{b} \\
+                                                                       & = \frac{\symbfit{a}}{\norm{\symbfit{a}}^2} \symbfit{a} \cdot \symbfit{b}
+    \end{align*}
+    Using a unit vector \(\symbfit{q}\):
+    \begin{equation*}
+        \proj_{\symbfit{q}} \left( \symbfit{b} \right) = \symbfit{q} \left( \symbfit{q} \cdot \symbfit{b} \right)
+    \end{equation*}
+    \subsection{Gram-Schmidt Process}
+    Converts the basis \(W\) that spans \(\vspan{\left( \symbf{A} \right)}\) to an orthonormal basis \(Q\)
+    \begin{align*}
+        \symbfit{v}_1 & = \symbfit{w}_1                                                                                       & \symbfit{q}_1 & = \symbfit{v}_1/\norm{\symbfit{v}_1}  \\
+        \symbfit{v}_2 & = \symbfit{w}_2 - \symbfit{q}_1 \left( \symbfit{q}_1 \cdot \symbfit{w}_2 \right)                      & \symbfit{q}_2 & = \symbfit{v}_2/\norm{\symbfit{v}_2}  \\
+                      & \vdotswithin{=}                                                                                       &               & \vdotswithin{=}                       \\
+        \symbfit{v}_i & = \symbfit{w}_i - \sum_{j = 1}^{i - 1} \symbfit{q}_j \left( \symbfit{q}_j \cdot \symbfit{w}_i \right) & \symbfit{q}_i & = \symbfit{v}_i/\norm{\symbfit{v}_i}.
+    \end{align*}
+    \(V\) and \(Q\) span \(W\) and \(V\) is orthogonal.
+    \subsection{QR Decomposition}
+    % If we rearrange the steps in the Gram-Schmidt process to solve for \(\symbfit{w}_i\), we get
+    % \begin{align*}
+    %     \symbfit{w}_1 & = \symbfit{q}_1 \norm{\symbfit{v}_1}                                                                                                                                   \\
+    %     \symbfit{w}_2 & = \symbfit{q}_2 \norm{\symbfit{v}_2} + \symbfit{q}_1 \left( \symbfit{q}_1 \cdot \symbfit{w}_2 \right)                                                                  \\
+    %     \symbfit{w}_3 & = \symbfit{q}_3 \norm{\symbfit{v}_3} + \symbfit{q}_1 \left( \symbfit{q}_1 \cdot \symbfit{w}_3 \right) + \symbfit{q}_2 \left( \symbfit{q}_2 \cdot \symbfit{w}_3 \right) \\
+    %                   &                                                                                                                                                                        \\
+    %     \symbfit{w}_i & = \symbfit{q}_i \norm{\symbfit{v}_i} + \sum_{j = 1}^{i - 1} \symbfit{q}_j \left( \symbfit{q}_j \cdot \symbfit{w}_i \right)
+    % \end{align*}
+    % Due to the properties of \(\symbfit{q}_i\), we can also express \(\symbfit{w}_i\) as
+    % \begin{equation*}
+    %     \symbfit{w}_i = \sum_{j = 1}^{i} \symbfit{q}_j \left( \symbfit{q}_j \cdot \symbfit{w}_i \right).
+    % \end{equation*}
+    % And in vector form:
+    % \begin{align*}
+    %     \begin{bmatrix}
+    %         \symbfit{w}_1 & \symbfit{w}_2 & \cdots & \symbfit{w}_n
+    %     \end{bmatrix} & = \begin{bmatrix}
+    %                           \symbfit{q}_1 & \symbfit{q}_2 & \cdots & \symbfit{q}_n
+    %                       \end{bmatrix} \begin{bmatrix}
+    %                                         \norm{\symbfit{v}_1} & \symbfit{q}_1 \cdot \symbfit{w}_2 & \cdots & \symbfit{q}_1 \cdot \symbfit{w}_n       \\[0.2cm]
+    %                                         0                    & \norm{\symbfit{v}_2}              & \ddots & \vdots                                  \\[0.2cm]
+    %                                         \vdots               & \ddots                            & \ddots & \symbfit{q}_{n - 1} \cdot \symbfit{w}_n \\[0.2cm]
+    %                                         0                    & \cdots                            & 0      & \norm{\symbfit{v}_n}
+    %                                     \end{bmatrix} \\
+    %     \symbf{W}                                               & = \symbf{Q} \symbf{R}
+    % \end{align*}
+    \begin{equation*}
+        \symbf{A} = \symbf{Q} \symbf{R}.
+    \end{equation*}
+    \(\symbf{R}\) is upper-triangular. QR decomposition also finds the Least Squares solution.
+    \section{Eigenvalues and Eigenvectors}
+    \begin{equation*}
+        \left( \lambda \symbf{I} - \symbf{A} \right) \symbfit{v} = \symbfup{0} : \symbfit{v} \neq \symbfup{0}
+    \end{equation*}
+    \subsection{Characteristic Polynomial}
+    \begin{equation*}
+        P\left( \lambda \right) = \det{\left( \lambda \symbf{I} - \symbf{A} \right)} = 0.
+    \end{equation*}
+    \subsection{Eigen Decomposition}
+    \begin{equation*}
+        \symbf{A} \symbf{V} = \symbf{V} \symbf{D}                 
+        \iff 
+        \symbf{A} = \symbf{V} \symbf{D} \symbf{V}^{-1}.
+    \end{equation*}
+    \(\symbf{V} = \begin{bmatrix}
+        \symbfit{v}_1 & \cdots & \symbfit{v}_n
+    \end{bmatrix}\) \(\symbf{D} = \diag{\left( \lambda_1,\: \dots,\: \lambda_n \right)}\).
+    \subsection{Algebraic Multiplicity \texorpdfstring{\(\mu_{\symbf{A}}\left( \lambda_i \right)\)}{mu(lambda i)}}
+    The multiplicity of \(\lambda_i\) in \(P(\lambda)\),
+    for \(d \leq n\) distinct eigenvalues,
+    \begin{equation*}
+        P\left( \lambda \right) = \left( \lambda - \lambda_1 \right)^{\mu_{\symbf{A}}\left( \lambda_1 \right)} \cdots \left( \lambda - \lambda_d \right)^{\mu_{\symbf{A}}\left( \lambda_d \right)}.
+    \end{equation*}
+    This requires
+    \begin{gather*}
+        1 \leq \mu_{\symbf{A}}\left( \lambda_i \right) \leq n         \\
+        \mu_{\symbf{A}} = \sum_{i = 1}^d \mu_{\symbf{A}} \left( \lambda_i \right) = n
+    \end{gather*}
+    \subsection{Geometric Multiplicity \texorpdfstring{\(\gamma_{\symbf{A}}\left( \lambda_i \right)\)}{gamma(lambda i)}}
+    The dimension of the eigenspace associated with \(\lambda_i\).
+    \begin{equation*}
+        \gamma_{\symbf{A}} \left( \lambda_i \right) = \nullity{\left( \lambda_i \symbf{I} - \symbf{A} \right)}.
+    \end{equation*}
+    Given \(d \leq n\) distinct eigenvalues,
+    \begin{gather*}
+        1 \leq \gamma_{\symbf{A}}\left( \lambda_i \right) \leq \mu_{\symbf{A}}\left( \lambda_i \right) \leq n \\
+        \gamma_{\symbf{A}} = \sum_{i = 1}^d \gamma_{\symbf{A}} \left( \lambda_i \right)
+    \end{gather*}
+    so that
+    \begin{equation*}
+        d \leq \gamma_{\symbf{A}} \leq n.
+    \end{equation*}
+    Eigenvectors corresponding to distinct eigenvalues are linearly dependent.
+    \subsection{Defective Matrix}
+    \(\symbf{A}\) lacks a complete eigenbasis, \(\exists \lambda_k : \gamma_{\symbf{A}}\left( \lambda_k \right) < \mu_{\symbf{A}}\left( \lambda_k \right)\).
+    \subsection{Matrix Similarity}
+    \(\symbf{A}\) and \(\symbf{B}\) are similar if
+    \begin{equation*}
+        \symbf{B} = \symbf{P}^{-1} \symbf{A} \symbf{P}.
+    \end{equation*}
+    They share \(P(\lambda)\), ranks, determinants, trace, and eigenvalues (including \(\mu\) and \(\gamma\)).
+    \subsection{Symmetric Matrices}
+    \(\symbf{A}\in\R^{n \times n}\) where \(\symbf{A}^\top = \symbf{A}\).
+    \begin{enumerate}
+        \item \(\symbf{A}\) is always diagonalisable.
+        \item Eigenvalues and eigenvectors are always real.
+        \item The eigenspaces are orthogonal.
+    \end{enumerate}
+    \begin{equation*}
+        \symbf{A} = \symbf{Q} \symbf{D} \symbf{Q}^\top
+    \end{equation*}
+    \subsection{Skew-Symmetric Matrices}
+    \(\symbf{A}\in\R^{n \times n}\) where \(\symbf{A}^\top = -\symbf{A}\).
+    \begin{enumerate}
+        \item Eigenvalues are purely imaginary.
+    \end{enumerate}
+    \subsection{Definite Matrices}
+    Symmetric matrices are also known as definite matrices, and can be classified into four categories.
+    \begin{enumerate}
+        \item Positive definite matrices: All eigenvalues are positive.
+        \item Positive semidefinite matrices: All eigenvalues are nonnegative.
+        \item Negative definite matrices: All eigenvalues are nonpositive.
+        \item Negative semidefinite matrices: All eigenvalues are negative.
+    \end{enumerate}
+    % \subsection{Eigenbases}
+    % When \(\symbf{A}\) has \(n\) linearly independent eigenvectors, the columns of \(\symbf{V}\) represent the eigenbasis of \(\symbf{A}\).
+
+    % Let the basis \(V\) be the columns of \(\symbf{V}\) so that for the linear system \(\symbf{A}\symbfit{x} = \symbfit{b}\),
+    % \(\left[ \symbfit{x} \right]_V = \symbfit{c}\) and \(\left[ \symbfit{b} \right]_V = \symbfit{k}\),
+    % then
+    % \begin{align*}
+    %     \symbf{A} \symbfit{x}                          & = \symbfit{b}                  \\
+    %     \symbf{A} \symbf{V} \symbfit{c}                & = \symbf{V} \symbfit{k}        \\
+    %     \symbf{V}^{-1} \symbf{A} \symbf{V} \symbfit{c} & = \symbfit{k}                  \\
+    %     \symbf{D} \symbfit{c}                          & = \symbfit{k}                  \\
+    %     \symbf{D} \left( \symbfit{x} \right)_V         & = \left( \symbfit{b} \right)_V
+    % \end{align*}
+    % so that, with respect to the eigenbasis, a linear map from \(\R^n\) to \(\R^n\) is represented by the matrix \(\symbf{D}\).
+    \subsection{Matrix Functions}
+    Given a nondefective \(\symbf{A} \in \R^{n \times n}\):
+    % \subsubsection{Powers}
+    % For \(k \in \N\),
+    % \begin{equation*}
+    %     \symbf{A}^k = \symbf{V} \symbf{D}^k \symbf{V}^{-1} = \symbf{V} \diag{\left( \lambda_1^k,\: \ldots,\: \lambda_n^k \right)} \symbf{V}^{-1}.
+    % \end{equation*}
+    % \begin{proof}
+    %     We can prove the above theorem using a recursive construction of \(\symbf{A}^k\).
+    %     \begin{align*}
+    %         \symbf{A}^2 = \symbf{A} \symbf{A}   & = \symbf{V} \symbf{D} \cancel{\symbf{V}^{-1} \symbf{V}} \symbf{D} \symbf{V}^{-1} = \symbf{V} \symbf{D}^2 \symbf{V}^{-1}   \\
+    %         \symbf{A}^3 = \symbf{A}^2 \symbf{A} & = \symbf{V} \symbf{D}^2 \cancel{\symbf{V}^{-1} \symbf{V}} \symbf{D} \symbf{V}^{-1} = \symbf{V} \symbf{D}^3 \symbf{V}^{-1}
+    %     \end{align*}
+    %     so that for a positive integer \(k \in \N\),
+    %     \begin{equation*}
+    %         \symbf{A}^k = \symbf{A}^{k - 1} \symbf{A} = \symbf{V} \symbf{D}^{k - 1} \cancel{\symbf{V}^{-1} \symbf{V}} \symbf{D} \symbf{V}^{-1} = \symbf{V} \symbf{D}^k \symbf{V}^{-1}.
+    %     \end{equation*}
+    % \end{proof}
+    % \subsubsection{Polynomials}
+    % Let \(p\left( t \right) = c_0 + c_1 t + c_2 t^2 + \cdots + c_k t^k\) denote a polynomial of degree \(k\), then the matrix polynomial
+    % \(p\left( \symbf{A} \right)\) can be expressed as
+    % \begin{align*}
+    %     p\left( \symbf{A} \right) & = c_0 \symbf{I} + c_1 \symbf{A} + c_2 \symbf{A}^2 + \cdots + c_k \symbf{A}^k                                                                                                     \\
+    %                               & = c_0 \symbf{V} \symbf{I} \symbf{V}^{-1} + c_1 \symbf{V} \symbf{D} \symbf{V}^{-1} + c_2 \symbf{V} \symbf{D}^2 \symbf{V}^{-1} + \cdots + c_k \symbf{V} \symbf{D}^k \symbf{V}^{-1} \\
+    %                               & = \symbf{V} \left( c_0 \symbf{I} + c_1 \symbf{D} + c_2 \symbf{D}^2 + \cdots + c_k \symbf{D}^k \right) \symbf{V}^{-1}                                                             \\
+    %                               & = \symbf{V} p\left( \symbf{D} \right) \symbf{V}^{-1}                                                                                                                             \\
+    %                               & = \symbf{V} \diag{\left( p\left( \lambda_1 \right),\: \ldots,\: p\left( \lambda_n \right) \right)} \symbf{V}^{-1}.
+    % \end{align*}
+    % \subsection{Analytic Functions}
+    % An analytic function can be represented by its Taylor series expansion, allowing us to operate analytic functions on \(\symbf{A}\).
+    \begin{align*}
+        f\left( \symbf{A} \right) & = \symbf{V} f\left( \symbf{D} \right) \symbf{V}^{-1}                                                               \\
+                                  & = \symbf{V} \diag{\left( f\left( \lambda_1 \right),\: \ldots,\: f\left( \lambda_n \right) \right)} \symbf{V}^{-1}.
+    \end{align*}
+    for an analytic function \(f\).
+    \subsection{Cayley-Hamilton Theorem}
+        \begin{equation*}
+            \forall \symbf{A} \in \R^{n\times n} : P\left( \symbf{A} \right) = \symbfup{0}
+        \end{equation*}
+    \section{Singular Value Decomposition}
+    For \(\symbf{A} \in \R^{m \times n}\):
+    \begin{equation*}
+        \symbf{A} = \symbf{U} \symbf{\Sigma} \symbf{V}^\top
+    \end{equation*}
+    where \(\symbf{U} \in \R^{n \times n}\) is an orthogonal matrix, \(\symbf{\Sigma} \in \R^{m \times n}\)
+    is a diagonal matrix, and \(\symbf{V} \in  \R^{m \times m}\) is
+    an orthogonal matrix.
+    \(\symbf{U}\) is known as the left-singular matrix and \(\symbf{V}\) is the right-singular matrix,
+    corresponding to how these matrices are multiplied to \(\symbf{\Sigma}\).
+
+    \(\symbf{\Sigma}\) consists of the \textbf{singular values} \(\sigma_i\) of \(\symbf{A}\), which can be determined
+    using the following process:
+    \begin{align*}
+        \symbf{A}^\top \symbf{A} & = \left( \symbf{U} \symbf{\Sigma} \symbf{V}^\top \right)^\top \left( \symbf{U} \symbf{\Sigma} \symbf{V}^\top \right) \\
+                                 & = \symbf{V} \symbf{\Sigma}^\top \symbf{U}^\top \symbf{U} \symbf{\Sigma} \symbf{V}^\top                               \\
+                                 & = \symbf{V} \symbf{\Sigma}^\top \symbf{\Sigma} \symbf{V}^\top
+    \end{align*}
+    similarly,
+    \begin{align*}
+        \symbf{A} \symbf{A}^\top & = \left( \symbf{U} \symbf{\Sigma} \symbf{V}^\top \right) \left( \symbf{U} \symbf{\Sigma} \symbf{V}^\top \right)^\top \\
+                                 & = \symbf{U} \symbf{\Sigma} \symbf{V}^\top \symbf{V} \symbf{\Sigma}^\top \symbf{U}^\top                               \\
+                                 & = \symbf{U} \symbf{\Sigma} \symbf{\Sigma}^\top \symbf{U}^\top
+    \end{align*}
+    In both instances, we form an orthogonal eigendecomposition where
+    \(\symbf{\Sigma}^\top \symbf{\Sigma}\) and \(\symbf{\Sigma} \symbf{\Sigma}^\top\) are the eigenvalues of
+    \(\symbf{A}^\top\symbf{A}\) and \(\symbf{A}\symbf{A}^\top\), respectively.
+    But because the eigenvalues of \(\symbf{A}^\top\symbf{A}\) and \(\symbf{A}\symbf{A}^\top\)
+    are equal, \(\symbf{\Sigma}^\top \symbf{\Sigma} = \symbf{\Sigma} \symbf{\Sigma}^\top\).
+
+    The singular values are non-negative constants and the entries of \(\symbf{\Sigma}\)
+    are always non-increasing: \(\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r > 0\)
+    where \(r\) is the rank of \(\symbf{A}\).
+    \subsection{Orthonormal Bases for the Fundamental Subspaces}
+    For \(\symbf{A}\in\R^{m \times n}\) with \(\vrank{\left( \symbf{A} \right)} = r \leq n\):
+    \begin{equation*}
+        \symbf{A} \symbf{V} = \symbf{U} \symbf{\Sigma}
+    \end{equation*}
+    with
+    \begin{align*}
+        \symbf{A} \symbf{V}      & = \begin{bmatrix}
+                                         \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar      \\
+                                         \symbfit{a}_1 & \cdots & \symbfit{a}_r & \symbfit{a}_{r+1} & \cdots & \symbfit{a}_n \\
+                                         \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar
+                                     \end{bmatrix} \begin{bmatrix}
+                                                       \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar      \\
+                                                       \symbfit{v}_1 & \cdots & \symbfit{v}_r & \symbfit{v}_{r+1} & \cdots & \symbfit{v}_n \\
+                                                       \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar
+                                                   \end{bmatrix} \\
+        \symbf{U} \symbf{\Sigma} & = \begin{bmatrix}
+                                         \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar      \\
+                                         \symbfit{u}_1 & \cdots & \symbfit{u}_r & \symbfit{u}_{r+1} & \cdots & \symbfit{u}_m \\
+                                         \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar
+                                     \end{bmatrix} \begin{bmatrix}
+                                                       \sigma_1 &        &          &   &        &   \\
+                                                                & \ddots &          &   &        &   \\
+                                                                &        & \sigma_r &   &        &   \\
+                                                                &        &          & 0 &        &   \\
+                                                                &        &          &   & \ddots &   \\
+                                                                &        &          &   &        & 0 \\
+                                                                &        &          &   &        &   \\
+                                                                &        &          &   &        &   \\
+                                                                &        &          &   &        &
+                                                   \end{bmatrix}
+        \setlength{\arraycolsep}{0pt} % Avoid any column space in arrays that follow
+        \begin{array}{ l }
+            \left.\kern-\nulldelimiterspace
+            \vphantom{\begin{array}{ c }
+                              0 \\ % Second row
+                              0 \\ % Third row
+                              0     % Fourth/last row
+                          \end{array}}
+            \right\}\text{\(r\) rows}     \\
+            \left.\kern-\nulldelimiterspace
+            \vphantom{\begin{array}{ c }
+                              0 \\ % Second row
+                              0 \\ % Third row
+                              0     % Fourth/last row
+                          \end{array}}
+            \right\}\text{\(n - r\) rows} \\
+            \left.\kern-\nulldelimiterspace
+            \vphantom{\begin{array}{ c }
+                              0 \\ % Second row
+                              0 \\ % Third row
+                              0     % Fourth/last row
+                          \end{array}}
+            \right\}\text{\(m - n\) rows}
+        \end{array}
+    \end{align*}
+    where we have \(r\) singular values because \(\vrank{\symbf{A}} = \vrank{\symbf{A}^\top \symbf{A}}\).
+    If we express each equation separately, then
+    \begin{align*}
+        \symbf{A} \symbfit{v}_1       & = \sigma_1 \symbfit{u}_1 \\
+                                      & \vdotswithin{=}          \\
+        \symbf{A} \symbfit{v}_r       & = \sigma_2 \symbfit{u}_r \\
+        \symbf{A} \symbfit{v}_{r + 1} & = \symbfup{0}            \\
+                                      & \vdotswithin{=}          \\
+        \symbf{A} \symbfit{v}_{n}     & = \symbfup{0}
+    \end{align*}
+    which shows us that \(\left\{\symbfit{v}_{r+1},\: \dots,\: \symbfit{v}_{n}\right\}\) forms a basis for the null space of \(\symbf{A}\),
+    requiring the remaining columns of \(\symbf{V}\) to form a basis for the row space of \(\symbf{A}\).
+
+    This means that \(\left\{\symbfit{u}_{1},\: \dots,\: \symbfit{u}_{r}\right\}\) also forms a basis for the column space of \(\symbf{A}\),
+    and hence, the remaining columns of \(\symbf{U}\) form a basis for the left-null space of \(\symbf{A}\).
+
+    To summarise:
+    \begin{align*}
+        \rowspace{A}  & = \vspan{\left( \left\{ \symbfit{v}_{i \leq r} \right\} \right)}     & \columnspace{A}   & = \vspan{\left( \left\{ \symbfit{u}_{i \leq r} \right\} \right)}     \\
+        \nullspace{A} & = \vspan{\left( \left\{ \symbfit{v}_{r < i \leq n} \right\} \right)} & \leftnullspace{A} & = \vspan{\left( \left\{ \symbfit{u}_{r < i \leq m} \right\} \right)}
+    \end{align*}
+    for \(i \in \N\). Additionally, \(\symbf{V}\) forms an orthonormal basis for \(\R^n\) while
+    \(\symbf{U}\) forms an orthonormal basis for \(\R^m\).
+    \subsection{Singular Bases}
+    Consider the bases \(V\) and \(U\) from the columns of the orthogonal matrices \(\symbf{V}\) and \(\symbf{U}\), respectively.
+    Let \(\left( \symbfit{x} \right)_V = \symbfit{c}\) and \(\left( \symbfit{b} \right)_U = \symbfit{k}\),
+    so that the system \(\symbf{A} \symbfit{x} = \symbfit{b}\) becomes
+    \begin{align*}
+        \symbf{A} \symbfit{x}                          & = \symbfit{b}                   \\
+        \symbf{A} \symbf{V} \symbfit{c}                & = \symbf{U} \symbfit{k}         \\
+        \symbf{U}^\top \symbf{A} \symbf{V} \symbfit{c} & = \symbfit{k}                   \\
+        \symbf{\Sigma} \symbfit{c}                     & = \symbfit{k}                   \\
+        \symbf{\Sigma} \left( \symbfit{x} \right)_V    & = \left( \symbfit{b} \right)_U.
+    \end{align*}
+    Therefore, with respect to the orthogonal bases \(V\) and \(U\), the linear map from \(\R^n\) to \(\R^m\) is represented
+    by the matrix \(\symbf{\Sigma}\).
+    \subsection{Reduced SVD}
+    By ignoring the additional \(m - n\) rows in \(\symbf{\Sigma}\), we can form the reduced SVD which removes the
+    additional ``0'' rows of \(\symbf{\Sigma}\). This results in \(\symbf{U} \in \R^{m \times n}\) and
+    \(\symbf{\Sigma} \in \R^{n \times n}\).
+    \begin{equation*}
+        \symbf{U} \symbf{\Sigma} = \begin{bmatrix}
+            \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar      \\
+            \symbfit{u}_1 & \cdots & \symbfit{u}_r & \symbfit{u}_{r+1} & \cdots & \symbfit{u}_n \\
+            \vertbar      &        & \vertbar      & \vertbar          &        & \vertbar
+        \end{bmatrix} \begin{bmatrix}
+            \sigma_1 &        &          &   &        &   \\
+                     & \ddots &          &   &        &   \\
+                     &        & \sigma_r &   &        &   \\
+                     &        &          & 0 &        &   \\
+                     &        &          &   & \ddots &   \\
+                     &        &          &   &        & 0
+        \end{bmatrix}
+        \setlength{\arraycolsep}{0pt}
+        \begin{array}{ l }
+            \left.\kern-\nulldelimiterspace
+            \vphantom{\begin{array}{ c }
+                              0 \\
+                              0 \\
+                              0
+                          \end{array}}
+            \right\}\text{\(r\) rows} \\
+            \left.\kern-\nulldelimiterspace
+            \vphantom{\begin{array}{ c }
+                              0 \\
+                              0 \\
+                              0
+                          \end{array}}
+            \right\}\text{\(n - r\) rows}
+        \end{array}
+    \end{equation*}
+    The reduced SVD also removes the \(m - n\) left-null space basis vectors \(\left\{ \symbfit{u}_{n < i \leq m} \right\}\) from \(\symbf{U}\).
+    \subsection{Pseudoinverse}
+    Using the orthogonal basis vectors obtained through the SVD of \(\symbf{A} \in \R^{m \times n}\), we can show that
+    \(\symbfit{v}_i \mapsto \sigma_i \symbfit{u}_i\) for all \(i \leq r\). Therefore
+    \begin{equation*}
+        \symbf{A} \symbfit{v}_i = \sigma_i \symbfit{u}_i.
+    \end{equation*}
+    If we consider the inverse mapping \(\symbfit{u}_i \mapsto \frac{1}{\sigma_i} \symbfit{v}_i\), then
+    \begin{equation*}
+        \symbf{A}^\dagger \symbfit{u}_i = \frac{1}{\sigma_i} \symbfit{v}_i
+    \end{equation*}
+    where \(\symbf{A}^\dagger\) is the pseudoinverse of \(\symbf{A}\). To determine \(\symbf{A}^\dagger\),
+    the above relationship must hold for all \(i \leq r\). If we multiply the RHS by \(\symbfit{u}^\top_i \symbfit{u}_i\)
+    \begin{equation*}
+        \symbf{A}^\dagger \symbfit{u}_i = \frac{1}{\sigma_i} \symbfit{v}_i \symbfit{u}^\top_i \symbfit{u}_i
+    \end{equation*}
+    we can show that \(\symbf{A}^\dagger\) takes the form \(\frac{1}{\sigma_i} \symbfit{v}_i \symbfit{u}^\top_i\).
+    Using the Kronecker Delta definition of orthonormal vectors, we know that the product of two orthonormal basis vectors is 1
+    for \(i = j\) and 0 for \(i \neq j\). Therefore by taking the sum of all \(\frac{1}{\sigma_i} \symbfit{v}_i \symbfit{u}^\top_i\),
+    we have
+    \begin{align*}
+        \symbf{A}^\dagger \symbfit{u}_1 & = \left( \frac{1}{\sigma_1} \symbfit{v}_1 \symbfit{u}^\top_1 + \cdots + \frac{1}{\sigma_r} \symbfit{v}_r \symbfit{u}^\top_r \right) \symbfit{u}_1 = \frac{1}{\sigma_1} \symbfit{v}_1 \cancelto{1}{\symbfit{u}^\top_1 \symbfit{u}_1} + \cdots + \frac{1}{\sigma_r} \symbfit{v}_r \cancelto{0}{\symbfit{u}^\top_r \symbfit{u}_1} = \frac{1}{\sigma_1} \symbfit{v}_1 \\
+                                        & \vdotswithin{=}                                                                                                                                                                                                                                                                                                                                                   \\
+        \symbf{A}^\dagger \symbfit{u}_r & = \left( \frac{1}{\sigma_1} \symbfit{v}_1 \symbfit{u}^\top_1 + \cdots + \frac{1}{\sigma_r} \symbfit{v}_r \symbfit{u}^\top_r \right) \symbfit{u}_r = \frac{1}{\sigma_1} \symbfit{v}_1 \cancelto{0}{\symbfit{u}^\top_1 \symbfit{u}_r} + \cdots + \frac{1}{\sigma_r} \symbfit{v}_r \cancelto{1}{\symbfit{u}^\top_r \symbfit{u}_r} = \frac{1}{\sigma_r} \symbfit{v}_r
+    \end{align*}
+    Therefore the pseudoinverse is given by
+    \begin{equation*}
+        \symbf{A}^\dagger = \sum_{i = 1}^r \frac{1}{\sigma_i} \symbfit{v}_i \symbfit{u}^\top_i
+    \end{equation*}
+    which is equivalent to
+    \begin{align*}
+        \symbf{A}^\dagger & = \symbf{V} \begin{bmatrix}
+                                            \frac{1}{\sigma_1} &        &                    &   &        &   &  &  & \\
+                                                               & \ddots &                    &   &        &   &  &  & \\
+                                                               &        & \frac{1}{\sigma_r} &   &        &   &  &  & \\
+                                                               &        &                    & 0 &        &   &  &  & \\
+                                                               &        &                    &   & \ddots &   &  &  & \\
+                                                               &        &                    &   &        & 0 &  &  &
+                                        \end{bmatrix} \symbf{U}^\top \\
+    \end{align*}
+    If we consider the SVD of \(\symbf{\Sigma}\):
+    \begin{equation*}
+        \symbf{\Sigma} = \symbf{U}_\Sigma \symbf{\Sigma}_\Sigma \symbf{V}^\top_\Sigma.
+    \end{equation*}
+    we have \(\symbf{U}_\Sigma = \symbf{I}_m\), \(\symbf{\Sigma}_\Sigma = \symbf{\Sigma}\), and \(\symbf{V}_\Sigma = \symbf{I}_n\).
+    Then the pseudoinverse of this matrix is then
+    \begin{align*}
+        \symbf{\Sigma}^\dagger & = \sum_{i = 1}^r \frac{1}{\sigma_i} \symbfit{v}_{\Sigma,\:i} \symbfit{u}^\top_{\Sigma,\:i} \\
+                               & = \begin{bmatrix}
+                                       \frac{1}{\sigma_1} &        &                    &   &        &   &  & \\
+                                                          & \ddots &                    &   &        &   &  & \\
+                                                          &        & \frac{1}{\sigma_r} &   &        &   &  & \\
+                                                          &        &                    & 0 &        &   &  & \\
+                                                          &        &                    &   & \ddots &   &  & \\
+                                                          &        &                    &   &        & 0 &  &
+                                   \end{bmatrix}
+    \end{align*}
+    so that the pseudoinverse of \(\symbf{A}\) can be determined using
+    \begin{equation*}
+        \symbf{A}^\dagger = \symbf{V} \symbf{\Sigma}^\dagger \symbf{U}^\top.
+    \end{equation*}
+    Note that the pseudoinverse can also be obtained using the reduced SVD or by using the first \(r\) columns of \(\symbf{U}\) and \(\symbf{V}\) with the \(r \times r\) submatrix of \(\symbf{\Sigma}\).
+    \subsection{Truncated SVD}
+    By expanding the SVD of \(\symbf{A}\), we can express it as the sum of rank-1 matrices:
+    \begin{equation*}
+        \symbf{A} = \sum_{i = 1}^n \sigma_i \symbfit{u}_i \symbfit{v}^\top_i.
+    \end{equation*}
+    However if \(r < n\), then
+    \begin{equation*}
+        \symbf{A} = \sum_{i = 1}^r \sigma_i \symbfit{u}_i \symbfit{v}^\top_i
+    \end{equation*}
+    as \(\sigma_{r < i \leq n} = 0\). As the singular values are ordered from largest to smallest, if we wished to approximate \(\symbf{A}\)
+    by a matrix of lower rank, we can truncate this sum even further at \(i = \nu\) for \(\nu < r\), to generate a rank-\(\nu\) approximation of \(\symbf{A}\):
+    \begin{equation*}
+        \tilde{\symbf{A}} = \sum_{i = 1}^\nu \sigma_i \symbfit{u}_i \symbfit{v}^\top_i.
+    \end{equation*}
+    This allows us to represent the matrix \(\symbf{A}\) using only \(\nu\) singular values and \(2\nu\) singular vectors
+    (\(\symbfit{u}_i\) and \(\symbfit{v}_i\) for \(i = 1 \ldots \nu\)). This approximate decomposition is known as the truncated SVD\@.
+    \subsection{Principal Component Analysis}
+    To summarise, the SVD of \(\symbf{A}\) has three variations in which the dimensions of the decomposition matrices change.
+    \begin{itemize}
+        \item Full SVD\@:
+              \begin{equation*}
+                  \underset{m \times n}{\symbf{A}} = \underset{m \times m}{\symbf{U}} \quad \underset{m \times n}{\symbf{\Sigma}} \quad \underset{n \times n}{\symbf{V}}^\top
+              \end{equation*}
+        \item Reduced SVD\@:
+              \begin{equation*}
+                  \underset{m \times n}{\symbf{A}} = \underset{m \times n}{\symbf{U}} \quad \underset{n \times n}{\symbf{\Sigma}} \quad \underset{n \times n}{\symbf{V}}^\top
+              \end{equation*}
+        \item Truncated SVD\@:
+              \begin{equation*}
+                  \underset{m \times n}{\symbf{A}} = \underset{m \times \nu}{\symbf{U}} \quad \underset{\nu \times \nu}{\symbf{\Sigma}} \quad \underset{n \times \nu}{\symbf{V}}^\top
+              \end{equation*}
+    \end{itemize}
+    Consider the \(i\)th column of \(\symbf{A}\) in the truncated SVD,
+    \begin{equation*}
+        \tilde{\symbf{A}}_{:,\:i} = \symbf{U} \symbf{\Sigma} \symbf{V}_{i,\: :}^\top
+    \end{equation*}
+    If we let \(\symbfit{x}_i = \symbf{\Sigma} \symbf{V}_{i,\: :}^\top\), then
+    \begin{equation*}
+        \tilde{\symbf{A}}_{:,\:i} = \symbf{U} \symbfit{x}_i
+    \end{equation*}
+    so that \(\symbfit{x}_i \in \R^{\nu}\) is the coordinate vector of \(\tilde{\symbf{A}}_{:,\:i}\) with respect to the basis of left
+    singular vectors \(\symbf{U}_{:,\: i \leq \nu}\). In statistics or machine learning, the columns of \(\symbf{U}\) are called ``features''
+    as they are the most important singular vectors used to construct \(\symbf{A}\). The vector \(\symbfit{x}_i\) is then the coordinate
+    vector of \(\symbf{A}\)'s projection onto the ``feature space''.
+
+    In data analysis, this process is referred to as Principal Componenet Analysis (PCA) where the matrix
+    \(\symbf{A}\) represents a set of observations in which each column contains a particular explanatory variable
+    that one might be interested in. The model shown above can be used to explain the observations from each
+    variable in that dataset.
+    \section{General Vector Spaces}
+    \subsection{Vector Space Axioms}
+    A set \(V\) of objects are called ``vectors'' if the following additive and multiplicative axioms
+    are satisfied \(\forall \symbfit{u}, \symbfit{v}, \symbfit{w} \in V\) and \(\forall k, m \in \R\).
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c c}
+            \toprule
+            \textbf{Axiom}                      & \textbf{Meaning}                                                                                                    \\
+            \midrule
+            Closure under vector addition       & \(\symbfit{u} + \symbfit{v} \in V\)                                                                                 \\
+            Commutativity of vector addition    & \(\symbfit{u} + \symbfit{v} = \symbfit{v} + \symbfit{u}\)                                                           \\
+            Associativity of vector addition    & \(\symbfit{u} + \left( \symbfit{v} + \symbfit{w} \right) = \left( \symbfit{u} + \symbfit{v} \right) + \symbfit{w}\) \\
+            Identity element of vector addition & \(\exists \symbfup{0} \in V : \symbfit{u} + \symbfup{0} = \symbfup{0} + \symbfit{u} = \symbfit{u}\)                 \\
+            Inverse elements of vector addition & \(\exists \left( -\symbfit{u} \right) \in V : \symbfit{u} + \left( -\symbfit{u} \right) = \symbfup{0}\)             \\
+            \bottomrule
+        \end{tabular}
+        \caption{Additive axioms.} % \label{}
+    \end{table}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c c}
+            \toprule
+            \textbf{Axiom}                                               & \textbf{Meaning}                                                             \\
+            \midrule
+            Closure under scalar multiplication                          & \(k \symbfit{u} \in V\)                                                      \\
+            Distributivity of scalar multiplication with vector addition & \(k \left( \symbfit{u} + \symbfit{v} \right) = k\symbfit{u} + k\symbfit{v}\) \\
+            Distributivity of scalar multiplication with scalar addition & \(\left( k + m \right) \symbfit{u} = k\symbfit{u} + m\symbfit{u}\)           \\
+            Associativity of scalar multiplication                       & \(k \left( m\symbfit{u} \right) = \left( k m \right) \symbfit{u}\)           \\
+            Identity element of scalar multiplication                    & \(1 \symbfit{u} = \symbfit{u}\)                                              \\
+            \bottomrule
+        \end{tabular}
+        \caption{Multiplicative axioms.} % \label{}
+    \end{table}
+    If these axioms are satisfied, the objects called ``vectors'' and the operators ``addition'' (\(+\)) and ``scalar multiplication'' (denoted by juxtaposition) form a general vector space \(V\).
+    It follows that the operations of addition and scalar multiplication need not resemble those in \(\R^n\) to satisfy the 10 axioms described above.
+    Rather any set with two operations can form a vector space if they satisfy the 10 axioms above.
+    \subsection{Examples of Vector Spaces}
+    Aside from the familiar vector space \(\R^n\), we can also consider the following spaces which satisfy the 10 axioms above.
+    \begin{enumerate}
+        \item The set of \(m \times n\) matrices \(\mathscr{M}_{mn}\) with matrix addition and scalar multiplication.
+        \item The set of functions \(\mathscr{F}\left( \Omega \right) : \Omega \to \R\) with addition and scalar multiplication defined pointwise.
+    \end{enumerate}
+    \subsection{Subspaces}
+    Consider the subset \(W\) of a vector space \(V\), so that \(W \subset V\).
+    For \(W\) to be a subspace of \(V\), it must also satisfy the 10 axioms shown above.
+    Now as \(W\) is a subset of \(V\), 6 axioms are automatically inherited from the enclosing space \(V\).
+
+    Therefore only the following axioms need to be satisfied in \(W\):
+    \begin{itemize}
+        \item Axiom 1: Closure under vector addition
+        \item Axiom 4: Identity element of vector addition
+        \item Axiom 5: Inverse elements of vector addition
+        \item Axiom 6: Close under scalar multiplication
+    \end{itemize}
+    However, if Axioms 1 and 6 are established, then Axioms 4 and 5 will inherit from
+    the vector space structure of \(V\). So it suffices to check only Axioms 1 and 6.
+
+    Therefore any subset \(W\) of a vector that is closed under vector addition and scalar multiplication is a subspace
+    of that vector space.
+    \subsubsection{Examples of Subspaces}
+    Subspaces of \(\R^n\):
+    \begin{enumerate}
+        \item Lines, planes and higher-dimensional analogues in \(\R^n\) \emph{passing through the origin}.
+    \end{enumerate}
+    Subspaces of \(\mathscr{M}_{mn}\):
+    \begin{enumerate}
+        \item The set of all \emph{symmetric} \(n \times n\) matrices \(\symbf{A}\) such that \(\symbf{A} = \symbf{A}^\top\), denoted \(\mathscr{S}_n \subset \mathscr{M}_{nn}\).
+        \item The set of all \emph{skew symmetric} \(n \times n\) matrices \(\symbf{A}\) such that \(\symbf{A} = -\symbf{A}^\top\), denoted \(\mathscr{K}_n \subset \mathscr{M}_{nn}\).
+    \end{enumerate}
+    Subspaces of \(\mathscr{F}\left( \Omega \right)\):
+    \begin{enumerate}
+        \item The set of all \emph{polynomials} of degree \(n\) or less, denoted \(\mathscr{P}_n \subset \mathrm{F}\left( \Omega \right)\).
+        \item The set of all \emph{continuous functions}, denoted \(C\left( \Omega \right) \subset \mathscr{F}\left( \Omega \right)\).
+        \item The set of all functions with \emph{continuous derivatives} on \(\Omega\), for example, \(C^1\left( \Omega \right) \subset C\left( \Omega \right)\)
+              is the set of all functions with continuous first derivatives.
+        \item The set of all functions \(f\) defined on \(\interval{0}{1}\) satisfying \(f\left( 0 \right) = f\left( 1 \right)\).
+    \end{enumerate}
+    \subsection{General Vector Space Terminology}
+    The notions of linear combination, linear independence and span are all unchanged for general vector spaces.
+
+    Let \(c_1,\: \dots,\: c_k \in \R\) be scalars:
+    \begin{itemize}
+        \item The linear combination of a set of vector \(S = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_k \right\}\)
+              is a vector of the form \(\symbfit{v} = c_1 \symbfit{v}_1 + \cdots + c_k \symbfit{v}_k\).
+        \item A set of vectors \(S = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_k \right\}\) is linearly independent if
+              the only solution to \(c_1 \symbfit{v}_1 + \cdots + c_k \symbfit{v}_k = \symbfup{0}\) is the trivial solution \(c_1 = \cdots = c_k = 0\).
+        \item The span of a set of vectors \(S = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_k \right\}\) is the set of all linear combinations of
+              that set, denoted \(\vspan{\left( S \right)}\).
+    \end{itemize}
+    A set of vectors \(S = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_k \right\}\) is a \textit{basis} for a vector space \(V\) if
+    \begin{itemize}
+        \item \(S\) is linearly independent.
+        \item \(\vspan{\left( S \right)} = V\).
+    \end{itemize}
+    The vector space is of dimension \(k\) there are \(k\) vectors in its basis. Note that not all vector spaces have a basis. For example, function spaces, such as \(C\)
+    are infinite-dimensional.
+
+    The standard bases for some vector spaces are shown below:
+    \begin{itemize}
+        \item \(\R^3\): \(S = \left\{ \begin{bmatrix*}
+                  1 \\ 0 \\ 0
+              \end{bmatrix*},\: \begin{bmatrix*}
+                  0 \\ 1 \\ 0
+              \end{bmatrix*},\: \begin{bmatrix*}
+                  0 \\ 0 \\ 1
+              \end{bmatrix*} \right\}\)
+        \item \(\mathscr{M}_{22}\): \(S = \left\{ \begin{bmatrix*}
+                  1 & 0 \\
+                  0 & 0
+              \end{bmatrix*},\: \begin{bmatrix*}
+                  0 & 0 \\
+                  1 & 0
+              \end{bmatrix*},\: \begin{bmatrix*}
+                  0 & 1 \\
+                  0 & 0
+              \end{bmatrix*},\: \begin{bmatrix*}
+                  0 & 0 \\
+                  0 & 1
+              \end{bmatrix*} \right\}\)
+        \item \(\mathscr{S}_{22}\): \(S = \left\{ \begin{bmatrix*}
+                  1 & 0 \\
+                  0 & 0
+              \end{bmatrix*},\: \begin{bmatrix*}
+                  0 & 1 \\
+                  1 & 0
+              \end{bmatrix*},\: \begin{bmatrix*}
+                  0 & 0 \\
+                  0 & 1
+              \end{bmatrix*} \right\}\)
+        \item \(\mathscr{K}_{22}\): \(S = \left\{ \begin{bmatrix*}
+                  0 & 1 \\
+                  -1 & 0
+              \end{bmatrix*}\right\}\)
+        \item \(\mathscr{P}_3\): \(S = \left\{ 1,\: x,\: x^2,\: x^3 \right\}\)
+    \end{itemize}
+    \subsection{Linear Transformations}
+    A linear transformation \(T\) is a mapping from a vector space \(V\) to a vector space \(W\)
+    \begin{equation*}
+        T:V \to W
+    \end{equation*}
+    satisfying the following properties for all \(\symbfit{u},\: \symbfit{v} \in V\) and all
+    scalars \(k \in \R\):
+    \begin{enumerate}
+        \item \(T\left( k\symbfit{u} \right) = k T\left( \symbfit{u} \right)\)
+        \item \(T\left( \symbfit{u} + \symbfit{v} \right) = T\left( \symbfit{u} \right) + T\left( \symbfit{v} \right)\)
+    \end{enumerate}
+    These defining properties allow us to characterise a linear transformation completely
+    by considering how the basis vectors from \(V\) map to \(W\). Any vector \(\symbfit{v} \in V\)
+    can be written in terms of a basis \(B = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_n \right\}\), such that
+    \begin{equation*}
+        \symbfit{v} = x_1 \symbfit{v}_1 + \cdots + x_n \symbfit{v}_n.
+    \end{equation*}
+    Therefore
+    \begin{align*}
+        T\left( \symbfit{v} \right) & = T\left( x_1 \symbfit{v}_1 + \cdots + x_n \symbfit{v}_n \right)                 \\
+                                    & = T\left( x_1 \symbfit{v}_1 \right) + \cdots + T\left( x_n \symbfit{v}_n \right) \\
+                                    & = x_1 T\left( \symbfit{v}_1 \right) + \cdots + x_n T\left( \symbfit{v}_n \right)
+    \end{align*}
+    Now consider the coordinate vector of \(\symbfit{w} \in W\) relative to the basis \(B' = \left\{ \symbfit{w}_1,\: \dots,\: \symbfit{w}_m \right\}\) is
+    \begin{align*}
+        \symbfit{w} & = b_1 \symbfit{w}_1 + \cdots + b_m \symbfit{w}_m \\
+                    & = B' \symbfit{b}                                 \\
+                    & = B' \left( \symbfit{w} \right)_{B'}
+    \end{align*}
+    so that the linear transformation can be expressed as follows
+    \begin{align*}
+        T\left( \symbfit{v} \right)                                                                                       & = \symbfit{w}                                    \\
+        x_1 T\left( \symbfit{v}_1 \right) + \cdots + x_n T\left( \symbfit{v}_n \right)                                    & = b_1 \symbfit{w}_1 + \cdots + b_m \symbfit{w}_m \\
+        \begin{bmatrix}
+            \vertbar                      &        & \vertbar                      \\
+            T\left( \symbfit{v}_1 \right) & \cdots & T\left( \symbfit{v}_n \right) \\
+            \vertbar                      &        & \vertbar
+        \end{bmatrix} \symbfit{x}                                         & = B' \symbfit{b}                                                                                 \\
+        \begin{bmatrix}
+            \vertbar                                          &        & \vertbar                                          \\
+            \left( T\left( \symbfit{v}_1 \right) \right)_{B'} & \cdots & \left( T\left( \symbfit{v}_n \right) \right)_{B'} \\
+            \vertbar                                          &        & \vertbar
+        \end{bmatrix} \symbfit{x} & = \symbfit{b}                                                       \\
+        \symbf{A} \symbfit{x}                                                                                             & = \symbfit{b}                                    \\
+        \left( T \right)_{B',\: B} \left( \symbfit{v} \right)_B                                                           & = \left( \symbfit{w} \right)_{B'}.
+    \end{align*}
+    Therefore the linear transformation between the vector spaces \(V\) and \(W\)
+    can be represented as the transformation of coordinate vectors relative to the bases \(B\) and \(B'\), denoted \(\left( T \right)_{B',\: B}\), that is, the matrix \(\symbf{A}\).
+    \begin{definition}[Isomorphism]
+        A linear transformation \(T : V \to W\) is an isomorphism between \(V\) and \(W\) if there exists a bijection between the two vector spaces.
+
+        All \(n\) dimensional vector spaces \(V\) are isomorphic to \(\R^n\). This is a result of the coordinate vectors of \(V\) with respect
+        to the basis \(B\) that allow us to represent each vector \(\symbfit{v} \in V\) as a linear combination of the standard basis vectors in \(\R^n\).
+    \end{definition}
+    \subsection{Fundamental Subspaces of \texorpdfstring{\(T\)}{T}}
+    The four fundamental subspaces also generalise to arbitrary linear transformations.
+
+    Given the linear transformation \(T:V \to W\):
+    \begin{itemize}
+        \item The set of all vectors in \(V\) that map to \(W\) is the \textbf{image} of \(T\), denoted \(\vim{\left( T \right)}\).
+        \item The set of all vectors in \(W\) that is mapped to by a vector in \(V\) is the \textbf{range} of \(T\), denoted \(\vrange{\left( T \right)}\).
+        \item The set of all vectors in \(V\) that \(T\) maps to \(\symbfup{0}_W\) is the \textbf{kernel} of \(T\), denoted \(\vker{\left( T \right)}\).
+    \end{itemize}
+    If the range of \(T\) is finite-dimensional, its dimension is the \textbf{rank} of \(T\), and
+    if the kernel of \(T\) is finite-dimensional, its dimension is the \textbf{nullity} of \(T\), so
+    that the rank-nullity theorem continues to hold.
+    \begin{equation*}
+        \vrank{\left( T \right)} + \nullity{\left( T \right)} = \dim{\left( V \right)}.
+    \end{equation*}
+    \subsection{Inner Product Spaces}
+    To describe geometric properties of vector spaces, we introduce an operation called
+    the inner product that acts on the vectors in a vector space. The inner product associates a pair of vectors
+    to a real number, and is delimited by angle brackets
+    \begin{equation*}
+        \abracket*{\cdot,\: \cdot} : V \times V \to \R.
+    \end{equation*}
+    This operation must satisfy the following axioms. For \(\symbfit{u},\: \symbfit{v},\: \symbfit{w} \in V\)
+    and \(k \in \R\):
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c c}
+            \toprule
+            \textbf{Axiom}                  & \textbf{Meaning}                                                                                                                           \\
+            \midrule
+            Symmetry                        & \(\abracket*{\symbfit{u},\: \symbfit{v}} = \abracket*{\symbfit{v},\: \symbfit{u}}\)                                                        \\
+            Linearity in the first argument & \(\abracket*{\symbfit{u} + \symbfit{v},\: \symbfit{w}} = \abracket*{\symbfit{u},\: \symbfit{w}} + \abracket*{\symbfit{v},\: \symbfit{w}}\) \\
+            Linearity in the first argument & \(\abracket*{k \symbfit{u},\: \symbfit{v}} = k\abracket*{\symbfit{u},\: \symbfit{v}}\)                                                     \\
+            Positive semi-definitiveness    & \(\abracket*{\symbfit{u},\: \symbfit{u}} \geq 0\), \(\abracket*{\symbfit{u},\: \symbfit{u}} = 0 \iff \symbfit{u} = \symbfup{0}\)           \\
+            \bottomrule
+        \end{tabular}
+        \caption{Inner product axioms.} % \label{}
+    \end{table}
+    A vector space that defines such an operation called an inner product space.
+    \subsubsection{Examples of Inner Products}
+    In \(\R^n\):
+    \begin{itemize}
+        \item \(\abracket*{\symbfit{u},\: \symbfit{v}} = \symbfit{u} \cdot \symbfit{v} = \symbfit{u}^\top \symbfit{v}\). This is the standard inner product called the ``dot product''.
+        \item \(\abracket*{\symbfit{u},\: \symbfit{v}} = \symbfit{u}^\top \symbf{A} \symbfit{v}\) where \(\symbf{A}\) is positive definite. This is a weighted inner product, which can be used in weighted least squares.
+    \end{itemize}
+    For matrices \(\symbf{A},\: \symbf{B} \in \mathscr{M}_{mn}\), the standard inner product is defined
+    \begin{equation*}
+        \abracket*{\symbf{A},\: \symbf{B}} = \Tr{\left( \symbf{A}^\top \symbf{B} \right)}.
+    \end{equation*}
+    For continuous function spaces, consider \(f,\: g \in C\left( \interval{a}{b} \right)\) where
+    the inner product operation is defined by the integral
+    \begin{equation*}
+        \abracket*{f,\: g} = \int_a^b f\left( x \right) g\left( x \right) \odif{x}.
+    \end{equation*}
+    As the vector spaces \(\mathscr{M}_{mn}\) and \(\mathscr{P}_n\) are isomorphic to \(\R^{mn}\) and \(\R^{n + 1}\) respectively,
+    we can use the inner product definitions from \(\R^n\) for these spaces also.
+
+    Likewise we can also consider the following integral definition with a continuous weight function \(w\left( x \right)\) that is positive for all \(x \in \interval{a}{b}\):
+    \begin{equation*}
+        \abracket*{f,\: g} = \int_a^b f\left( x \right) g\left( x \right) w\left( x \right) \odif{x}.
+    \end{equation*}
+    \subsubsection{Norms}
+    Having defined an inner product, we can also define the norm as
+    \begin{equation*}
+        \norm*{\symbfit{v}} = \sqrt{\abracket*{\symbfit{v},\: \symbfit{v}}}
+    \end{equation*}
+    From this definition, we maintain the expected properties of the Euclidean norm:
+    \begin{itemize}
+        \item \(\norm*{\symbfit{v}} \geq 0\) and \(\norm*{\symbfit{v}} = 0\) iff \(\symbfit{v} = \symbfup{0}\).
+        \item \(\norm*{k \symbfit{v}} = \abs*{k} \norm*{\symbfit{v}}\) for \(k \in \R\).
+        \item \(\norm*{\symbfit{u} + \symbfit{v}} \leq \norm*{\symbfit{u}} + \norm*{\symbfit{v}}\), which is the triangle inequality.
+    \end{itemize}
+    For matrices, the inner product inherited from \(\R^{mn}\) leads to the following definitions of norms:
+    \begin{equation*}
+        \norm*{\symbf{A}} = \sqrt{\abracket*{\symbf{A},\: \symbf{A}}} = \sqrt{\Tr{\left( \symbf{A}^\top \symbf{A} \right)}} = \sqrt{\sum_{i = 1}^m \sum_{j = 1}^n a_{ij}^2}
+    \end{equation*}
+    which is known as the Frobenius norm. For continuous functions \(f \in C\left( \interval{a}{b} \right)\):\
+    \begin{equation*}
+        \norm*{f\left( x \right)} = \sqrt{\abracket*{f\left( x \right),\: f\left( x \right)}} = \sqrt{\int_a^b f\left( x \right)^2 \odif{x}}.
+    \end{equation*}
+    \subsubsection{Orthogonality}
+    Similarly, we can say that two vectors \(\symbfit{u}\) and \(\symbfit{v}\) are orthogonal if
+    \begin{equation*}
+        \abracket*{\symbfit{v},\: \symbfit{v}} = 0.
+    \end{equation*}
+    Using this definition we can show that all
+\end{multicols*}
+
+\end{document}

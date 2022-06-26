@@ -163,7 +163,7 @@ the dimensions of various subspaces of \(\symbf{A}\).
     Any columns not corresponding to any pivots are known as free variables (or parameters).
     Consequently, any variables that are not basic variables are free variables.
 \end{definition}
-When using backward substitution to solve \(\symbf{R} \symbfit{x} = \symbf{z}\), we assign new variables
+When using backward substitution to solve \(\symbf{R} \symbfit{x} = \symbfit{z}\), we assign new variables
 to any free variables to indicate that they are parameters to the system.
 \subsubsection{Singular Matrices}
 An \(n\) by \(n\) square matrix \(\symbf{A}\) is singular if its associated reduced matrix \(\symbf{R}\) has fewer than \(n\) basic variables.
@@ -314,18 +314,18 @@ For the matrix \(\symbf{A} \in \R^{m \times n}\):
     \end{equation*}
     To determine the rank, we can count the number of basic variables in \(\symbf{R}\).
 
-    Note that the \(\vrank{\left( \symbf{A} \right)} = \vrank{\left( \symbf{A}^\top \right)}\).
+    Note that \(\vrank{\left( \symbf{A} \right)} = \vrank{\left( \symbf{A}^\top \right)}\).
 \end{definition}
 \begin{definition}[Nullity]
     The dimension of the null space is called the \textbf{nullity} of the matrix.
     \begin{equation*}
-        \vnull{\left( \symbf{A} \right)} = \dim{\left( \nullspace{A} \right)}
+        \nullity{\left( \symbf{A} \right)} = \dim{\left( \nullspace{A} \right)}
     \end{equation*}
 \end{definition}
 \begin{definition}[Left nullity]
     The dimension of the left null space is called the \textbf{left nullity} of the matrix.
     \begin{equation*}
-        \vnull{\left( \symbf{A}^\top \right)} = \dim{\left( \leftnullspace{A} \right)}
+        \nullity{\left( \symbf{A}^\top \right)} = \dim{\left( \leftnullspace{A} \right)}
     \end{equation*}
 \end{definition}
 \begin{theorem}[Rank-nullity theorem]
@@ -333,25 +333,25 @@ For the matrix \(\symbf{A} \in \R^{m \times n}\):
     the sum of the dimensions of the row space and null space of \(\symbf{A}\).
     \begin{align*}
         \dim{\left( \rowspace{A} \right)} + \dim{\left( \nullspace{A} \right)} & = \dim{\left( \R^n \right)} \\
-        \vrank{\left( \symbf{A} \right)} + \vnull{\left( \symbf{A} \right)}    & = n                         \\
-        r + \vnull{\left( \symbf{A} \right)}                                   & = n
+        \vrank{\left( \symbf{A} \right)} + \nullity{\left( \symbf{A} \right)}  & = n                         \\
+        r + \nullity{\left( \symbf{A} \right)}                                 & = n
     \end{align*}
     Therefore
     \begin{equation*}
-        \vnull{\left( \symbf{A} \right)} = n - r
+        \nullity{\left( \symbf{A} \right)} = n - r
     \end{equation*}
 \end{theorem}
 \begin{corollary}[Rank-nullity theorem for the transpose]
     The dimension of the codomain of \(\symbf{A}\), \(\R^m\), is given by
     the sum of the dimensions of the column space and left-null space of \(\symbf{A}\).
     \begin{align*}
-        \dim{\left( \columnspace{A} \right)} + \dim{\left( \leftnullspace{A} \right)} & = \dim{\left( \R^m \right)} \\
-        \vrank{\left( \symbf{A}^\top \right)} + \vnull{\left( \symbf{A}^\top \right)} & = m                         \\
-        r + \vnull{\left( \symbf{A}^\top \right)}                                     & = m
+        \dim{\left( \columnspace{A} \right)} + \dim{\left( \leftnullspace{A} \right)}   & = \dim{\left( \R^m \right)} \\
+        \vrank{\left( \symbf{A}^\top \right)} + \nullity{\left( \symbf{A}^\top \right)} & = m                         \\
+        r + \nullity{\left( \symbf{A}^\top \right)}                                     & = m
     \end{align*}
     Therefore
     \begin{equation*}
-        \vnull{\left( \symbf{A}^\top \right)} = m - r
+        \nullity{\left( \symbf{A}^\top \right)} = m - r
     \end{equation*}
 \end{corollary}
 \begin{theorem}[Orthogonality of subspaces]
@@ -412,7 +412,7 @@ minimise the norm of the residual:
 \end{equation*}
 Therefore we solve the following minimisation problem
 \begin{equation*}
-    \symbfit{x} = \argmin_{\symbfit{x}^\ast \in \R^n} \norm{\symbfit{b} - \symbf{A}\symbfit{x}}
+    \symbfit{x} = \argmin_{\symbfit{x}^\ast \in \R^n} \norm{\symbfit{b} - \symbf{A}\symbfit{x}^\ast}
 \end{equation*}
 which is known as the \textbf{Least Squares} problem.
 \begin{theorem}[Minimum norm solution]
@@ -421,9 +421,9 @@ which is known as the \textbf{Least Squares} problem.
 \end{theorem}
 \subsection{Normal Equations}
 Given that \(\symbfit{b} - \symbf{A}\symbfit{x}\) is orthogonal to \(\columnspace{A}\), it must lie in the
-left-null space of \(\symbfit{A}\). By orthogonality, we form the following relationship
+left-null space of \(\symbf{A}\). By orthogonality, we form the following relationship
 \begin{equation*}
-    \symbf{A}^\top \left( \symbfit{b} - \symbf{A}\symbfit{x} \right) = \symbfit{0}
+    \symbf{A}^\top \left( \symbfit{b} - \symbf{A}\symbfit{x} \right) = \symbfup{0}
 \end{equation*}
 which is equivalent to solving
 \begin{equation*}
@@ -1453,7 +1453,7 @@ and \(k \in \R\):
         Symmetry                        & \(\abracket*{\symbfit{u},\: \symbfit{v}} = \abracket*{\symbfit{v},\: \symbfit{u}}\)                                                        \\
         Linearity in the first argument & \(\abracket*{\symbfit{u} + \symbfit{v},\: \symbfit{w}} = \abracket*{\symbfit{u},\: \symbfit{w}} + \abracket*{\symbfit{v},\: \symbfit{w}}\) \\
         Linearity in the first argument & \(\abracket*{k \symbfit{u},\: \symbfit{v}} = k\abracket*{\symbfit{u},\: \symbfit{v}}\)                                                     \\
-        Positive semi-definitiveness         & \(\abracket*{\symbfit{u},\: \symbfit{u}} \geq 0\), \(\abracket*{\symbfit{u},\: \symbfit{u}} = 0 \iff \symbfit{u} = \symbfup{0}\)                                                                                             \\
+        Positive semi-definitiveness    & \(\abracket*{\symbfit{u},\: \symbfit{u}} \geq 0\), \(\abracket*{\symbfit{u},\: \symbfit{u}} = 0 \iff \symbfit{u} = \symbfup{0}\)           \\
         \bottomrule
     \end{tabular}
     \caption{Inner product axioms.} % \label{}
@@ -1469,8 +1469,8 @@ For matrices \(\symbf{A},\: \symbf{B} \in \mathscr{M}_{mn}\), the standard inner
 \begin{equation*}
     \abracket*{\symbf{A},\: \symbf{B}} = \Tr{\left( \symbf{A}^\top \symbf{B} \right)}.
 \end{equation*}
-For continuous function spaces, consider \(f,\: g \in C\left( \interval{a}{b} \right)\) where 
-the inner product operation is defined by the integral 
+For continuous function spaces, consider \(f,\: g \in C\left( \interval{a}{b} \right)\) where
+the inner product operation is defined by the integral
 \begin{equation*}
     \abracket*{f,\: g} = \int_a^b f\left( x \right) g\left( x \right) \odif{x}.
 \end{equation*}
@@ -1481,4 +1481,72 @@ Likewise we can also consider the following integral definition with a continuou
 \begin{equation*}
     \abracket*{f,\: g} = \int_a^b f\left( x \right) g\left( x \right) w\left( x \right) \odif{x}.
 \end{equation*}
+\subsubsection{Norms}
+Having defined an inner product, we can also define the norm as
+\begin{equation*}
+    \norm*{\symbfit{v}} = \sqrt{\abracket*{\symbfit{v},\: \symbfit{v}}}
+\end{equation*}
+From this definition, we maintain the expected properties of the Euclidean norm:
+\begin{itemize}
+    \item \(\norm*{\symbfit{v}} \geq 0\) and \(\norm*{\symbfit{v}} = 0\) iff \(\symbfit{v} = \symbfup{0}\).
+    \item \(\norm*{k \symbfit{v}} = \abs*{k} \norm*{\symbfit{v}}\) for \(k \in \R\).
+    \item \(\norm*{\symbfit{u} + \symbfit{v}} \leq \norm*{\symbfit{u}} + \norm*{\symbfit{v}}\), which is the triangle inequality.
+\end{itemize}
+For matrices, the inner product inherited from \(\R^{mn}\) leads to the following definitions of norms:
+\begin{equation*}
+    \norm*{\symbf{A}} = \sqrt{\abracket*{\symbf{A},\: \symbf{A}}} = \sqrt{\Tr{\left( \symbf{A}^\top \symbf{A} \right)}} = \sqrt{\sum_{i = 1}^m \sum_{j = 1}^n a_{ij}^2}
+\end{equation*}
+which is known as the Frobenius norm. For continuous functions \(f \in C\left( \interval{a}{b} \right)\):\
+\begin{equation*}
+    \norm*{f\left( x \right)} = \sqrt{\abracket*{f\left( x \right),\: f\left( x \right)}} = \sqrt{\int_a^b f\left( x \right)^2 \odif{x}}.
+\end{equation*}
+\subsubsection{Orthogonality}
+Similarly, we can say that two vectors \(\symbfit{u}\) and \(\symbfit{v}\) are orthogonal if
+\begin{equation*}
+    \abracket*{\symbfit{v},\: \symbfit{v}} = 0.
+\end{equation*}
+\subsubsection{Orthonormal Bases}
+A set \(Q = \left\{ \symbfit{q}_1,\: \dots,\: \symbfit{q}_k \right\}\) is an orthonormal basis for the vector space \(\vspan{\left( Q \right)}\) if
+\(\abracket*{\symbfit{q}_i,\: \symbfit{q}_j} = \delta_{ij}\).
+
+The orthogonal projection of \(\symbfit{v} \in V\) onto \(\vspan{\left( Q \right)}\) is given by
+\begin{equation*}
+    \proj_{\vspan{\left( Q \right)}}{\left( \symbfit{v} \right)} = \symbfit{q}_1 \abracket*{\symbfit{q}_1,\: \symbfit{v}} + \cdots + \symbfit{q}_k \abracket*{\symbfit{q}_k,\: \symbfit{v}}
+\end{equation*}
+which holds even for infinite dimensional vector spaces \(V\). As with real vector spaces, this projection vector satisfies
+\begin{equation*}
+    \proj_{\vspan{\left( Q \right)}}{\left( \symbfit{v} \right)} = \argmin_{\symbfit{v}^\ast \in \vspan{\left( Q \right)}} \norm{\symbfit{v} - \symbfit{v}^\ast}
+\end{equation*}
+\subsubsection{Orthogonal Complements of \texorpdfstring{\(\mathscr{M}_{nn}\)}{Mnn}}
+Using this definition we can show that the subspaces \(\mathscr{S}_n\) and \(\mathscr{K}_n\) are orthogonal complements under the vector space
+\(\mathscr{M}_{nn}\), by comparing each basis vector in both subspaces.
+
+Consider an alternative approach which takes the coordinate vectors from the standard bases of \(\mathscr{S}_n\) and \(\mathscr{K}_n\),
+denoted \(S_{\mathscr{S}_n}\) and \(S_{\mathscr{K}_n}\), respectively.
+By using the matrix representation of the two bases, the product of these two matrices yeilds the zero matrix, which proves
+that all pairs of basis vectors are orthogonal.
+
+Moreover, the orthogonal projectors \(\symbf{P}_{\mathscr{S}_n}\) and \(\symbf{P}_{\mathscr{K}_n}\) satisfy the relationship
+\begin{equation*}
+    \symbf{P}_{\mathscr{S}_n} = \symbf{I} - \symbf{P}_{\mathscr{K}_n}
+\end{equation*}
+so that by projecting the matrix \(\symbf{M} \in \mathscr{M}_{nn}\) onto these two subspaces, we can represent \(\symbf{M}\) in terms of
+its orthogonal components
+\begin{align*}
+    \symbf{S} & = \symbf{P}_{\mathscr{S}_n} \symbf{M} = \proj_{\symbf{P}_{\mathscr{S}_n}}{\left( \symbf{M} \right)} = \frac{\symbf{M} + \symbf{M}^\top}{2} \\
+    \symbf{K} & = \symbf{P}_{\mathscr{K}_n} \symbf{M} = \proj_{\symbf{P}_{\mathscr{K}_n}}{\left( \symbf{M} \right)} = \frac{\symbf{M} - \symbf{M}^\top}{2}
+\end{align*}
+for \(\symbf{S} \in \mathscr{S}_n\) and \(\symbf{K} \in \mathscr{K}_n\), so that \(\abracket*{\symbf{S},\: \symbf{K}} = 0\) and \(\symbf{M} = \symbf{S} + \symbf{K}\).
+\subsection{Gram-Schmidt Process for General Inner Product Spaces}
+Using the inner product and the definitions for norms and orthogonality, we can generalise the Gram-Schmidt process for general inner product spaces.
+
+Given a set \(W = \left\{ \symbfit{w}_1,\: \dots,\: \symbfit{w}_k \right\} \subset V\) of linearly independent vectors,
+we can algorithmically determine the orthogonal set \(Q = \left\{ \symbfit{q}_1,\: \dots,\: \symbfit{q}_k \right\}\), so that \(\vspan{\left( Q \right)} = \vspan{\left( W \right)}\).
+\begin{align*}
+    \symbfit{v}_1 & = \symbfit{w}_1                                                                                                                      & \symbfit{q}_1 & = \frac{\symbfit{v}_1}{\norm{\symbfit{v}_1}}  \\
+    \symbfit{v}_2 & = \symbfit{w}_2 - \symbfit{q}_1 \abracket*{\symbfit{q}_1,\: \symbfit{w}_2}                                                           & \symbfit{q}_2 & = \frac{\symbfit{v}_2}{\norm{\symbfit{v}_2}}  \\
+    \symbfit{v}_3 & = \symbfit{w}_3 - \symbfit{q}_1 \abracket*{\symbfit{q}_1,\: \symbfit{w}_3}- \symbfit{q}_2 \abracket*{\symbfit{q}_2,\: \symbfit{w}_3} & \symbfit{q}_3 & = \frac{\symbfit{v}_3}{\norm{\symbfit{v}_3}}  \\
+                  & \vdotswithin{=}                                                                                                                      &               & \vdotswithin{=}                               \\
+    \symbfit{v}_i & = \symbfit{w}_i - \sum_{j = 1}^{i - 1} \symbfit{q}_j \abracket*{\symbfit{q}_j,\: \symbfit{w}_i}                                      & \symbfit{q}_i & = \frac{\symbfit{v}_i}{\norm{\symbfit{v}_i}}.
+\end{align*}
 \end{document}
