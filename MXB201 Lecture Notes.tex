@@ -964,8 +964,8 @@ The singular value decomposition (SVD) of \(\symbf{A} \in \R^{m \times n}\) is g
 \begin{equation*}
     \symbf{A} = \symbf{U} \symbf{\Sigma} \symbf{V}^\top
 \end{equation*}
-where \(\symbf{U} \in \R^{n \times n}\) is an orthogonal matrix, \(\symbf{\Sigma} \in \R^{m \times n}\)
-is a diagonal matrix, and \(\symbf{V} \in  \R^{m \times m}\) is
+where \(\symbf{U} \in \R^{m \times m}\) is an orthogonal matrix, \(\symbf{\Sigma} \in \R^{m \times n}\)
+is a diagonal matrix, and \(\symbf{V} \in  \R^{n \times n}\) is
 an orthogonal matrix.
 \(\symbf{U}\) is known as the left-singular matrix and \(\symbf{V}\) is the right-singular matrix,
 corresponding to how these matrices are multiplied to \(\symbf{\Sigma}\).
@@ -1288,21 +1288,21 @@ Therefore only the following axioms need to be satisfied in \(W\):
 However, if Axioms 1 and 6 are established, then Axioms 4 and 5 will inherit from
 the vector space structure of \(V\). So it suffices to check only Axioms 1 and 6.
 
-Therefore any subset \(W\) of a vector that is closed under vector addition and scalar multiplication is a subspace
+Therefore any subset \(W\) of a vector space that is closed under vector addition and scalar multiplication is a subspace
 of that vector space.
 \subsubsection{Examples of Subspaces}
 Subspaces of \(\R^n\):
 \begin{enumerate}
     \item Lines, planes and higher-dimensional analogues in \(\R^n\) \emph{passing through the origin}.
 \end{enumerate}
-Subspaces of \(\mathscr{M}_{mn}\):
+Subspaces of \(\mathscr{M}_{nn}\):
 \begin{enumerate}
     \item The set of all \emph{symmetric} \(n \times n\) matrices \(\symbf{A}\) such that \(\symbf{A} = \symbf{A}^\top\), denoted \(\mathscr{S}_n \subset \mathscr{M}_{nn}\).
     \item The set of all \emph{skew symmetric} \(n \times n\) matrices \(\symbf{A}\) such that \(\symbf{A} = -\symbf{A}^\top\), denoted \(\mathscr{K}_n \subset \mathscr{M}_{nn}\).
 \end{enumerate}
 Subspaces of \(\mathscr{F}\left( \Omega \right)\):
 \begin{enumerate}
-    \item The set of all \emph{polynomials} of degree \(n\) or less, denoted \(\mathscr{P}_n \subset \mathrm{F}\left( \Omega \right)\).
+    \item The set of all \emph{polynomials} of degree \(n\) or less, denoted \(\mathscr{P}_n\left( \Omega \right) \subset \mathscr{F}\left( \Omega \right)\).
     \item The set of all \emph{continuous functions}, denoted \(C\left( \Omega \right) \subset \mathscr{F}\left( \Omega \right)\).
     \item The set of all functions with \emph{continuous derivatives} on \(\Omega\), for example, \(C^1\left( \Omega \right) \subset C\left( \Omega \right)\)
           is the set of all functions with continuous first derivatives.
