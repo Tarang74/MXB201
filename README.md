@@ -10,9 +10,11 @@
 
 Lecture notes download: [MXB201 Lecture Notes PDF](https://www.github.com/Tarang74/MXB201/raw/main/MXB201%20Lecture%20Notes.pdf)
 
+Exam notes download: [MXB201 Exam Notes PDF](https://www.github.com/Tarang74/MXB201/raw/main/MXB201%20Exam%20Notes.pdf)
+
 ---
 
-This repository provides **lecture notes** for **MXB201 - Advanced Linear Algebra**.
+This repository provides **lecture notes** and **exam notes** for **MXB201 - Advanced Linear Algebra**.
 
 *The contents of the lecture notes are described below.*
 
