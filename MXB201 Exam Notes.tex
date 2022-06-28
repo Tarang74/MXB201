@@ -265,7 +265,7 @@ margin = 10mm
     \end{equation*}
     \section{General Vector Spaces}
     \(V\) is a vector space with vectors \(\symbfit{v} \in V\) if the following 10 axioms are satisfied
-    for \(\forall \symbfit{u}, \symbfit{v}, \symbfit{w} \in V\) and \(\forall k, m \in \R\),
+    for \(\forall \symbfit{u}, \symbfit{v}, \symbfit{w} \in V\) and \(\forall k, m \in \mathbb{F}\),
     given an addition and scalar multiplication operation.
 
     \underline{For the addition operation:}
@@ -282,13 +282,13 @@ margin = 10mm
         \item Distributivity: \(k \left( \symbfit{u} + \symbfit{v} \right) = k\symbfit{u} + k\symbfit{v}\)
         \item Distributivity: \(\left( k + m \right) \symbfit{u} = k\symbfit{u} + m\symbfit{u}\)
         \item Associativity: \(k \left( m\symbfit{u} \right) = \left( k m \right) \symbfit{u}\)
-        \item Identity: \(\exists 1 \in \R : 1 \symbfit{u} = \symbfit{u}\)
+        \item Identity: \(\exists 1 \in \mathbb{F} : 1 \symbfit{u} = \symbfit{u}\)
     \end{itemize}
 
     \subsection{Examples of Vector Spaces}
-    The set of \(m \times n\) matrices \(\mathscr{M}_{mn}\) with matrix addition and scalar multiplication.
+    The set of all \(m \times n\) matrices \(\mathscr{M}_{mn}\) with matrix addition and scalar matrix multiplication.
 
-    The set of functions \(\mathscr{F}\left( \Omega \right) : \Omega \to \R\) with addition and scalar multiplication defined pointwise.
+    The set of all functions \(\mathscr{F}\left( \Omega \right) : \Omega \to \R\) with addition and scalar multiplication defined pointwise.
     \subsection{Subspaces}
     The subset \(W \subset V\) is itself a vector space if it is closed under addition and scalar multiplication.
     \subsection{Examples of Subspaces}
@@ -305,11 +305,11 @@ margin = 10mm
     \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
         \item The set of all \emph{polynomials} of degree \(n\) or less, denoted \(\mathscr{P}_n\left( \Omega \right) \subset \mathscr{F}\left( \Omega \right)\).
         \item The set of all \emph{continuous functions}, denoted \(C\left( \Omega \right) \subset \mathscr{F}\left( \Omega \right)\).
-        \item The set of all functions with \emph{continuous \(n\)th derivatives}, denoted \(C^n\left( \Omega \right) \subset C\left( \Omega \right)\).
+        \item The set of all continuous functions with \emph{continuous \(n\)th derivatives}, denoted \(C^n\left( \Omega \right) \subset C\left( \Omega \right)\).
         \item The set of all functions \(f\) defined on \(\interval{0}{1}\) satisfying \(f\left( 0 \right) = f\left( 1 \right)\).
     \end{itemize}
     \subsection{General Vector Space Terminology}
-    Let \(S = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_k \right\}\) and \(c_1,\: \dots,\: c_k \in \R\):
+    Let \(S = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_k \right\}\) and \(c_1,\: \dots,\: c_k \in \mathbb{F}\):
     \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
         \item The linear combination of \(S\)
               is a vector of the form \(\symbfit{v} = c_1 \symbfit{v}_1 + \cdots + c_k \symbfit{v}_k\).
@@ -445,5 +445,62 @@ margin = 10mm
     \begin{equation*}
         \abracket*{\symbfit{v},\: \symbfit{v}} = 0.
     \end{equation*}
+    \subsection{Orthogonal Complements of \texorpdfstring{\(\mathscr{M}_{n}\)}{Mn}}
+    Given \(\symbf{P}_{\mathscr{S}_n} = \proj_{\mathscr{S}_n}\) and
+    \(\symbf{P}_{\mathscr{K}_n} = \proj_{\mathscr{K}_n}\)
+    \begin{equation*}
+        \symbf{P}_{\mathscr{S}_n} = \symbf{I} - \symbf{P}_{\mathscr{K}_n}                                                                                                    \\
+    \end{equation*}
+    \begin{align*}
+        \symbf{S}                 & = \symbf{P}_{\mathscr{S}_n} \symbf{M} = \proj_{\symbf{P}_{\mathscr{S}_n}}{\left( \symbf{M} \right)} = \frac{\symbf{M} + \symbf{M}^\top}{2} \\
+        \symbf{K}                 & = \symbf{P}_{\mathscr{K}_n} \symbf{M} = \proj_{\symbf{P}_{\mathscr{K}_n}}{\left( \symbf{M} \right)} = \frac{\symbf{M} - \symbf{M}^\top}{2}
+    \end{align*}
+    \(\symbf{S} \in \mathscr{S}_n\), \(\symbf{K} \in \mathscr{K}_n\), and \(\symbf{S} + \symbf{K} = \symbf{M} \in \mathscr{M}_n\).
+    \section{Theorems}
+    \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
+        \item \(\symbf{A}^\top \symbf{A}\) is always positive semi-definite,
+              and \(\mathcal{N}\left( \symbf{A}^\top\symbf{A} \right) = \nullspace{A}\) so that
+              \(\vrank{\left( \symbf{A}^\top \symbf{A} \right) = \vrank{\left( \symbf{A} \right)}}\).
+              \(\symbf{A}^\top \symbf{A}\) is positive definite and
+              \(\symbf{A}^\top \symbf{A}\) is invertible when \(\nullity{\left( \symbf{A} \right)} = 0\).
+        \item When \(\symbf{A}\) is square and invertible, \(\left( \symbf{A}^\top \symbf{A} \right)^{-1} = \symbf{A}^{-1} \symbf{A}^{-\top}\) and \(\symbf{P} = \symbf{I}\).
+        \item \(\symbf{P}^2 = \symbf{P} \land \symbf{P}^\top = \symbf{P} \iff \symbf{P} = \proj_{\columnspace{P}}\).
+        \item If \(\nullity{\left( \symbf{A} \right)} = 0\), \(\symbf{P} = \symbf{Q} \symbf{Q}^\top\) using QR\@.
+        \item \(\symbf{A}^\top \symbf{A}\) and \(\symbf{A} \symbf{A}^\top\) share eigenvalues,
+              \begin{align*}
+                  \symbf{A}^\top \symbf{A} \symbfit{v}                                         & = \lambda \symbfit{v}                           \\
+                  \left( \symbf{A} \symbf{A}^\top \right) \left( \symbf{A} \symbfit{v} \right) & = \lambda \left( \symbf{A} \symbfit{v} \right).
+              \end{align*}
+              \(\symbf{A} \symbfit{v} = \symbfup{0} \implies \lambda = 0\), else \(\symbfit{w} = \symbf{A} \symbfit{v}\) is an eigenvector of \(\symbf{A} \symbf{A}^\top\).
+        \item For symmetric \(\symbf{S} \in \R^{n \times n}\):
+              \begin{equation*}
+                  \symbf{S} = \sum_{i = 1}^n \lambda_i \symbfit{q}_i \symbfit{q}_i^\top = \sum_{i = 1}^n \lambda_i \proj_{\symbfit{q}_i}
+              \end{equation*}
+        \item For \(\symbfit{w} = \symbf{W} \in \R^{n \times 1}\):
+              \begin{align*}
+                  \symbf{W}         & = \begin{bmatrix*}
+                                            \hat{\symbfit{w}}
+                                        \end{bmatrix*} \begin{bmatrix*}
+                                                           \norm*{\symbfit{w}}
+                                                       \end{bmatrix*} \begin{bmatrix*}
+                                                                          1
+                                                                      \end{bmatrix*}      \\
+                  \symbf{W}^\dagger & = \frac{\hat{\symbfit{w}}^\top}{\norm*{\symbfit{w}}}
+              \end{align*}
+    \end{itemize}
+    \subsection{Identities}
+    \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
+        \item \(\left( \symbf{A} \symbf{B} \right)^\top = \symbf{B}^\top \symbf{A}^\top\).
+        \item \(\left( \symbf{A} \symbf{B} \right)^{-1} = \symbf{B}^{-1} \symbf{A}^{-1}\) if \(\symbf{A}\), \(\symbf{B}\) invertible.
+        \item \(\left( \symbf{A}^\top \right)^{-1} = \left( \symbf{A}^{-1} \right)^\top\) if \(\symbf{A}\) invertible:
+              \begin{align*}
+                  \symbf{A}^\top \left( \symbf{A}^{-1} \right)^\top & = \left( \symbf{A} \symbf{A}^{-1} \right)^\top = \symbf{I} \\
+                  \left( \symbf{A}^{-1} \right)^\top \symbf{A}^\top & = \left( \symbf{A}^{-1} \symbf{A} \right)^\top = \symbf{I}
+              \end{align*}
+        \item \(\abracket*{\symbf{A}\symbfit{x},\: \symbfit{y}} = \abracket*{\symbfit{x},\: \symbf{A}^\top \symbfit{y}}\):
+              \begin{equation*}
+                  \left( \symbf{A} \symbfit{x} \right)^\top \symbfit{y} = \symbfit{x}^\top \left( \symbf{A}^\top \symbfit{y} \right)
+              \end{equation*}
+    \end{itemize}
 \end{multicols*}
 \end{document}
