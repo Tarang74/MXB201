@@ -42,8 +42,8 @@ margin = 10mm
 
 \begin{document}
 % Modify spacing
-\titlespacing*\section{0pt}{1ex}{1ex}
-\titlespacing*\subsection{0pt}{1ex}{1ex}
+\titlespacing*\section{0pt}{0.5ex}{1ex}
+\titlespacing*\subsection{0pt}{0.5ex}{1ex}
 %
 \setlength\abovecaptionskip{8pt}
 \setlength\belowcaptionskip{-15pt}
@@ -121,10 +121,10 @@ margin = 10mm
     \subsection{Gram-Schmidt Process}
     Converts the basis \(W\) that spans \(\columnspace{A}\) to an orthonormal basis \(Q\).
     \begin{align*}
-        \symbfit{v}_1 & = \symbfit{w}_1                                                                                       & \symbfit{q}_1 & = \hat{\symbfit{v}}_1 \\
-        \symbfit{v}_2 & = \symbfit{w}_2 - \symbfit{q}_1 \left( \symbfit{q}_1 \cdot \symbfit{w}_2 \right)                      & \symbfit{q}_2 & = \hat{\symbfit{v}}_2 \\
-                      & \vdotswithin{=}                                                                                       &               & \vdotswithin{=}       \\
-        \symbfit{v}_i & = \symbfit{w}_i - \sum_{j = 1}^{i - 1} \symbfit{q}_j \left( \symbfit{q}_j \cdot \symbfit{w}_i \right) & \symbfit{q}_i & = \hat{\symbfit{v}}_i
+        \symbfit{v}_1 & = \symbfit{w}_1                                                                                 & \symbfit{q}_1 & = {\scriptstyle \symbfit{v}_1 / \norm*{\symbfit{v}_1}} \\
+        \symbfit{v}_2 & = \symbfit{w}_2 - \symbfit{q}_1 \abracket*{\symbfit{q}_1,\: \symbfit{w}_2}                      & \symbfit{q}_2 & = {\scriptstyle \symbfit{v}_2 / \norm*{\symbfit{v}_2}} \\
+                      & \vdotswithin{=}                                                                                 &               & \vdotswithin{=}                                        \\
+        \symbfit{v}_i & = \symbfit{w}_i - \sum_{j = 1}^{i - 1} \symbfit{q}_j \abracket*{\symbfit{q}_j,\: \symbfit{w}_i} & \symbfit{q}_i & = {\scriptstyle \symbfit{v}_i / \norm*{\symbfit{v}_i}}
     \end{align*}
     \(V\) and \(Q\) span \(W\), and \(V\) is orthogonal.
     \subsection{QR Decomposition}
@@ -193,9 +193,9 @@ margin = 10mm
     \subsection{Skew-Symmetric Matrices \texorpdfstring{\(\symbf{K}^\top = -\symbf{K}\)}{K' = -K}}
     Eigenvalues are always purely imaginary.
     \subsection{Positive-Definite Matrices}
-    \(\symbf{M}\) is (symmetric) positive definite if all its eigenvalues are positive. Also
+    \(\symbf{S}\) is (symmetric) positive definite (SPD) if all its eigenvalues are positive, likewise
     \begin{equation*}
-        \symbfit{x}^\top \symbf{M} \symbfit{x} > 0 : \forall \symbfit{x} \in \R^n \backslash \left\{ \symbfup{0} \right\}
+        \symbfit{x}^\top \symbf{S} \symbfit{x} > 0 : \forall \symbfit{x} \in \R^n \backslash \left\{ \symbfup{0} \right\}
     \end{equation*}
     \subsection{Matrix Functions}
     Given a nondefective matrix:
@@ -269,7 +269,7 @@ margin = 10mm
     given an addition and scalar multiplication operation.
 
     \underline{For the addition operation:}
-    \begin{itemize}[leftmargin=*,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
         \item Closure: \(\symbfit{u} + \symbfit{v} \in V\)
         \item Commutativity: \(\symbfit{u} + \symbfit{v} = \symbfit{v} + \symbfit{u} \in V\)
         \item Associativity: \begin{equation*}\symbfit{u} + \left( \symbfit{v} + \symbfit{w} \right) = \left( \symbfit{u} + \symbfit{v} \right) + \symbfit{w}\end{equation*}
@@ -277,7 +277,7 @@ margin = 10mm
         \item Inverse: \(\exists \left( -\symbfit{u} \right) \in V : \symbfit{u} + \left( -\symbfit{u} \right) = \symbfup{0}\)
     \end{itemize}
     \underline{For the scalar multiplication operation:}
-    \begin{itemize}[leftmargin=*,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
         \item Closure: \(k \symbfit{u} \in V\)
         \item Distributivity: \(k \left( \symbfit{u} + \symbfit{v} \right) = k\symbfit{u} + k\symbfit{v}\)
         \item Distributivity: \(\left( k + m \right) \symbfit{u} = k\symbfit{u} + m\symbfit{u}\)
@@ -293,16 +293,16 @@ margin = 10mm
     The subset \(W \subset V\) is itself a vector space if it is closed under addition and scalar multiplication.
     \subsection{Examples of Subspaces}
     \underline{Subspaces of \(\R^n\):}
-    \begin{itemize}[leftmargin=*,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
         \item Lines, planes and higher-dimensional analogues in \(\R^n\) \emph{passing through the origin}.
     \end{itemize}
     \underline{Subspaces of \(\mathscr{M}_{nn}\):}
-    \begin{itemize}[leftmargin=*,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
         \item The set of all \emph{symmetric} \(n \times n\) matrices, denoted \(\mathscr{S}_n \subset \mathscr{M}_{nn}\).
         \item The set of all \emph{skew symmetric} \(n \times n\) matrices, denoted \(\mathscr{K}_n \subset \mathscr{M}_{nn}\).
     \end{itemize}
     \underline{Subspaces of \(\mathscr{F}\):}
-    \begin{itemize}[leftmargin=*,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
         \item The set of all \emph{polynomials} of degree \(n\) or less, denoted \(\mathscr{P}_n\left( \Omega \right) \subset \mathscr{F}\left( \Omega \right)\).
         \item The set of all \emph{continuous functions}, denoted \(C\left( \Omega \right) \subset \mathscr{F}\left( \Omega \right)\).
         \item The set of all functions with \emph{continuous \(n\)th derivatives}, denoted \(C^n\left( \Omega \right) \subset C\left( \Omega \right)\).
@@ -310,7 +310,7 @@ margin = 10mm
     \end{itemize}
     \subsection{General Vector Space Terminology}
     Let \(S = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_k \right\}\) and \(c_1,\: \dots,\: c_k \in \R\):
-    \begin{itemize}[leftmargin=*,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
         \item The linear combination of \(S\)
               is a vector of the form \(\symbfit{v} = c_1 \symbfit{v}_1 + \cdots + c_k \symbfit{v}_k\).
         \item \(S\) is linearly independent iff
@@ -318,16 +318,15 @@ margin = 10mm
         \item \(\vspan{\left( S \right)}\) is the set of all linear combinations of \(S\).
     \end{itemize}
     \(S\) is a \textit{basis} for a vector space \(V\) if
-    \begin{itemize}[leftmargin=*,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
         \item \(S\) is linearly independent.
         \item \(\vspan{\left( S \right)} = V\).
     \end{itemize}
     The number of basis vectors denotes the dimension of \(V\).
 
-    Not all vector spaces have a basis. Function spaces such as \(C\)
-    are infinite dimensional.
+    \(C\) is infinite dimensional.
     \subsection{Examples of Standard Bases}
-    \begin{itemize}[leftmargin=*,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
         \item \(\mathscr{M}_{22}\):
               \begin{equation*}
                   \left\{ \begin{bmatrix*}
@@ -363,137 +362,88 @@ margin = 10mm
     \subsection{Linear Transformations}
     \(T:V \to W\) satisfying
     \begin{align*}
-        T\left( k\symbfit{u} \right) & = k T\left( \symbfit{u} \right) \\
+        T\left( k\symbfit{u} \right)              & = k T\left( \symbfit{u} \right)                             \\
         T\left( \symbfit{u} + \symbfit{v} \right) & = T\left( \symbfit{u} \right) + T\left( \symbfit{v} \right)
     \end{align*}
-    % These defining properties allow us to characterise a linear transformation completely
-    % by considering how the basis vectors from \(V\) map to \(W\). Any vector \(\symbfit{v} \in V\)
-    % can be written in terms of a basis \(B = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_n \right\}\), such that
-    % \begin{equation*}
-    %     \symbfit{v} = x_1 \symbfit{v}_1 + \cdots + x_n \symbfit{v}_n.
-    % \end{equation*}
-    % Therefore
-    % \begin{align*}
-    %     T\left( \symbfit{v} \right) & = T\left( x_1 \symbfit{v}_1 + \cdots + x_n \symbfit{v}_n \right)                 \\
-    %                                 & = T\left( x_1 \symbfit{v}_1 \right) + \cdots + T\left( x_n \symbfit{v}_n \right) \\
-    %                                 & = x_1 T\left( \symbfit{v}_1 \right) + \cdots + x_n T\left( \symbfit{v}_n \right)
-    % \end{align*}
-    % Now consider the coordinate vector of \(\symbfit{w} \in W\) relative to the basis \(B' = \left\{ \symbfit{w}_1,\: \dots,\: \symbfit{w}_m \right\}\) is
-    % \begin{align*}
-    %     \symbfit{w} & = b_1 \symbfit{w}_1 + \cdots + b_m \symbfit{w}_m \\
-    %                 & = B' \symbfit{b}                                 \\
-    %                 & = B' \left( \symbfit{w} \right)_{B'}
-    % \end{align*}
-    % so that the linear transformation can be expressed as follows
-    % \begin{align*}
-    %     T\left( \symbfit{v} \right)                                                                                       & = \symbfit{w}                                    \\
-    %     x_1 T\left( \symbfit{v}_1 \right) + \cdots + x_n T\left( \symbfit{v}_n \right)                                    & = b_1 \symbfit{w}_1 + \cdots + b_m \symbfit{w}_m \\
-    %     \begin{bmatrix}
-    %         \vertbar                      &        & \vertbar                      \\
-    %         T\left( \symbfit{v}_1 \right) & \cdots & T\left( \symbfit{v}_n \right) \\
-    %         \vertbar                      &        & \vertbar
-    %     \end{bmatrix} \symbfit{x}                                         & = B' \symbfit{b}                                                                                 \\
-    %     \begin{bmatrix}
-    %         \vertbar                                          &        & \vertbar                                          \\
-    %         \left( T\left( \symbfit{v}_1 \right) \right)_{B'} & \cdots & \left( T\left( \symbfit{v}_n \right) \right)_{B'} \\
-    %         \vertbar                                          &        & \vertbar
-    %     \end{bmatrix} \symbfit{x} & = \symbfit{b}                                                       \\
-    %     \symbf{A} \symbfit{x}                                                                                             & = \symbfit{b}                                    \\
-    %     \left( T \right)_{B',\: B} \left( \symbfit{v} \right)_B                                                           & = \left( \symbfit{w} \right)_{B'}.
-    % \end{align*}
-    % Therefore the linear transformation between the vector spaces \(V\) and \(W\)
-    % can be represented as the transformation of coordinate vectors relative to the bases \(B\) and \(B'\), denoted \(\left( T \right)_{B',\: B}\), that is, the matrix \(\symbf{A}\).
-    % \begin{definition}[Isomorphism]
-    %     A linear transformation \(T : V \to W\) is an isomorphism between \(V\) and \(W\) if there exists a bijection between the two vector spaces.
+    \underline{Constructing \(\symbf{A} = \left( T \right)_{B',\: B}\):}
 
-    %     All \(n\) dimensional vector spaces \(V\) are isomorphic to \(\R^n\). This is a result of the coordinate vectors of \(V\) with respect
-    %     to the basis \(B\) that allow us to represent each vector \(\symbfit{v} \in V\) as a linear combination of the standard basis vectors in \(\R^n\).
-    % \end{definition}
-    % \subsection{Fundamental Subspaces of \texorpdfstring{\(T\)}{T}}
-    % The four fundamental subspaces also generalise to arbitrary linear transformations.
+    Consider the map of \(\left( \symbfit{v} \right)_B = \symbfit{x}\) of \(\symbfit{v} \in V\) to
+    \(\left( \symbfit{w} \right)_{B'} = \symbfit{b}\) of \(\symbfit{w} \in W\),
+    where \(B = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_n \right\}\) and \(B' = \left\{ \symbfit{w}_1,\: \dots,\: \symbfit{w}_m \right\}\).
+    \begin{align*}
+        T\left( \symbfit{v} \right)                                                                           & = \symbfit{w} \\
+        \begin{bmatrix}
+            T\left( \symbfit{v}_1 \right) & \cdots & T\left( \symbfit{v}_n \right)
+        \end{bmatrix} \symbfit{x}                               & = \symbf{W} \symbfit{b}                                     \\
+        \begin{bmatrix}
+            \left( T\left( \symbfit{v}_1 \right) \right)_{B'} & \cdots & \left( T\left( \symbfit{v}_n \right) \right)_{B'}
+        \end{bmatrix} \symbfit{x} & = \symbfit{b}                  \\
+        \symbf{A} \symbfit{x}                                                                                 & = \symbfit{b}
+    \end{align*}
+    \subsection{Isomorphism (\texorpdfstring{\(\cong\)}{≅})}
+    \(T : V \to W\) is an isomorphism between \(V\) and \(W\) if there exists a bijection between the two vector spaces.
 
-    % Given the linear transformation \(T:V \to W\):
-    % \begin{itemize}
-    %     \item The set of all vectors in \(V\) that map to \(W\) is the \textbf{image} of \(T\), denoted \(\vim{\left( T \right)}\).
-    %     \item The set of all vectors in \(W\) that is mapped to by a vector in \(V\) is the \textbf{range} of \(T\), denoted \(\vrange{\left( T \right)}\).
-    %     \item The set of all vectors in \(V\) that \(T\) maps to \(\symbfup{0}_W\) is the \textbf{kernel} of \(T\), denoted \(\vker{\left( T \right)}\).
-    % \end{itemize}
-    % If the range of \(T\) is finite-dimensional, its dimension is the \textbf{rank} of \(T\), and
-    % if the kernel of \(T\) is finite-dimensional, its dimension is the \textbf{nullity} of \(T\), so
-    % that the rank-nullity theorem continues to hold.
-    % \begin{equation*}
-    %     \vrank{\left( T \right)} + \nullity{\left( T \right)} = \dim{\left( V \right)}.
-    % \end{equation*}
-    % \subsection{Inner Product Spaces}
-    % To describe geometric properties of vector spaces, we introduce an operation called
-    % the inner product that acts on the vectors in a vector space. The inner product associates a pair of vectors
-    % to a real number, and is delimited by angle brackets
-    % \begin{equation*}
-    %     \abracket*{\cdot,\: \cdot} : V \times V \to \R.
-    % \end{equation*}
-    % This operation must satisfy the following axioms. For \(\symbfit{u},\: \symbfit{v},\: \symbfit{w} \in V\)
-    % and \(k \in \R\):
-    % \begin{table}[H]
-    %     \centering
-    %     \begin{tabular}{c c}
-    %         \toprule
-    %         \textbf{Axiom}                  & \textbf{Meaning}                                                                                                                           \\
-    %         \midrule
-    %         Symmetry                        & \(\abracket*{\symbfit{u},\: \symbfit{v}} = \abracket*{\symbfit{v},\: \symbfit{u}}\)                                                        \\
-    %         Linearity in the first argument & \(\abracket*{\symbfit{u} + \symbfit{v},\: \symbfit{w}} = \abracket*{\symbfit{u},\: \symbfit{w}} + \abracket*{\symbfit{v},\: \symbfit{w}}\) \\
-    %         Linearity in the first argument & \(\abracket*{k \symbfit{u},\: \symbfit{v}} = k\abracket*{\symbfit{u},\: \symbfit{v}}\)                                                     \\
-    %         Positive semi-definitiveness    & \(\abracket*{\symbfit{u},\: \symbfit{u}} \geq 0\), \(\abracket*{\symbfit{u},\: \symbfit{u}} = 0 \iff \symbfit{u} = \symbfup{0}\)           \\
-    %         \bottomrule
-    %     \end{tabular}
-    %     \caption{Inner product axioms.} % \label{}
-    % \end{table}
-    % A vector space that defines such an operation called an inner product space.
-    % \subsubsection{Examples of Inner Products}
-    % In \(\R^n\):
-    % \begin{itemize}
-    %     \item \(\abracket*{\symbfit{u},\: \symbfit{v}} = \symbfit{u} \cdot \symbfit{v} = \symbfit{u}^\top \symbfit{v}\). This is the standard inner product called the ``dot product''.
-    %     \item \(\abracket*{\symbfit{u},\: \symbfit{v}} = \symbfit{u}^\top \symbf{A} \symbfit{v}\) where \(\symbf{A}\) is positive definite. This is a weighted inner product, which can be used in weighted least squares.
-    % \end{itemize}
-    % For matrices \(\symbf{A},\: \symbf{B} \in \mathscr{M}_{mn}\), the standard inner product is defined
-    % \begin{equation*}
-    %     \abracket*{\symbf{A},\: \symbf{B}} = \Tr{\left( \symbf{A}^\top \symbf{B} \right)}.
-    % \end{equation*}
-    % For continuous function spaces, consider \(f,\: g \in C\left( \interval{a}{b} \right)\) where
-    % the inner product operation is defined by the integral
-    % \begin{equation*}
-    %     \abracket*{f,\: g} = \int_a^b f\left( x \right) g\left( x \right) \odif{x}.
-    % \end{equation*}
-    % As the vector spaces \(\mathscr{M}_{mn}\) and \(\mathscr{P}_n\) are isomorphic to \(\R^{mn}\) and \(\R^{n + 1}\) respectively,
-    % we can use the inner product definitions from \(\R^n\) for these spaces also.
-
-    % Likewise we can also consider the following integral definition with a continuous weight function \(w\left( x \right)\) that is positive for all \(x \in \interval{a}{b}\):
-    % \begin{equation*}
-    %     \abracket*{f,\: g} = \int_a^b f\left( x \right) g\left( x \right) w\left( x \right) \odif{x}.
-    % \end{equation*}
-    % \subsubsection{Norms}
-    % Having defined an inner product, we can also define the norm as
-    % \begin{equation*}
-    %     \norm*{\symbfit{v}} = \sqrt{\abracket*{\symbfit{v},\: \symbfit{v}}}
-    % \end{equation*}
-    % From this definition, we maintain the expected properties of the Euclidean norm:
-    % \begin{itemize}
-    %     \item \(\norm*{\symbfit{v}} \geq 0\) and \(\norm*{\symbfit{v}} = 0\) iff \(\symbfit{v} = \symbfup{0}\).
-    %     \item \(\norm*{k \symbfit{v}} = \abs*{k} \norm*{\symbfit{v}}\) for \(k \in \R\).
-    %     \item \(\norm*{\symbfit{u} + \symbfit{v}} \leq \norm*{\symbfit{u}} + \norm*{\symbfit{v}}\), which is the triangle inequality.
-    % \end{itemize}
-    % For matrices, the inner product inherited from \(\R^{mn}\) leads to the following definitions of norms:
-    % \begin{equation*}
-    %     \norm*{\symbf{A}} = \sqrt{\abracket*{\symbf{A},\: \symbf{A}}} = \sqrt{\Tr{\left( \symbf{A}^\top \symbf{A} \right)}} = \sqrt{\sum_{i = 1}^m \sum_{j = 1}^n a_{ij}^2}
-    % \end{equation*}
-    % which is known as the Frobenius norm. For continuous functions \(f \in C\left( \interval{a}{b} \right)\):\
-    % \begin{equation*}
-    %     \norm*{f\left( x \right)} = \sqrt{\abracket*{f\left( x \right),\: f\left( x \right)}} = \sqrt{\int_a^b f\left( x \right)^2 \odif{x}}.
-    % \end{equation*}
-    % \subsubsection{Orthogonality}
-    % Similarly, we can say that two vectors \(\symbfit{u}\) and \(\symbfit{v}\) are orthogonal if
-    % \begin{equation*}
-    %     \abracket*{\symbfit{v},\: \symbfit{v}} = 0.
-    % \end{equation*}
-    % Using this definition we can show that all
+    \(\forall V : \dim{\left( V \right)} = n : V \cong \R^n\), \(\mathscr{M}_{mn} \cong \R^{mn}\)
+    and \(\mathscr{P}_n \cong \R^{n + 1}\).
+    \subsection{Fundamental Subspaces of \texorpdfstring{\(T\)}{T}}
+    \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
+        \item The set of all vectors in \(V\) that map to \(W\) is the \textbf{image} of \(T\), denoted \(\vim{\left( T \right)}\).
+        \item The set of all vectors in \(W\) that is mapped to by a vector in \(V\) is the \textbf{range} of \(T\), denoted \(\vrange{\left( T \right)}\).
+        \item The set of all vectors in \(V\) that \(T\) maps to \(\symbfup{0}_W\) is the \textbf{kernel} of \(T\), denoted \(\vker{\left( T \right)}\).
+    \end{itemize}
+    If finite, \(\dim{\left( \vrange{\left( T \right)} \right)} = \vrank{\left( T \right)}\)
+    and \(\dim{\left( \vker{\left( T \right)} \right)} = \nullity{\left( T \right)}\).
+    \begin{equation*}
+        \vrank{\left( T \right)} + \nullity{\left( T \right)} = \dim{\left( V \right)}.
+    \end{equation*}
+    \subsection{Inner Product Spaces}
+    \begin{equation*}
+        \abracket*{\cdot,\: \cdot} : V \times V \to \R.
+    \end{equation*}
+    For \(\symbfit{u},\: \symbfit{v},\: \symbfit{w} \in V\)
+    and \(k \in \R\):
+    \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
+        \item Symmetry: \(\abracket*{\symbfit{u},\: \symbfit{v}} = \abracket*{\symbfit{v},\: \symbfit{u}}\)
+        \item Linearity:
+              \begin{equation*}
+                  \abracket*{\symbfit{u} + \symbfit{v},\: \symbfit{w}} = \abracket*{\symbfit{u},\: \symbfit{w}} + \abracket*{\symbfit{v},\: \symbfit{w}}
+              \end{equation*}
+        \item Linearity: \(\abracket*{k \symbfit{u},\: \symbfit{v}} = k\abracket*{\symbfit{u},\: \symbfit{v}}\)
+        \item Positive semi-definitiveness:
+              \begin{equation*}
+                  \abracket*{\symbfit{u},\: \symbfit{u}} \geq 0,\: \abracket*{\symbfit{u},\: \symbfit{u}} = 0 \iff \symbfit{u} = \symbfup{0}
+              \end{equation*}
+    \end{itemize}
+    \underline{For \(\symbfit{u},\: \symbfit{v} \in \R^n\):}
+    \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
+        \item \(\abracket*{\symbfit{u},\: \symbfit{v}} = \symbfit{u} \cdot \symbfit{v} = \symbfit{u}^\top \symbfit{v}\).
+        \item \(\abracket*{\symbfit{u},\: \symbfit{v}} = \symbfit{u}^\top \symbf{A} \symbfit{v}\) where \(\symbf{A}\) is SPD\@.
+    \end{itemize}
+    \underline{For \(\symbf{A},\: \symbf{B} \in \mathscr{M}_{mn}\):}
+    \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
+        \item \(\abracket*{\symbf{A},\: \symbf{B}} = \Tr{\left( \symbf{A}^\top \symbf{B} \right)}\).
+    \end{itemize}
+    \underline{For \(f,\: g \in C\left( \interval{a}{b} \right)\):}
+    \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
+        \item \(\abracket*{f,\: g} = \int_a^b f\left( x \right) g\left( x \right) \odif{x}\).
+        \item \(\abracket*{f,\: g} = \int_a^b f\left( x \right) g\left( x \right) w\left( x \right) \odif{x}\).
+    \end{itemize}
+    where \(w\left( x \right) > 0 : \forall x \in \interval{a}{b}\).
+    \subsection{Norms}
+    \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
+        \item \(\norm*{\symbfit{v}} = \sqrt{\abracket*{\symbfit{v},\: \symbfit{v}}}\).
+        \item \(\norm*{\symbfit{v}} \geq 0\), and \(\norm*{\symbfit{v}} = 0 \iff \symbfit{v} = \symbfup{0}\).
+        \item \(\norm*{k \symbfit{v}} = \abs*{k} \norm*{\symbfit{v}} : \forall k \in \R\).
+        \item \(\norm*{\symbfit{u} + \symbfit{v}} \leq \norm*{\symbfit{u}} + \norm*{\symbfit{v}}\).
+    \end{itemize}
+    \underline{Examples:}
+    \begin{itemize}[leftmargin=*,topsep=1ex,partopsep=0ex,itemsep=-1ex,partopsep=0ex,parsep=1ex]
+        \item \(\forall \symbf{A} \in \mathscr{M}_{mn} : \norm*{\symbf{A}} = \sqrt{\sum_{i = 1}^m \sum_{j = 1}^n a_{ij}^2}\).
+        \item \(\forall f \in C\left( \interval{a}{b} \right) : \norm*{f} = \sqrt{\int_a^b f\left( x \right)^2 \odif{x}}\).
+    \end{itemize}
+    \subsection{Orthogonality}
+    \begin{equation*}
+        \abracket*{\symbfit{v},\: \symbfit{v}} = 0.
+    \end{equation*}
 \end{multicols*}
 \end{document}
