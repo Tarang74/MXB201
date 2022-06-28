@@ -1233,7 +1233,7 @@ variable in that dataset.
 \section{General Vector Spaces}
 \subsection{Vector Space Axioms}
 A set \(V\) of objects are called ``vectors'' if the following additive and multiplicative axioms
-are satisfied \(\forall \symbfit{u}, \symbfit{v}, \symbfit{w} \in V\) and \(\forall k, m \in \R\).
+are satisfied \(\forall \symbfit{u}, \symbfit{v}, \symbfit{w} \in V\) and \(\forall k, m \in \mathbb{F}\).
 \begin{table}[H]
     \centering
     \begin{tabular}{c c}
@@ -1259,7 +1259,7 @@ are satisfied \(\forall \symbfit{u}, \symbfit{v}, \symbfit{w} \in V\) and \(\for
         Distributivity of scalar multiplication with vector addition & \(k \left( \symbfit{u} + \symbfit{v} \right) = k\symbfit{u} + k\symbfit{v}\) \\
         Distributivity of scalar multiplication with scalar addition & \(\left( k + m \right) \symbfit{u} = k\symbfit{u} + m\symbfit{u}\)           \\
         Associativity of scalar multiplication                       & \(k \left( m\symbfit{u} \right) = \left( k m \right) \symbfit{u}\)           \\
-        Identity element of scalar multiplication                    & \(1 \symbfit{u} = \symbfit{u}\)                                              \\
+        Identity element of scalar multiplication                    & \(\exists 1 \in \mathbb{F} : 1 \symbfit{u} = \symbfit{u}\)                                              \\
         \bottomrule
     \end{tabular}
     \caption{Multiplicative axioms.} % \label{}
@@ -1311,7 +1311,7 @@ Subspaces of \(\mathscr{F}\left( \Omega \right)\):
 \subsection{General Vector Space Terminology}
 The notions of linear combination, linear independence and span are all unchanged for general vector spaces.
 
-Let \(c_1,\: \dots,\: c_k \in \R\) be scalars:
+Let \(c_1,\: \dots,\: c_k \in \mathbb{F}\) be scalars:
 \begin{itemize}
     \item The linear combination of a set of vector \(S = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_k \right\}\)
           is a vector of the form \(\symbfit{v} = c_1 \symbfit{v}_1 + \cdots + c_k \symbfit{v}_k\).
@@ -1372,7 +1372,7 @@ A linear transformation \(T\) is a mapping from a vector space \(V\) to a vector
     T:V \to W
 \end{equation*}
 satisfying the following properties for all \(\symbfit{u},\: \symbfit{v} \in V\) and all
-scalars \(k \in \R\):
+scalars \(k \in \mathbb{F}\):
 \begin{enumerate}
     \item \(T\left( k\symbfit{u} \right) = k T\left( \symbfit{u} \right)\)
     \item \(T\left( \symbfit{u} + \symbfit{v} \right) = T\left( \symbfit{u} \right) + T\left( \symbfit{v} \right)\)
