@@ -154,6 +154,8 @@ margin = 10mm
                       \end{bmatrix}                 \\
         \symbf{D} & = \diag{\left( \lambda_1,\: \dots,\: \lambda_n \right)}.
     \end{align*}
+    \subsection{Eigenspace} 
+    The eigenspace associated with \(\lambda_i\) is the span of eigenvectors: \(\mathcal{N}{\left( \lambda_i \symbf{I} - \symbf{A} \right)}\). 
     \subsection{Algebraic Multiplicity \texorpdfstring{\(\mu\left( \lambda_i \right)\)}{mu(lambda i)}}
     Multiplicity of \(\lambda_i\) in \(P(\lambda)\),
     for \(d \leq n\) distinct eigenvalues,
@@ -170,7 +172,7 @@ margin = 10mm
         \exists k : \lambda_k = 0 : \mu\left( \lambda_k \right) = \nullity{\left( \symbf{A} \right)}
     \end{equation*}
     \subsection{Geometric Multiplicity \texorpdfstring{\(\gamma\left( \lambda_i \right)\)}{gamma(lambda i)}}
-    Dimension of the eigenspace associated with \(\lambda_i\).
+    The dimension of each eigenspace \(\lambda_i\)
     \begin{equation*}
         \gamma \left( \lambda_i \right) = \nullity{\left( \lambda_i \symbf{I} - \symbf{A} \right)}.
     \end{equation*}
@@ -186,14 +188,12 @@ margin = 10mm
         \exists k : \gamma\left( \lambda_k \right) < \mu\left( \lambda_k \right)
     \end{equation*}
     \subsection{Matrix Similarity}
-    \(\symbf{A}\) and \(\symbf{B}\) are similar if
-    \begin{equation*}
-        \symbf{B} = \symbf{P}^{-1} \symbf{A} \symbf{P}.
-    \end{equation*}
+    \(\symbf{A}\) and \(\symbf{B}\) are similar if \(\symbf{B} = \symbf{P}^{-1} \symbf{A} \symbf{P}\).
+
     They share \(P(\lambda)\), ranks, determinants, traces, and eigenvalues (also \(\mu\) and \(\gamma\)).
     \subsection{Symmetric Matrices \texorpdfstring{\(\symbf{S}^\top = \symbf{S}\)}{S' = S}}
     \(\symbf{S}\) is always diagonalisable and has
-    real eigenvalues with real orthogonal eigenvectors: \(\symbf{S} = \symbf{Q} \symbf{D} \symbf{Q}^\top\), where \(\symbf{Q}\) is found through QR\@: \(\symbf{V} = \symbf{Q} \symbf{R}\).
+    real eigenvalues with real orthogonal eigenspaces: \(\symbf{S} = \symbf{Q} \symbf{D} \symbf{Q}^\top\), where \(\symbf{Q}\) is found through QR\@: \(\symbf{V} = \symbf{Q} \symbf{R}\).
     \subsection{Skew-Symmetric Matrices \texorpdfstring{\(\symbf{K}^\top = -\symbf{K}\)}{K' = -K}}
     Eigenvalues are always purely imaginary.
     \subsection{Positive-Definite Matrices}
