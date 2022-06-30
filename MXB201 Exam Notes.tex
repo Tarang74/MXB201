@@ -242,31 +242,33 @@ margin = 10mm
     \end{align*}
     so that \(\sigma_i = \sqrt{\lambda}_i\) where \(\sigma_1 \geq \cdots \geq \sigma_r > 0\).
     \subsection{Reduced SVD}
-    Ignores \(m - n\) ``0'' rows in \(\symbf{\Sigma}\) so that \(\symbf{U} \in \R^{m \times n}\) and \(\symbf{\Sigma} \in \R^{n \times n}\).
+    Ignores \(m - n\) ``0'' rows in \(\symbf{\Sigma}\) so that \(\symbf{U} \in \R^{m \times n}\), \(\symbf{\Sigma} \in \R^{n \times n}\), and \(\symbf{V} \in \R^{n \times n}\).
     \subsection{Pseudoinverse}
     Consider the inverse mapping \(\symbfit{u}_i \mapsto \frac{1}{\sigma_i} \symbfit{v}_i\)
-    \begin{equation*}
+    \begin{gather*}
         \symbf{A}^\dagger \symbfit{u}_i = \frac{1}{\sigma_i} \symbfit{v}_i
         \iff
-        \symbf{A}^\dagger \symbfit{u}_i = \frac{1}{\sigma_i} \symbfit{v}_i \symbfit{u}^\top_i \symbfit{u}_i
-    \end{equation*}
-    \begin{equation*}
+        \symbf{A}^\dagger \symbfit{u}_i = \frac{1}{\sigma_i} \symbfit{v}_i \symbfit{u}^\top_i \symbfit{u}_i \\
         \symbf{A}^\dagger = \sum_{i = 1}^r \frac{1}{\sigma_i} \symbfit{v}_i \symbfit{u}^\top_i
         \iff
         \symbf{A}^\dagger = \symbf{V} \symbf{\Sigma}^\dagger \symbf{U}^\top
-    \end{equation*}
+    \end{gather*}
     where \(\symbf{\Sigma}^\dagger = \diag{\left( \frac{1}{\sigma_1},\: \dots,\: \frac{1}{\sigma_r},\: 0,\: \dots,\: 0 \right)}\).
     \(\symbfit{x} = \symbf{A}^\dagger \symbfit{b}\) solves LS\@.
     \subsection{Truncated SVD}
     Express \(\symbf{A}\) as the sum of rank-1 matrices:
-    \begin{align*}
-        \symbf{A} & = \sum_{i = 1}^n \sigma_i \symbfit{u}_i \symbfit{v}^\top_i                                  \\
-        \symbf{A} & = \sum_{i = 1}^r \sigma_i \symbfit{u}_i \symbfit{v}^\top_i &  & (\sigma_{r < i \leq n} = 0)
-    \end{align*}
-    Rank-\(\nu\) approximation of \(\symbf{A}\):
     \begin{equation*}
-        \symbf{A} \approx \tilde{\symbf{A}} = \sum_{i = 1}^\nu \sigma_i \symbfit{u}_i \symbfit{v}^\top_i.
+        \symbf{A} = \sum_{i = 1}^n \sigma_i \symbfit{u}_i \symbfit{v}^\top_i \approx \tilde{\symbf{A}} = \sum_{i = 1}^\nu \sigma_i \symbfit{u}_i \symbfit{v}^\top_i.
     \end{equation*}
+    for the rank-\(\nu\) approximation of \(\symbf{A}\).
+
+    Using the SVD\@: 
+    \begin{equation*}
+        \tilde{\symbf{A}} = \symbf{U} \symbf{\Sigma} \symbf{V}^\top    
+    \end{equation*}
+    \(\symbf{U} \in \R^{m \times \nu}\), \(\symbf{\Sigma} \in \R^{\nu \times \nu}\), and \(\symbf{V} \in \R^{n \times \nu}\).
+    
+    When \(\nu \geq r\), \(\tilde{\symbf{A}} = \symbf{A}\) as \(\sigma_{i > r} = 0\).
     \section{General Vector Spaces}
     \(V\) is a vector space with vectors \(\symbfit{v} \in V\) if the following 10 axioms are satisfied
     for \(\forall \symbfit{u}, \symbfit{v}, \symbfit{w} \in V\) and \(\forall k, m \in \mathbb{F}\),
