@@ -469,10 +469,10 @@ margin = 10mm
               \(\vrank{\left( \symbf{A}^\top \symbf{A} \right) = \vrank{\left( \symbf{A} \right)}}\).
               \(\symbf{A}^\top \symbf{A}\) is positive definite and
               \(\symbf{A}^\top \symbf{A}\) is invertible when \(\nullity{\left( \symbf{A} \right)} = 0\).
-        \item When \(\symbf{A}\) is square and invertible, \(\left( \symbf{A}^\top \symbf{A} \right)^{-1} = \symbf{A}^{-1} \symbf{A}^{-\top}\) and \(\symbf{P} = \symbf{I}\).
+        \item When \(\symbf{A}\) is square and invertible, \(\left( \symbf{A}^\top \symbf{A} \right)^{-1} = \symbf{A}^{-1} \symbf{A}^{-\top}\) and \(\symbf{P} = \symbf{I}\)
+              otherwise \(\symbf{P} = \symbf{Q} \symbf{Q}^\top\) using QR\@.
         \item \(\symbf{P}^2 = \symbf{P} \land \symbf{P}^\top = \symbf{P} \iff \symbf{P} = \proj_{\columnspace{P}}\).
               \(\symbf{P} \symbfit{v} = \symbf{P}^2 \symbfit{v} \iff \lambda \symbfit{v} = \lambda^2 \symbfit{v}\) implies \(\lambda = 0,\: 1\).
-        \item If \(\nullity{\left( \symbf{A} \right)} = 0\), \(\symbf{P} = \symbf{Q} \symbf{Q}^\top\) using QR\@.
         \item \(\symbf{A}^\top \symbf{A}\) and \(\symbf{A} \symbf{A}^\top\) share eigenvalues,
               \begin{align*}
                   \symbf{A}^\top \symbf{A} \symbfit{v}                                         & = \lambda \symbfit{v}                           \\
@@ -491,8 +491,8 @@ margin = 10mm
                                                            \norm*{\symbfit{w}}
                                                        \end{bmatrix*} \begin{bmatrix*}
                                                                           1
-                                                                      \end{bmatrix*}      \\
-                  \symbf{W}^\dagger & = \frac{\hat{\symbfit{w}}^\top}{\norm*{\symbfit{w}}}
+                                                                      \end{bmatrix*} \\
+                  \symbf{W}^\dagger & = \hat{\symbfit{w}}^\top / \norm*{\symbfit{w}}
               \end{align*}
     \end{itemize}
     \section{Identities}
@@ -508,6 +508,7 @@ margin = 10mm
               \begin{equation*}
                   \left( \symbf{A} \symbfit{x} \right)^\top \symbfit{y} = \symbfit{x}^\top \left( \symbf{A}^\top \symbfit{y} \right)
               \end{equation*}
+        \item \(\det{\left( \symbf{A} \symbf{B} \right)} = \det{\left( \symbf{A} \right)} \det{\left( \symbf{B} \right)}\).
         \item If \(\symbf{A}\) is triangular, \(\det{\left( \symbf{A} \right)} = \prod_{i = 1}^n a_{ii}\).
         \item For \(\symbf{A} \in \R^{n \times n}\):
               \begin{align*}
