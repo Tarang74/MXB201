@@ -122,17 +122,20 @@ margin = 10mm
     \subsection{Gram-Schmidt Process}
     Converts the basis \(W\) that spans \(\columnspace{A}\) to an orthonormal basis \(Q\).
     \begin{align*}
-        \symbfit{v}_1 & = \symbfit{w}_1                                                                                 & \symbfit{q}_1 & = {\scriptstyle \symbfit{v}_1 / \norm*{\symbfit{v}_1}} \\
-        \symbfit{v}_2 & = \symbfit{w}_2 - \symbfit{q}_1 \abracket*{\symbfit{q}_1,\: \symbfit{w}_2}                      & \symbfit{q}_2 & = {\scriptstyle \symbfit{v}_2 / \norm*{\symbfit{v}_2}} \\
-                      & \vdotswithin{=}                                                                                 &               & \vdotswithin{=}                                        \\
         \symbfit{v}_i & = \symbfit{w}_i - \sum_{j = 1}^{i - 1} \symbfit{q}_j \abracket*{\symbfit{q}_j,\: \symbfit{w}_i} & \symbfit{q}_i & = {\scriptstyle \symbfit{v}_i / \norm*{\symbfit{v}_i}}
     \end{align*}
     \(V\) and \(Q\) span \(W\), and \(V\) is orthogonal.
     \subsection{QR Decomposition}
-    \begin{equation*}
-        \symbf{A} = \symbf{Q} \symbf{R}
-    \end{equation*}
-    where \(\symbf{Q}\) is orthogonal and \(\symbf{R}\) is upper triangular. \(\symbf{R} \symbfit{x} = \symbf{Q}^\top \symbfit{b}\) solves LS.
+    \begin{align*}
+        \symbf{A} & = \symbf{Q} \symbf{R}                                                                                                    \\
+        \symbf{R} & = \begin{bmatrix}
+                          \norm{\symbfit{v}_1} & \abracket*{\symbfit{q}_1,\: \symbfit{w}_2} & \cdots & \abracket*{\symbfit{q}_1,\: \symbfit{w}_n}       \\
+                          0                    & \norm{\symbfit{v}_2}              & \ddots & \vdots                                  \\
+                          \vdots               & \ddots                            & \ddots & \abracket*{\symbfit{q}_{n - 1},\: \symbfit{w}_n} \\
+                          0                    & \cdots                            & 0      & \norm{\symbfit{v}_n}
+                      \end{bmatrix}
+    \end{align*}
+    where \(\symbf{Q}\) is found by applying the Gram-Schmidt process and \(\symbf{R}\) is upper triangular. \(\symbf{R} \symbfit{x} = \symbf{Q}^\top \symbfit{b}\) solves LS\@.
     \section{Eigenvalues and Eigenvectors}
     \begin{equation*}
         \symbf{A} \symbfit{v} = \lambda \symbfit{v} \iff \left( \lambda \symbf{I} - \symbf{A} \right) \symbfit{v} = \symbfup{0} : \symbfit{v} \neq \symbfup{0}
