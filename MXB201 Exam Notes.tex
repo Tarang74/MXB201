@@ -127,12 +127,12 @@ margin = 10mm
     \(V\) and \(Q\) span \(W\), and \(V\) is orthogonal.
     \subsection{QR Decomposition}
     \begin{align*}
-        \symbf{A} & = \symbf{Q} \symbf{R}                                                                                                    \\
+        \symbf{A} & = \symbf{Q} \symbf{R}                                                                                                                                                                  \\
         \symbf{R} & = \begin{bmatrix}
                           \norm{\symbfit{v}_1} & \abracket*{\symbfit{q}_1,\: \symbfit{w}_2} & \cdots & \abracket*{\symbfit{q}_1,\: \symbfit{w}_n}       \\
-                          0                    & \norm{\symbfit{v}_2}              & \ddots & \vdots                                  \\
-                          \vdots               & \ddots                            & \ddots & \abracket*{\symbfit{q}_{n - 1},\: \symbfit{w}_n} \\
-                          0                    & \cdots                            & 0      & \norm{\symbfit{v}_n}
+                          0                    & \norm{\symbfit{v}_2}                       & \ddots & \vdots                                           \\
+                          \vdots               & \ddots                                     & \ddots & \abracket*{\symbfit{q}_{n - 1},\: \symbfit{w}_n} \\
+                          0                    & \cdots                                     & 0      & \norm{\symbfit{v}_n}
                       \end{bmatrix}
     \end{align*}
     where \(\symbf{Q}\) is found by applying the Gram-Schmidt process and \(\symbf{R}\) is upper triangular. \(\symbf{R} \symbfit{x} = \symbf{Q}^\top \symbfit{b}\) solves LS\@.
@@ -262,12 +262,12 @@ margin = 10mm
     \end{equation*}
     for the rank-\(\nu\) approximation of \(\symbf{A}\).
 
-    Using the SVD\@: 
+    Using the SVD\@:
     \begin{equation*}
-        \tilde{\symbf{A}} = \symbf{U} \symbf{\Sigma} \symbf{V}^\top    
+        \tilde{\symbf{A}} = \symbf{U} \symbf{\Sigma} \symbf{V}^\top
     \end{equation*}
     \(\symbf{U} \in \R^{m \times \nu}\), \(\symbf{\Sigma} \in \R^{\nu \times \nu}\), and \(\symbf{V} \in \R^{n \times \nu}\).
-    
+
     When \(\nu \geq r\), \(\tilde{\symbf{A}} = \symbf{A}\) as \(\sigma_{i > r} = 0\).
     \section{General Vector Spaces}
     \(V\) is a vector space with vectors \(\symbfit{v} \in V\) if the following 10 axioms are satisfied
@@ -471,6 +471,7 @@ margin = 10mm
               \(\symbf{A}^\top \symbf{A}\) is invertible when \(\nullity{\left( \symbf{A} \right)} = 0\).
         \item When \(\symbf{A}\) is square and invertible, \(\left( \symbf{A}^\top \symbf{A} \right)^{-1} = \symbf{A}^{-1} \symbf{A}^{-\top}\) and \(\symbf{P} = \symbf{I}\).
         \item \(\symbf{P}^2 = \symbf{P} \land \symbf{P}^\top = \symbf{P} \iff \symbf{P} = \proj_{\columnspace{P}}\).
+              \(\symbf{P} \symbfit{v} = \symbf{P}^2 \symbfit{v} \iff \lambda \symbfit{v} = \lambda^2 \symbfit{v}\) implies \(\lambda = 0,\: 1\).
         \item If \(\nullity{\left( \symbf{A} \right)} = 0\), \(\symbf{P} = \symbf{Q} \symbf{Q}^\top\) using QR\@.
         \item \(\symbf{A}^\top \symbf{A}\) and \(\symbf{A} \symbf{A}^\top\) share eigenvalues,
               \begin{align*}
