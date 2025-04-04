@@ -45,9 +45,9 @@
 	% \draw[<->, thick] (10,0) -- (0,0) -- (0,10);
 	% Row Space
 	\filldraw \shapeProperties \rotateOne (\pivotOneX, \pivotOneY) rectangle (\pivotOneX + 5, \pivotOneY + 4.1);
-	\node at \rotateXY{\pivotOneX + 5 / 2}{\pivotOneY + 4.1 / 2}{\pivotOneX}{\pivotOneY}{\angleOne} 
+	\node at \rotateXY{\pivotOneX + 5 / 2}{\pivotOneY + 4.1 / 2}{\pivotOneX}{\pivotOneY}{\angleOne}
 	{\shortstack{
-		\scalebox{2}{\(\rowspace{A}\)} \\ 
+		\scalebox{2}{\(\rowspace{A}\)} \\
 		\scalebox{1.5}{\(\dim{\left( \rowspace{A} \right)} = r\)}
 	}};
 	%
@@ -55,7 +55,7 @@
 	\filldraw \shapeProperties \rotateOne (\pivotOneX - 5.3, \pivotOneY - 6) rectangle (\pivotOneX, \pivotOneY);
 	\node at \rotateXY{\pivotOneX - 5.3 / 2}{\pivotOneY - 6 / 2}{\pivotOneX}{\pivotOneY}{\angleOne}
 	{\shortstack{
-		\scalebox{2}{\(\nullspace{A}\)} \\ 
+		\scalebox{2}{\(\nullspace{A}\)} \\
 		\scalebox{1.5}{\(\dim{\left( \nullspace{A} \right)} = n - r\)}
 	}};
 	%
@@ -63,14 +63,14 @@
 	\filldraw \shapeProperties \rotateTwo (\pivotTwoX, \pivotTwoY) rectangle (\pivotTwoX + 4.4, \pivotTwoY + 5.3);
 	\node at \rotateXY{\pivotTwoX + 4.4 / 2}{\pivotTwoY + 5.3 / 2}{\pivotTwoX}{\pivotTwoY}{\angleTwo}
 	{\shortstack{
-		\scalebox{2}{\(\columnspace{A}\)} \\ 
+		\scalebox{2}{\(\columnspace{A}\)} \\
 		\scalebox{1.5}{\(\dim{\left( \columnspace{A} \right)} = r\)}
 	}};
 	% Left Null Space
 	\filldraw \shapeProperties \rotateTwo (\pivotTwoX - 6.9, \pivotTwoY - 3.9) rectangle (\pivotTwoX, \pivotTwoY);
 	\node at \rotateXY{\pivotTwoX - 6.9 / 2}{\pivotTwoY - 3.9 / 2}{\pivotTwoX}{\pivotTwoY}{\angleTwo}
 	{\shortstack{
-		\scalebox{2}{\(\leftnullspace{A}\)} \\ 
+		\scalebox{2}{\(\leftnullspace{A}\)} \\
 		\scalebox{1.5}{\(\dim{\left( \leftnullspace{A} \right)} = m - r\)}
 	}};
 	%
@@ -90,24 +90,24 @@
 	%
 	% Null space vector
 	\draw [fill] \rotateXY{\pivotOneX - 1.8}{\pivotOneY - 1.5}{\pivotOneX}{\pivotOneY}{\angleOne} circle [radius=0.05];
-	\node[label={[label distance=0.25]180:{\scalebox{1.25}{\(\symbfit{x}_n\)}}}] at     \rotateXY{\pivotOneX - 1.8}{\pivotOneY - 1.5}{\pivotOneX}{\pivotOneY}{\angleOne} {};
+	\node[label={[label distance=0.25]180:{\scalebox{1.25}{\(\symbf{x}_n\)}}}] at     \rotateXY{\pivotOneX - 1.8}{\pivotOneY - 1.5}{\pivotOneX}{\pivotOneY}{\angleOne} {};
 	% Row space vector
 	\draw [fill] \rotateXY{\pivotOneX + 1.3}{\pivotOneY + 1.1}{\pivotOneX}{\pivotOneY}{\angleOne} circle [radius=0.05];
-	\node[label={[label distance=0.25]180:{\scalebox{1.25}{\(\symbfit{x}_r\)}}}] at     \rotateXY{\pivotOneX + 1.3}{\pivotOneY + 1.1}{\pivotOneX}{\pivotOneY}{\angleOne} {};
+	\node[label={[label distance=0.25]180:{\scalebox{1.25}{\(\symbf{x}_r\)}}}] at     \rotateXY{\pivotOneX + 1.3}{\pivotOneY + 1.1}{\pivotOneX}{\pivotOneY}{\angleOne} {};
 	% Column space vector
 	\draw [fill] \rotateXY{\pivotTwoX + 0.9}{\pivotTwoY + 1.7}{\pivotTwoX}{\pivotTwoY}{\angleTwo} circle [radius=0.05];
-	\node[label={[label distance=0.25]0:{\scalebox{1.25}{\(\symbfit{b}\)}}}] at \rotateXY{\pivotTwoX + 0.9}{\pivotTwoY + 1.7}{\pivotTwoX}{\pivotTwoY}{\angleTwo} {};
+	\node[label={[label distance=0.25]0:{\scalebox{1.25}{\(\symbf{b}\)}}}] at \rotateXY{\pivotTwoX + 0.9}{\pivotTwoY + 1.7}{\pivotTwoX}{\pivotTwoY}{\angleTwo} {};
 	% General vector
 	\draw [fill] (-1, 1.3) circle [radius=0.05];
-	\node[label={[label distance=0.25]325:{\scalebox{1.25}{\(\symbfit{x}_p=\symbfit{x}_r+\symbfit{x}_n\)}}}][below right] at (-1, 1.3) {};
+	\node[label={[label distance=0.25]325:{\scalebox{1.25}{\(\symbf{x}_p=\symbf{x}_r+\symbf{x}_n\)}}}][below right] at (-1, 1.3) {};
 	%
-	% Homogeneous Equation 
+	% Homogeneous Equation
 	\draw [thick] \rotateXY{\pivotOneX - 1.8}{\pivotOneY - 1.5}{\pivotOneX}{\pivotOneY}{\angleOne} -- (\pivotTwoX, \pivotTwoY);
 	\draw [->, thick] \rotateXY{\pivotOneX - 1.8}{\pivotOneY - 1.5}{\pivotOneX}{\pivotOneY}{\angleOne} -- ({(\pivotTwoX + \rotateX{\pivotOneX - 1.8}{\pivotOneY - 1.5}{\pivotOneX}{\pivotOneY}{\angleOne}) / 2}, {(\pivotTwoY + \rotateY{\pivotOneX - 1.8}{\pivotOneY - 1.5}{\pivotOneX}{\pivotOneY}{\angleOne}) / 2});
-	% Particular Equation 
+	% Particular Equation
 	\draw [thick] \rotateXY{\pivotOneX + 1.3}{\pivotOneY + 1.1}{\pivotOneX}{\pivotOneY}{\angleOne} -- \rotateXY{\pivotTwoX + 0.9}{\pivotTwoY + 1.7}{\pivotTwoX}{\pivotTwoY}{\angleTwo};
 	\draw [->, thick] \rotateXY{\pivotOneX + 1.3}{\pivotOneY + 1.1}{\pivotOneX}{\pivotOneY}{\angleOne} -- ({(\rotateX{\pivotTwoX + 0.9}{\pivotTwoY + 1.7}{\pivotTwoX}{\pivotTwoY}{\angleTwo} + \rotateX{\pivotOneX + 1.3}{\pivotOneY + 1.1}{\pivotOneX}{\pivotOneY}{\angleOne}) / 2}, {(\rotateY{\pivotTwoX + 0.9}{\pivotTwoY + 1.7}{\pivotTwoX}{\pivotTwoY}{\angleTwo} + \rotateY{\pivotOneX + 1.3}{\pivotOneY + 1.1}{\pivotOneX}{\pivotOneY}{\angleOne}) / 2});
-	% General Equation 
+	% General Equation
 	\draw [thick] (-1, 1.3) -- \rotateXY{\pivotTwoX + 0.9}{\pivotTwoY + 1.7}{\pivotTwoX}{\pivotTwoY}{\angleTwo};
 	\draw [->, thick] (-1, 1.3) -- ({(-1 + \rotateX{\pivotTwoX + 0.9}{\pivotTwoY + 1.7}{\pivotTwoX}{\pivotTwoY}{\angleTwo}) / 2}, {(1.3 + \rotateY{\pivotTwoX + 0.9}{\pivotTwoY + 1.7}{\pivotTwoX}{\pivotTwoY}{\angleTwo}) / 2});
 	% Dotted Particular Vector
@@ -116,12 +116,12 @@
 	\draw [dashed] \rotateXY{\pivotOneX - 1.8}{\pivotOneY - 1.5}{\pivotOneX}{\pivotOneY}{\angleOne} -- (-1, 1.3);
 	%
 	% Particular Equation Label
-	\node[label={[label distance=0.25]90:{\scalebox{1.25}{\(\symbf{A}\symbfit{x}_r=\symbfit{b}\)}}}] at ({(\rotateX{\pivotTwoX + 0.9}{\pivotTwoY + 1.7}{\pivotTwoX}{\pivotTwoY}{\angleTwo} + \rotateX{\pivotOneX + 1.3}{\pivotOneY + 1.1}{\pivotOneX}{\pivotOneY}{\angleOne}) / 2}, {(\rotateY{\pivotTwoX + 0.9}{\pivotTwoY + 1.7}{\pivotTwoX}{\pivotTwoY}{\angleTwo} + \rotateY{\pivotOneX + 1.3}{\pivotOneY + 1.1}{\pivotOneX}{\pivotOneY}{\angleOne}) / 2}) {};
+	\node[label={[label distance=0.25]90:{\scalebox{1.25}{\(\symbf{A}\symbf{x}_r=\symbf{b}\)}}}] at ({(\rotateX{\pivotTwoX + 0.9}{\pivotTwoY + 1.7}{\pivotTwoX}{\pivotTwoY}{\angleTwo} + \rotateX{\pivotOneX + 1.3}{\pivotOneY + 1.1}{\pivotOneX}{\pivotOneY}{\angleOne}) / 2}, {(\rotateY{\pivotTwoX + 0.9}{\pivotTwoY + 1.7}{\pivotTwoX}{\pivotTwoY}{\angleTwo} + \rotateY{\pivotOneX + 1.3}{\pivotOneY + 1.1}{\pivotOneX}{\pivotOneY}{\angleOne}) / 2}) {};
 	% General Equation Label
-	\node[label={[label distance=0.25]325:{\scalebox{1.25}{\(\symbf{A}\symbfit{x}_p=\symbfit{b}\)}}}] at ({(-1 + \rotateX{\pivotTwoX + 0.9}{\pivotTwoY + 1.7}{\pivotTwoX}{\pivotTwoY}{\angleTwo}) / 2}, {(1.3 + \rotateY{\pivotTwoX + 0.9}{\pivotTwoY + 1.7}{\pivotTwoX}{\pivotTwoY}{\angleTwo}) / 2}) {};
+	\node[label={[label distance=0.25]325:{\scalebox{1.25}{\(\symbf{A}\symbf{x}_p=\symbf{b}\)}}}] at ({(-1 + \rotateX{\pivotTwoX + 0.9}{\pivotTwoY + 1.7}{\pivotTwoX}{\pivotTwoY}{\angleTwo}) / 2}, {(1.3 + \rotateY{\pivotTwoX + 0.9}{\pivotTwoY + 1.7}{\pivotTwoX}{\pivotTwoY}{\angleTwo}) / 2}) {};
 	% Homogeneous Equation Label
-	\node[label={[label distance=0.25]325:{\scalebox{1.25}{\(\symbf{A}\symbfit{x}_n=\symbfup{0}\)}}}] at ({(\pivotTwoX + \rotateX{\pivotOneX - 1.8}{\pivotOneY - 1.5}{\pivotOneX}{\pivotOneY}{\angleOne}) / 2}, {(\pivotTwoY + \rotateY{\pivotOneX - 1.8}{\pivotOneY - 1.5}{\pivotOneX}{\pivotOneY}{\angleOne}) / 2}) {};
-	% 
+	\node[label={[label distance=0.25]325:{\scalebox{1.25}{\(\symbf{A}\symbf{x}_n=\symbfup{0}\)}}}] at ({(\pivotTwoX + \rotateX{\pivotOneX - 1.8}{\pivotOneY - 1.5}{\pivotOneX}{\pivotOneY}{\angleOne}) / 2}, {(\pivotTwoY + \rotateY{\pivotOneX - 1.8}{\pivotOneY - 1.5}{\pivotOneX}{\pivotOneY}{\angleOne}) / 2}) {};
+	%
 	% Rank definition
 	\node at (0,6.5) {\scalebox{1.75}{\(r=\rank{\left( \symbf{A} \right)}=\rank{\left( \symbf{A}^\top \right)}\)}};
 	%

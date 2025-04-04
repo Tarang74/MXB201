@@ -24,7 +24,7 @@ a4paper,
 margin = 10mm
 }
 
-%% Hide horizontal rule 
+%% Hide horizontal rule
 \renewcommand{\headrulewidth}{0pt}
 \fancyhead{}
 
@@ -55,54 +55,63 @@ margin = 10mm
 
 \begin{multicols*}{3}
     \subsection{General Solution to a Linear System}
-    If \(\symbfit{b} \in \columnspace{A}\): \(\symbfit{x}_g = \symbfit{x}_p + \symbfit{x}_n\)
-    where \(\symbfit{x}_p \in \R^n\) and \(\symbfit{x}_n \in \nullspace{A}\).
+    If \(\symbf{b} \in \columnspace{A}\): \(\symbf{x}_g = \symbf{x}_p +
+    \symbf{x}_{ng}\) where \(\symbf{x}_p = \symbf{x}_r + \symbf{x}_n
+    \in \R^n\) and \(\symbf{x}_{ng} =
+    \vspan{\left(\nullspace{A}\right)}\).
     \subsection{Minimum Norm Solution}
-    \(\symbfit{x}_r \in \rowspace{A}\) where \(\symbfit{x}_r = \proj_{\rowspace{A}}{\left( \symbfit{x}_g \right)}\).
+    \(\symbf{x}_r \in \rowspace{A}\) where \(\symbf{x}_r = \proj_{\rowspace{A}}{\left( \symbf{x}_g \right)}\).
     \section{Least Squares (LS)}
-    If \(\symbfit{b} \not\in \columnspace{A}\): \(\symbfit{x} = \argmin_{\symbfit{x}^\ast \in \R^n} \norm{\symbfit{b} - \symbf{A}\symbfit{x}^\ast}\).
-    \(\symbfit{b} - \symbf{A} \symbfit{x} \in \nullspace{A} \implies \symbf{A}^\top \left( \symbfit{b} - \symbf{A}\symbfit{x} \right) = \symbfup{0}\).
-    \begin{align*}
-        \symbf{A}^\top \symbf{A}\symbfit{x} & = \symbf{A}^\top \symbfit{b} &  & \text{(Normal Equations)}
-    \end{align*}
+    If \(\symbf{b} \not\in \columnspace{A}\): \(\displaystyle\symbf{x}
+    = \argmin_{\symbf{x}^\ast \in \R^n} \norm{\symbf{b} -
+    \symbf{A}\symbf{x}^\ast}\). \(\symbf{b} - \symbf{A} \symbf{x} \in
+    \nullspace{A} \implies \symbf{A}^\top \left( \symbf{b} -
+    \symbf{A}\symbf{x} \right) = \symbfup{0}\).
+    % \begin{align*}
+    %     \symbf{A}^\top \symbf{A}\symbf{x} & = \symbf{A}^\top \symbf{b} &  & \text{(Normal Equations)}
+    % \end{align*}
     \subsection{Orthogonal Projection}
     \begin{align*}
-        \symbf{P}             & = \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top     \\
-        \symbf{P} \symbfit{b} & = \proj_{\columnspace{A}} \left( \symbfit{b} \right) = \symbf{A}\symbfit{x}
+        \symbf{P}           & = \symbf{A} \left( \symbf{A}^\top \symbf{A} \right)^{-1} \symbf{A}^\top \\
+        \symbf{P} \symbf{b} & = \proj_{\columnspace{A}} \left( \symbf{b} \right) = \symbf{A}\symbf{x}
     \end{align*}
     \(\symbf{P}\) is idempotent (\(\symbf{P}^2 = \symbf{P}\)) and \(\symbf{P}^\top = \symbf{P}\).
     \subsection{Dependent Columns}
-    If \(\nullity{\left( \symbf{A} \right)} > 0\), NE yields infinitely many solutions
-    as \(\nullspace{A} = \mathcal{N}\left(\symbf{A}^\top \symbf{A}\right)\).
+    If \(\nullity{\left( \symbf{A} \right)} > 0\), NE yields infinitely
+    many solutions as \(\nullspace{A} = \mathcal{N}\left(\symbf{A}^\top
+    \symbf{A}\right)\).
     \subsection{Orthogonal Complement Projections}
-    Given \(\symbf{P} = \proj_V\): \(\symbf{Q} = \proj_{V^\perp} = \symbf{I} - \symbf{P}\)
+    Given \(\symbf{P} = \proj_V\): \(\symbf{Q} = \proj_{V^\perp} =
+    \symbf{I} - \symbf{P}\)
     \begin{equation*}
-        \symbfit{b} = \proj_V(\symbfit{b}) + \proj_{V^\perp}(\symbfit{b}) = \symbf{P}\symbfit{b} + \symbf{Q}\symbfit{b}
+        \symbf{b} = \proj_V(\symbf{b}) + \proj_{V^\perp}(\symbf{b}) = \symbf{P}\symbf{b} + \symbf{Q}\symbf{b}
     \end{equation*}
     \begin{align*}
-        \left( \symbf{P}\symbfit{b} \right)^\top \symbf{Q}\symbfit{b} & = 0                                   \\
-        \symbf{P} \symbf{Q}                                           & = \symbf{0} &  & \text{(zero matrix)}
+        \left( \symbf{P}\symbf{b} \right)^\top \symbf{Q}\symbf{b} & = 0                                   \\
+        \symbf{P} \symbf{Q}                                       & = \symbf{0} &  & \text{(zero matrix)}
     \end{align*}
     \subsection{Change of Basis}
-    Given the basis \(W = \left\{ \symbfit{w}_1,\: \dots,\: \symbfit{w}_n \right\}\)
+    Given the basis \(W = \left\{ \symbf{w}_1,\: \dots,\: \symbf{w}_n
+    \right\}\)
     \begin{align*}
-        \symbfit{b} & = c_1 \symbfit{w}_1 + \cdots + c_n \symbfit{w}_n                         \\
-        \symbfit{b} & = \symbf{W} \symbfit{c} \iff \left( \symbfit{b} \right)_W = \symbfit{c}.
+        \symbf{b} & = c_1 \symbf{w}_1 + \cdots + c_n \symbf{w}_n                       \\
+        \symbf{b} & = \symbf{W} \symbf{c} \iff \left( \symbf{b} \right)_W = \symbf{c}.
     \end{align*}
     \subsection{Orthonormal Basis}
-    Normalised and orthogonal basis vectors.
-    For \(Q = \left\{ \symbfit{q}_1,\: \dots,\: \symbfit{q}_n \right\}\),
-    \(\symbfit{q}_i^\top \symbfit{q}_j = \delta_{ij}\), where
+    Normalised and orthogonal basis vectors. For \(Q = \left\{
+    \symbf{q}_1,\: \dots,\: \symbf{q}_n \right\}\), \(\symbf{q}_i^\top
+    \symbf{q}_j = \delta_{ij}\), where
     \begin{equation*}
-        \delta_{ij} = \begin{cases}
+        \delta_{ij} =
+        \begin{cases}
             1, & i = j   \\
             0, & i \ne j
         \end{cases}
     \end{equation*}
     \begin{equation*}
-        \symbf{Q} \symbfit{c} = \symbfit{b}
+        \symbf{Q} \symbf{c} = \symbf{b}
         \iff
-        \symbf{Q}^\top \symbfit{b} = \symbfit{c} = \left( \symbfit{b} \right)_Q
+        \symbf{Q}^\top \symbf{b} = \symbf{c} = \left( \symbf{b} \right)_Q
     \end{equation*}
     \subsection{Orthogonal Matrices}
     \begin{equation*}
@@ -112,33 +121,35 @@ margin = 10mm
     \end{equation*}
     \subsection{Projection onto a Vector}
     \begin{align*}
-        \proj_{\symbfit{a}} \left( \symbfit{b} \right) & = \symbfit{a} \left( \symbfit{a}^\top \symbfit{a} \right)^{-1} \symbfit{a}^\top \symbfit{b} \\
-                                                       & = \frac{\symbfit{a}}{\norm{\symbfit{a}}^2} \symbfit{a} \cdot \symbfit{b}
+        \proj_{\symbf{a}} \left( \symbf{b} \right) & = \symbf{a} \left( \symbf{a}^\top \symbf{a} \right)^{-1} \symbf{a}^\top \symbf{b} \\
+                                                   & = \frac{\symbf{a}}{\norm{\symbf{a}}^2} \symbf{a} \cdot \symbf{b}
     \end{align*}
-    Using a unit vector \(\symbfit{q}\):
-    \begin{equation*}
-        \proj_{\symbfit{q}} \left( \symbfit{b} \right) = \symbfit{q} \left( \symbfit{q} \cdot \symbfit{b} \right)
-    \end{equation*}
-    \subsection{Gram-Schmidt Process}
-    Converts the basis \(W\) that spans \(\columnspace{A}\) to an orthonormal basis \(Q\).
     \begin{align*}
-        \symbfit{v}_i & = \symbfit{w}_i - \sum_{j = 1}^{i - 1} \symbfit{q}_j \abracket*{\symbfit{q}_j,\: \symbfit{w}_i} & \symbfit{q}_i & = {\scriptstyle \symbfit{v}_i / \norm*{\symbfit{v}_i}}
+        \proj_{\symbf{q}} \left( \symbf{b} \right) = \symbf{q} \left( \symbf{q} \cdot \symbf{b} \right) && \text{(unit vector)} \\
+    \end{align*}
+    \subsection{Gram-Schmidt Process}
+    Converts the basis \(W\) that spans \(\columnspace{A}\) to an
+    orthonormal basis \(Q\).
+    \begin{align*}
+        \symbf{v}_i & = \symbf{w}_i - \sum_{j = 1}^{i - 1} \symbf{q}_j \abracket*{\symbf{q}_j,\: \symbf{w}_i} & \symbf{q}_i & = {\scriptstyle \symbf{v}_i / \norm*{\symbf{v}_i}}
     \end{align*}
     \(V\) and \(Q\) span \(W\), and \(V\) is orthogonal.
     \subsection{QR Decomposition}
     \begin{align*}
         \symbf{A} & = \symbf{Q} \symbf{R}                                                                                                                                                                  \\
-        \symbf{R} & = \begin{bmatrix}
-                          \norm{\symbfit{v}_1} & \abracket*{\symbfit{q}_1,\: \symbfit{w}_2} & \cdots & \abracket*{\symbfit{q}_1,\: \symbfit{w}_n}       \\
-                          0                    & \norm{\symbfit{v}_2}                       & \ddots & \vdots                                           \\
-                          \vdots               & \ddots                                     & \ddots & \abracket*{\symbfit{q}_{n - 1},\: \symbfit{w}_n} \\
-                          0                    & \cdots                                     & 0      & \norm{\symbfit{v}_n}
+        \symbf{R} & =
+                      \begin{bmatrix}
+                          \norm{\symbf{v}_1} & \abracket*{\symbf{q}_1,\: \symbf{w}_2} & \cdots & \abracket*{\symbf{q}_1,\: \symbf{w}_n}       \\
+                          0                  & \norm{\symbf{v}_2}                     & \ddots & \vdots                                       \\
+                          \vdots             & \ddots                                 & \ddots & \abracket*{\symbf{q}_{n - 1},\: \symbf{w}_n} \\
+                          0                  & \cdots                                 & 0      & \norm{\symbf{v}_n}
                       \end{bmatrix}
     \end{align*}
-    where \(\symbf{Q}\) is found by applying the Gram-Schmidt process and \(\symbf{R}\) is upper triangular. \(\symbf{R} \symbfit{x} = \symbf{Q}^\top \symbfit{b}\) solves LS\@.
+    where \(\symbf{Q}\) is found by applying the Gram-Schmidt process and \(\symbf{R}\) is upper triangular. \(\symbf{R} \symbf{x} = \symbf{Q}^\top \symbf{b}\) solves LS\@.
+
     \section{Eigenvalues and Eigenvectors}
     \begin{equation*}
-        \symbf{A} \symbfit{v} = \lambda \symbfit{v} \iff \left( \lambda \symbf{I} - \symbf{A} \right) \symbfit{v} = \symbfup{0} : \symbfit{v} \neq \symbfup{0}
+        \symbf{A} \symbf{v} = \lambda \symbf{v} \iff \left( \lambda \symbf{I} - \symbf{A} \right) \symbf{v} = \symbfup{0} : \symbf{v} \neq \symbfup{0}
     \end{equation*}
     \subsection{Characteristic Polynomial}
     \begin{equation*}
@@ -149,13 +160,17 @@ margin = 10mm
         \symbf{A} \symbf{V} = \symbf{V} \symbf{D}
                   & \iff
         \symbf{A} = \symbf{V} \symbf{D} \symbf{V}^{-1}                       \\
-        \symbf{V} & = \begin{bmatrix}
-                          \symbfit{v}_1 & \cdots & \symbfit{v}_n
-                      \end{bmatrix}                 \\
+        \symbf{V} & =
+                      \begin{bmatrix}
+                          \symbf{v}_1 & \cdots & \symbf{v}_n
+                      \end{bmatrix}
+        \\
         \symbf{D} & = \diag{\left( \lambda_1,\: \dots,\: \lambda_n \right)}.
     \end{align*}
-    \subsection{Eigenspace} 
-    The eigenspace associated with \(\lambda_i\) is the span of eigenvectors: \(\mathcal{N}{\left( \lambda_i \symbf{I} - \symbf{A} \right)}\). 
+    \subsection{Eigenspace}
+    The eigenspace associated with \(\lambda_i\) is the span of
+    eigenvectors: \(\mathcal{N}{\left( \lambda_i \symbf{I} - \symbf{A}
+    \right)}\).
     \subsection{Algebraic Multiplicity \texorpdfstring{\(\mu\left( \lambda_i \right)\)}{mu(lambda i)}}
     Multiplicity of \(\lambda_i\) in \(P(\lambda)\),
     for \(d \leq n\) distinct eigenvalues,
@@ -189,8 +204,8 @@ margin = 10mm
     \end{equation*}
     \subsection{Matrix Similarity}
     \(\symbf{A}\) and \(\symbf{B}\) are similar if \(\symbf{B} = \symbf{P}^{-1} \symbf{A} \symbf{P}\).
-
-    They share \(P(\lambda)\), ranks, determinants, traces, and eigenvalues (also \(\mu\) and \(\gamma\)).
+    They share \(P(\lambda)\), ranks, determinants, traces, and
+    eigenvalues (also \(\mu\) and \(\gamma\)).
     \subsection{Symmetric Matrices \texorpdfstring{\(\symbf{S}^\top = \symbf{S}\)}{S' = S}}
     \(\symbf{S}\) is always diagonalisable and has
     real eigenvalues with real orthogonal eigenspaces: \(\symbf{S} = \symbf{Q} \symbf{D} \symbf{Q}^\top\), where \(\symbf{Q}\) is found through QR\@: \(\symbf{V} = \symbf{Q} \symbf{R}\).
@@ -199,13 +214,13 @@ margin = 10mm
     \subsection{Positive-Definite Matrices}
     \(\symbf{S}\) is (symmetric) positive definite (SPD) if all its eigenvalues are positive, likewise
     \begin{equation*}
-        \symbfit{x}^\top \symbf{S} \symbfit{x} > 0 : \forall \symbfit{x} \in \R^n \backslash \left\{ \symbfup{0} \right\}
+        \symbf{x}^\top \symbf{S} \symbf{x} > 0 : \forall \symbf{x} \in \R^n \backslash \left\{ \symbfup{0} \right\}
     \end{equation*}
     \subsection{Matrix Functions}
     Given a nondefective matrix:
     \begin{align*}
         f\left( \symbf{A} \right) & = \symbf{V} f\left( \symbf{D} \right) \symbf{V}^{-1}                                                               \\
-                                  & = \symbf{V} \diag{\left( f\left( \lambda_1 \right),\: \ldots,\: f\left( \lambda_n \right) \right)} \symbf{V}^{-1}.
+                                  & = \symbf{V} \diag{\left( f\left( \lambda_1 \right),\: \ldots,\: f\left( \lambda_n \right) \right)} \symbf{V}^{-1}
     \end{align*}
     for an analytic function \(f\).
     \subsection{Cayley-Hamilton Theorem}
@@ -220,107 +235,139 @@ margin = 10mm
         \symbf{V}^\top = \symbf{V}^{-1}, \quad \symbf{U}^\top = \symbf{U}^{-1}                                                          \\
         \symbf{\Sigma} = \diag{\left( \sigma_1,\: \dots,\: \sigma_r,\: 0,\: \dots,\: 0 \right)}.
     \end{gather*}
-    Left singular vectors \(\symbfit{u}\): \(\symbf{U} \in \R^{m \times m}\)
+    Left singular vectors \(\symbf{u}\): \(\symbf{U} \in \R^{m \times m}\)
     \begin{align*}
-        \columnspace{A}   & = \vspan{\left( \left\{ \symbfit{u}_{i \leq r} \right\} \right)}     \\
-        \leftnullspace{A} & = \vspan{\left( \left\{ \symbfit{u}_{r < i \leq m} \right\} \right)}
+        \columnspace{A}   & = \vspan{\left( \left\{ \symbf{u}_{i \leq r} \right\} \right)}     \\
+        \leftnullspace{A} & = \vspan{\left( \left\{ \symbf{u}_{r < i \leq m} \right\} \right)}
     \end{align*}
-    Right singular vectors \(\symbfit{v}\): \(\symbf{V} \in  \R^{n \times n}\)
+    Right singular vectors \(\symbf{v}\): \(\symbf{V} \in  \R^{n \times n}\)
     \begin{align*}
-        \rowspace{A}  & = \vspan{\left( \left\{ \symbfit{v}_{i \leq r} \right\} \right)}     \\
-        \nullspace{A} & = \vspan{\left( \left\{ \symbfit{v}_{r < i \leq n} \right\} \right)}
+        \rowspace{A}  & = \vspan{\left( \left\{ \symbf{v}_{i \leq r} \right\} \right)}     \\
+        \nullspace{A} & = \vspan{\left( \left\{ \symbf{v}_{r < i \leq n} \right\} \right)}
     \end{align*}
     Singular values \(\sigma_i\): \(\symbf{\Sigma} \in \R^{m \times n}\)
 
-    The eigenvalues of \(\symbf{A}^\top\symbf{A}\) and \(\symbf{A}\symbf{A}^\top\)
-    are equal, \(\symbf{\Sigma}^\top \symbf{\Sigma}\) and \(\symbf{\Sigma} \symbf{\Sigma}^\top\) have the same diagonal entries, and
-    when \(m = n\), \(\symbf{\Sigma}^\top\symbf{\Sigma} = \symbf{\Sigma} \symbf{\Sigma}^\top = \symbf{\Sigma}^2\).
-    To find \(\sigma_i\) compute:
+    The eigenvalues of \(\symbf{A}^\top\symbf{A}\) and
+    \(\symbf{A}\symbf{A}^\top\) are equal, \(\symbf{\Sigma}^\top
+    \symbf{\Sigma}\) and \(\symbf{\Sigma} \symbf{\Sigma}^\top\) have
+    the same diagonal entries, and when \(m = n\),
+    \(\symbf{\Sigma}^\top\symbf{\Sigma} = \symbf{\Sigma}
+    \symbf{\Sigma}^\top = \symbf{\Sigma}^2\). To find \(\sigma_i\)
+    compute:
     \begin{align*}
         \symbf{A}^\top \symbf{A} & = \symbf{V} \symbf{\Sigma}^\top \symbf{\Sigma} \symbf{V}^\top \\
         \symbf{A} \symbf{A}^\top & = \symbf{U} \symbf{\Sigma} \symbf{\Sigma}^\top \symbf{U}^\top
     \end{align*}
     so that \(\sigma_i = \sqrt{\lambda}_i\) where \(\sigma_1 \geq \cdots \geq \sigma_r > 0\).
     \subsection{Reduced SVD}
-    Ignores \(m - n\) ``0'' rows in \(\symbf{\Sigma}\) so that \(\symbf{U} \in \R^{m \times n}\), \(\symbf{\Sigma} \in \R^{n \times n}\), and \(\symbf{V} \in \R^{n \times n}\).
+    Ignores \(m - n\) ``0'' rows in \(\symbf{\Sigma}\) so that
+    \(\symbf{U} \in \R^{m \times n}\), \(\symbf{\Sigma} \in \R^{n
+    \times n}\), and \(\symbf{V} \in \R^{n \times n}\).
     \subsection{Pseudoinverse}
-    Consider the inverse mapping \(\symbfit{u}_i \mapsto \frac{1}{\sigma_i} \symbfit{v}_i\)
+    Consider the inverse mapping \(\symbf{u}_i \mapsto
+    \frac{1}{\sigma_i} \symbf{v}_i\)
     \begin{gather*}
-        \symbf{A}^\dagger \symbfit{u}_i = \frac{1}{\sigma_i} \symbfit{v}_i
+        \symbf{A}^\dagger \symbf{u}_i = \frac{1}{\sigma_i} \symbf{v}_i
         \iff
-        \symbf{A}^\dagger \symbfit{u}_i = \frac{1}{\sigma_i} \symbfit{v}_i \symbfit{u}^\top_i \symbfit{u}_i \\
-        \symbf{A}^\dagger = \sum_{i = 1}^r \frac{1}{\sigma_i} \symbfit{v}_i \symbfit{u}^\top_i
+        \symbf{A}^\dagger \symbf{u}_i = \frac{1}{\sigma_i} \symbf{v}_i \symbf{u}^\top_i \symbf{u}_i \\
+        \symbf{A}^\dagger = \sum_{i = 1}^r \frac{1}{\sigma_i} \symbf{v}_i \symbf{u}^\top_i
         \iff
         \symbf{A}^\dagger = \symbf{V} \symbf{\Sigma}^\dagger \symbf{U}^\top
     \end{gather*}
     where \(\symbf{\Sigma}^\dagger = \diag{\left( \frac{1}{\sigma_1},\: \dots,\: \frac{1}{\sigma_r},\: 0,\: \dots,\: 0 \right)}\).
-    \(\symbfit{x} = \symbf{A}^\dagger \symbfit{b}\) solves LS\@.
+    \(\symbf{x} = \symbf{A}^\dagger \symbf{b}\) also solves LS\@.
     \subsection{Truncated SVD}
     Express \(\symbf{A}\) as the sum of rank-1 matrices:
     \begin{equation*}
-        \symbf{A} = \sum_{i = 1}^n \sigma_i \symbfit{u}_i \symbfit{v}^\top_i \approx \tilde{\symbf{A}} = \sum_{i = 1}^\nu \sigma_i \symbfit{u}_i \symbfit{v}^\top_i.
+        \symbf{A} = \sum_{i = 1}^n \sigma_i \symbf{u}_i \symbf{v}^\top_i \approx \tilde{\symbf{A}} = \sum_{i = 1}^\nu \sigma_i \symbf{u}_i \symbf{v}^\top_i
     \end{equation*}
     for the rank-\(\nu\) approximation of \(\symbf{A}\).
-
     Using the SVD\@:
     \begin{equation*}
         \tilde{\symbf{A}} = \symbf{U} \symbf{\Sigma} \symbf{V}^\top
     \end{equation*}
     \(\symbf{U} \in \R^{m \times \nu}\), \(\symbf{\Sigma} \in \R^{\nu \times \nu}\), and \(\symbf{V} \in \R^{n \times \nu}\).
-
-    When \(\nu \geq r\), \(\tilde{\symbf{A}} = \symbf{A}\) as \(\sigma_{i > r} = 0\).
+    When \(\nu \geq r\), \(\tilde{\symbf{A}} = \symbf{A}\) as
+    \(\sigma_{i > r} = 0\).
     \section{General Vector Spaces}
-    \(V\) is a vector space with vectors \(\symbfit{v} \in V\) if the following 10 axioms are satisfied
-    for \(\forall \symbfit{u}, \symbfit{v}, \symbfit{w} \in V\) and \(\forall k, m \in \mathbb{F}\),
+    \(V\) is a vector space with vectors \(\symbf{v} \in V\) if the following 10 axioms are satisfied
+    for \(\forall \symbf{u}, \symbf{v}, \symbf{w} \in V\) and \(\forall k, m \in \mathbb{F}\),
     given an addition and scalar multiplication operation.
 
     \underline{For the addition operation:}
     \begin{itemize}
-        \item Closure: \(\symbfit{u} + \symbfit{v} \in V\)
-        \item Commutativity: \(\symbfit{u} + \symbfit{v} = \symbfit{v} + \symbfit{u} \in V\)
-        \item Associativity: \begin{equation*}\symbfit{u} + \left( \symbfit{v} + \symbfit{w} \right) = \left( \symbfit{u} + \symbfit{v} \right) + \symbfit{w}\end{equation*}
-        \item Identity: \(\exists \symbfup{0} \in V : \symbfit{u} + \symbfup{0} = \symbfup{0} + \symbfit{u} = \symbfit{u}\)
-        \item Inverse: \(\exists \left( -\symbfit{u} \right) \in V : \symbfit{u} + \left( -\symbfit{u} \right) = \symbfup{0}\)
+        \item Closure: \(\symbf{u} + \symbf{v} \in V\)
+        \item Commutativity: \(\symbf{u} + \symbf{v} = \symbf{v} +
+              \symbf{u} \in V\)
+        \item Associativity:
+              \begin{equation*}
+                  \symbf{u} + \left( \symbf{v} + \symbf{w} \right) = \left( \symbf{u} + \symbf{v} \right) + \symbf{w}
+              \end{equation*}
+        \item Identity: \(\exists \symbfup{0} \in V : \symbf{u} +
+              \symbfup{0} = \symbfup{0} + \symbf{u} = \symbf{u}\)
+        \item Inverse: \(\exists \left( -\symbf{u} \right) \in V :
+              \symbf{u} + \left( -\symbf{u} \right) = \symbfup{0}\)
     \end{itemize}
     \underline{For the scalar multiplication operation:}
     \begin{itemize}
-        \item Closure: \(k \symbfit{u} \in V\)
-        \item Distributivity: \(k \left( \symbfit{u} + \symbfit{v} \right) = k\symbfit{u} + k\symbfit{v}\)
-        \item Distributivity: \(\left( k + m \right) \symbfit{u} = k\symbfit{u} + m\symbfit{u}\)
-        \item Associativity: \(k \left( m\symbfit{u} \right) = \left( k m \right) \symbfit{u}\)
-        \item Identity: \(\exists 1 \in \mathbb{F} : 1 \symbfit{u} = \symbfit{u}\)
+        \item Closure: \(k \symbf{u} \in V\)
+        \item Distributivity: \(k \left( \symbf{u} + \symbf{v} \right)
+              = k\symbf{u} + k\symbf{v}\)
+        \item Distributivity: \(\left( k + m \right) \symbf{u} =
+              k\symbf{u} + m\symbf{u}\)
+        \item Associativity: \(k \left( m\symbf{u} \right) = \left( k m
+              \right) \symbf{u}\)
+        \item Identity: \(\exists 1 \in \mathbb{F} : 1 \symbf{u} =
+              \symbf{u}\)
     \end{itemize}
-
     \subsection{Examples of Vector Spaces}
-    The set of all \(m \times n\) matrices \(\mathscr{M}_{mn}\) with matrix addition and scalar matrix multiplication.
+    The set of all \(m \times n\) matrices \(\mathscr{M}_{mn}\) with
+    matrix addition and scalar matrix multiplication.
 
-    The set of all functions \(\mathscr{F}\left( \Omega \right) : \Omega \to \R\) with addition and scalar multiplication defined pointwise.
+    The set of all functions \(\mathscr{F}\left( \Omega \right) :
+    \Omega \to \R\) with addition and scalar multiplication defined
+    pointwise.
     \subsection{Subspaces}
-    The subset \(W \subset V\) is itself a vector space if it is closed under addition and scalar multiplication.
+    The subset \(W \subset V\) is itself a vector space if it is closed
+    under addition and scalar multiplication.
     \subsection{Examples of Subspaces}
     \underline{Subspaces of \(\R^n\):}
     \begin{itemize}
-        \item Lines, planes and higher-dimensional analogues in \(\R^n\) \emph{passing through the origin}.
+        \item Lines, planes and higher-dimensional analogues in
+              \(\R^n\) \emph{passing through the origin}.
     \end{itemize}
     \underline{Subspaces of \(\mathscr{M}_{nn}\):}
     \begin{itemize}
-        \item The set of all \emph{symmetric} \(n \times n\) matrices, denoted \(\mathscr{S}_n \subset \mathscr{M}_{nn}\).
-        \item The set of all \emph{skew symmetric} \(n \times n\) matrices, denoted \(\mathscr{K}_n \subset \mathscr{M}_{nn}\).
+        \item The set of all \emph{symmetric} \(n \times n\) matrices,
+              denoted \(\mathscr{S}_n \subset \mathscr{M}_{nn}\).
+        \item The set of all \emph{skew symmetric} \(n \times n\)
+              matrices, denoted \(\mathscr{K}_n \subset
+              \mathscr{M}_{nn}\).
     \end{itemize}
     \underline{Subspaces of \(\mathscr{F}\):}
     \begin{itemize}
-        \item The set of all \emph{polynomials} of degree \(n\) or less, denoted \(\mathscr{P}_n\left( \Omega \right) \subset \mathscr{F}\left( \Omega \right)\).
-        \item The set of all \emph{continuous functions}, denoted \(C\left( \Omega \right) \subset \mathscr{F}\left( \Omega \right)\).
-        \item The set of all continuous functions with \emph{continuous \(n\)th derivatives}, denoted \(C^n\left( \Omega \right) \subset C\left( \Omega \right)\).
-        \item The set of all functions \(f\) defined on \(\interval{0}{1}\) satisfying \(f\left( 0 \right) = f\left( 1 \right)\).
+        \item The set of all \emph{polynomials} of degree \(n\) or
+              less, denoted \(\mathscr{P}_n\left( \Omega \right)
+              \subset \mathscr{F}\left( \Omega \right)\).
+        \item The set of all \emph{continuous functions}, denoted
+              \(C\left( \Omega \right) \subset \mathscr{F}\left( \Omega
+              \right)\).
+        \item The set of all continuous functions with \emph{continuous
+              \(n\)th derivatives}, denoted \(C^n\left( \Omega \right)
+              \subset C\left( \Omega \right)\).
+        \item The set of all functions \(f\) defined on
+              \(\interval{0}{1}\) satisfying \(f\left( 0 \right) =
+              f\left( 1 \right)\).
     \end{itemize}
     \subsection{General Vector Space Terminology}
-    Let \(S = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_k \right\}\) and \(c_1,\: \dots,\: c_k \in \mathbb{F}\):
+    Let \(S = \left\{ \symbf{v}_1,\: \dots,\: \symbf{v}_k \right\}\)
+    and \(c_1,\: \dots,\: c_k \in \mathbb{F}\):
     \begin{itemize}
-        \item The linear combination of \(S\)
-              is a vector of the form \(\symbfit{v} = c_1 \symbfit{v}_1 + \cdots + c_k \symbfit{v}_k\).
+        \item The linear combination of \(S\) is a vector of the form
+              \(\symbf{v} = c_1 \symbf{v}_1 + \cdots + c_k
+              \symbf{v}_k\).
         \item \(S\) is linearly independent iff
-              \(c_1 \symbfit{v}_1 + \cdots + c_k \symbfit{v}_k = \symbfup{0}\) has the trivial solution.
+              \(c_1 \symbf{v}_1 + \cdots + c_k \symbf{v}_k = \symbfup{0}\) has the trivial solution.
         \item \(\vspan{\left( S \right)}\) is the set of all linear combinations of \(S\).
     \end{itemize}
     \(S\) is a \textit{basis} for a vector space \(V\) if
@@ -329,75 +376,96 @@ margin = 10mm
         \item \(\vspan{\left( S \right)} = V\).
     \end{itemize}
     The number of basis vectors denotes the dimension of \(V\).
-
     \(C\) is infinite dimensional.
     \subsection{Examples of Standard Bases}
     \begin{itemize}
         \item \(\mathscr{M}_{22}\):
               \begin{equation*}
-                  \left\{ \begin{bmatrix*}
+                  \left\{
+                  \begin{bmatrix*}
                       1 & 0 \\
                       0 & 0
-                  \end{bmatrix*},\: \begin{bmatrix*}
+                  \end{bmatrix*}
+                  ,\:
+                  \begin{bmatrix*}
                       0 & 0 \\
                       1 & 0
-                  \end{bmatrix*},\: \begin{bmatrix*}
+                  \end{bmatrix*}
+                  ,\:
+                  \begin{bmatrix*}
                       0 & 1 \\
                       0 & 0
-                  \end{bmatrix*},\: \begin{bmatrix*}
+                  \end{bmatrix*}
+                  ,\:
+                  \begin{bmatrix*}
                       0 & 0 \\
                       0 & 1
-                  \end{bmatrix*} \right\}
+                  \end{bmatrix*}
+                  \right\}
               \end{equation*}
-        \item \(\mathscr{S}_{22}\): \(\left\{ \begin{bmatrix*}
+        \item \(\mathscr{S}_{22}\): \(\left\{
+              \begin{bmatrix*}
                   1 & 0 \\
                   0 & 0
-              \end{bmatrix*},\: \begin{bmatrix*}
+              \end{bmatrix*}
+              ,\:
+              \begin{bmatrix*}
                   0 & 1 \\
                   1 & 0
-              \end{bmatrix*},\: \begin{bmatrix*}
+              \end{bmatrix*}
+              ,\:
+              \begin{bmatrix*}
                   0 & 0 \\
                   0 & 1
-              \end{bmatrix*} \right\}\)
-        \item \(\mathscr{K}_{22}\): \(\left\{ \begin{bmatrix*}
+              \end{bmatrix*}
+              \right\}\)
+        \item \(\mathscr{K}_{22}\): \(\left\{
+              \begin{bmatrix*}
                   0 & 1 \\
                   -1 & 0
-              \end{bmatrix*}\right\}\)
+              \end{bmatrix*}
+              \right\}\)
         \item \(\mathscr{P}_3\): \(\left\{ 1,\: x,\: x^2,\: x^3 \right\}\)
     \end{itemize}
     \subsection{Linear Transformations}
     \(T:V \to W\) satisfying
     \begin{align*}
-        T\left( k\symbfit{u} \right)              & = k T\left( \symbfit{u} \right)                             \\
-        T\left( \symbfit{u} + \symbfit{v} \right) & = T\left( \symbfit{u} \right) + T\left( \symbfit{v} \right)
+        T\left( k\symbf{u} \right)            & = k T\left( \symbf{u} \right)                           \\
+        T\left( \symbf{u} + \symbf{v} \right) & = T\left( \symbf{u} \right) + T\left( \symbf{v} \right)
     \end{align*}
     \underline{Constructing \(\symbf{A} = \left( T \right)_{B',\: B}\):}
 
-    Consider the map of \(\left( \symbfit{v} \right)_B = \symbfit{x}\) of \(\symbfit{v} \in V\) to
-    \(\left( \symbfit{w} \right)_{B'} = \symbfit{b}\) of \(\symbfit{w} \in W\),
-    where \(B = \left\{ \symbfit{v}_1,\: \dots,\: \symbfit{v}_n \right\}\) and \(B' = \left\{ \symbfit{w}_1,\: \dots,\: \symbfit{w}_m \right\}\).
+    Consider the map of \(\left( \symbf{v} \right)_B = \symbf{x}\) of
+    \(\symbf{v} \in V\) to \(\left( \symbf{w} \right)_{B'} =
+    \symbf{b}\) of \(\symbf{w} \in W\), where \(B = \left\{
+    \symbf{v}_1,\: \dots,\: \symbf{v}_n \right\}\) and \(B' = \left\{
+    \symbf{w}_1,\: \dots,\: \symbf{w}_m \right\}\).
     \begin{align*}
-        T\left( \symbfit{v} \right)                                                                           & = \symbfit{w} \\
+        T\left( \symbf{v} \right) & = \symbf{w}           \\
         \begin{bmatrix}
-            T\left( \symbfit{v}_1 \right) & \cdots & T\left( \symbfit{v}_n \right)
-        \end{bmatrix} \symbfit{x}                               & = \symbf{W} \symbfit{b}                                     \\
+            T\left( \symbf{v}_1 \right) & \cdots & T\left( \symbf{v}_n \right)
+        \end{bmatrix}
+        \symbf{x}                 & = \symbf{W} \symbf{b} \\
         \begin{bmatrix}
-            \left( T\left( \symbfit{v}_1 \right) \right)_{B'} & \cdots & \left( T\left( \symbfit{v}_n \right) \right)_{B'}
-        \end{bmatrix} \symbfit{x} & = \symbfit{b}                  \\
-        \symbf{A} \symbfit{x}                                                                                 & = \symbfit{b}
+            \left( T\left( \symbf{v}_1 \right) \right)_{B'} & \cdots & \left( T\left( \symbf{v}_n \right) \right)_{B'}
+        \end{bmatrix}
+        \symbf{x}                 & = \symbf{b}           \\
+        \symbf{A} \symbf{x}       & = \symbf{b}
     \end{align*}
     \subsection{Isomorphism (\texorpdfstring{\(\cong\)}{≅})}
     \(T : V \to W\) is an isomorphism between \(V\) and \(W\) if there exists a bijection between the two vector spaces.
-
     \(\forall V : \dim{\left( V \right)} = n : V \cong \R^n\), \(\mathscr{M}_{mn} \cong \R^{mn}\)
     and \(\mathscr{P}_n \cong \R^{n + 1}\).
     \subsection{Fundamental Subspaces of \texorpdfstring{\(T\)}{T}}
     \begin{itemize}
-        \item The set of all vectors in \(V\) that map to \(W\) is the \textbf{image} of \(T\), denoted \(\vim{\left( T \right)}\).
-        \item The set of all vectors in \(W\) that is mapped to by a vector in \(V\) is the \textbf{range} of \(T\), denoted \(\vrange{\left( T \right)}\).
-        \item The set of all vectors in \(V\) that \(T\) maps to \(\symbfup{0}_W\) is the \textbf{kernel} of \(T\), denoted \(\vker{\left( T \right)}\).
+        \item The set of all vectors in \(V\) that map to \(W\) is the
+              \textbf{image} of \(T\), denoted \(\vim{\left( T
+              \right)}\).
+        \item The set of all vectors in \(V\) that \(T\) maps to
+              \(\symbfup{0}_W\) is the \textbf{kernel} of \(T\),
+              denoted \(\vker{\left( T \right)}\).
     \end{itemize}
-    If finite, \(\dim{\left( \vrange{\left( T \right)} \right)} = \vrank{\left( T \right)}\)
+    If finite, \(\dim{\left( \vim{\left( T \right)} \right)} = \vrank{\left( T \right)}\)
     and \(\dim{\left( \vker{\left( T \right)} \right)} = \nullity{\left( T \right)}\).
     \begin{equation*}
         \vrank{\left( T \right)} + \nullity{\left( T \right)} = \dim{\left( V \right)}.
@@ -406,24 +474,26 @@ margin = 10mm
     \begin{equation*}
         \abracket*{\cdot,\: \cdot} : V \times V \to \R.
     \end{equation*}
-    For \(\symbfit{u},\: \symbfit{v},\: \symbfit{w} \in V\)
+    For \(\symbf{u},\: \symbf{v},\: \symbf{w} \in V\)
     and \(k \in \R\):
     \begin{itemize}
-        \item Symmetry: \(\abracket*{\symbfit{u},\: \symbfit{v}} = \abracket*{\symbfit{v},\: \symbfit{u}}\)
+        \item Symmetry: \(\abracket*{\symbf{u},\: \symbf{v}} =
+              \abracket*{\symbf{v},\: \symbf{u}}\)
         \item Linearity:
               \begin{equation*}
-                  \abracket*{\symbfit{u} + \symbfit{v},\: \symbfit{w}} = \abracket*{\symbfit{u},\: \symbfit{w}} + \abracket*{\symbfit{v},\: \symbfit{w}}
+                  \abracket*{\symbf{u} + \symbf{v},\: \symbf{w}} = \abracket*{\symbf{u},\: \symbf{w}} + \abracket*{\symbf{v},\: \symbf{w}}
               \end{equation*}
-        \item Linearity: \(\abracket*{k \symbfit{u},\: \symbfit{v}} = k\abracket*{\symbfit{u},\: \symbfit{v}}\)
+        \item Linearity: \(\abracket*{k \symbf{u},\: \symbf{v}} =
+              k\abracket*{\symbf{u},\: \symbf{v}}\)
         \item Positive semi-definitiveness:
               \begin{equation*}
-                  \abracket*{\symbfit{u},\: \symbfit{u}} \geq 0,\: \abracket*{\symbfit{u},\: \symbfit{u}} = 0 \iff \symbfit{u} = \symbfup{0}
+                  \abracket*{\symbf{u},\: \symbf{u}} \geq 0,\: \abracket*{\symbf{u},\: \symbf{u}} = 0 \iff \symbf{u} = \symbfup{0}
               \end{equation*}
     \end{itemize}
-    \underline{For \(\symbfit{u},\: \symbfit{v} \in \R^n\):}
+    \underline{For \(\symbf{u},\: \symbf{v} \in \R^n\):}
     \begin{itemize}
-        \item \(\abracket*{\symbfit{u},\: \symbfit{v}} = \symbfit{u} \cdot \symbfit{v} = \symbfit{u}^\top \symbfit{v}\).
-        \item \(\abracket*{\symbfit{u},\: \symbfit{v}} = \symbfit{u}^\top \symbf{A} \symbfit{v}\) where \(\symbf{A}\) is SPD\@.
+        \item \(\abracket*{\symbf{u},\: \symbf{v}} = \symbf{u} \cdot \symbf{v} = \symbf{u}^\top \symbf{v}\).
+        \item \(\abracket*{\symbf{u},\: \symbf{v}} = \symbf{u}^\top \symbf{A} \symbf{v}\) where \(\symbf{A}\) is SPD\@.
     \end{itemize}
     \underline{For \(\symbf{A},\: \symbf{B} \in \mathscr{M}_{mn}\):}
     \begin{itemize}
@@ -431,16 +501,16 @@ margin = 10mm
     \end{itemize}
     \underline{For \(f,\: g \in C\left( \interval{a}{b} \right)\):}
     \begin{itemize}
-        \item \(\abracket*{f,\: g} = \int_a^b f\left( x \right) g\left( x \right) \odif{x}\).
-        \item \(\abracket*{f,\: g} = \int_a^b f\left( x \right) g\left( x \right) w\left( x \right) \odif{x}\).
+        \item \(\abracket*{f,\: g} = \int_a^b f\left( x \right) g\left( x \right) \odif{x}\)
+        \item \(\abracket*{f,\: g} = \int_a^b f\left( x \right) g\left( x \right) w\left( x \right) \odif{x}\)
     \end{itemize}
     where \(w\left( x \right) > 0 : \forall x \in \interval{a}{b}\).
     \subsection{Norms}
     \begin{itemize}
-        \item \(\norm*{\symbfit{v}} = \sqrt{\abracket*{\symbfit{v},\: \symbfit{v}}}\).
-        \item \(\norm*{\symbfit{v}} \geq 0\), and \(\norm*{\symbfit{v}} = 0 \iff \symbfit{v} = \symbfup{0}\).
-        \item \(\norm*{k \symbfit{v}} = \abs*{k} \norm*{\symbfit{v}} : \forall k \in \R\).
-        \item \(\norm*{\symbfit{u} + \symbfit{v}} \leq \norm*{\symbfit{u}} + \norm*{\symbfit{v}}\).
+        \item \(\norm*{\symbf{v}} = \sqrt{\abracket*{\symbf{v},\: \symbf{v}}}\).
+        \item \(\norm*{\symbf{v}} \geq 0\), and \(\norm*{\symbf{v}} = 0 \iff \symbf{v} = \symbfup{0}\).
+        \item \(\norm*{k \symbf{v}} = \abs*{k} \norm*{\symbf{v}} : \forall k \in \R\).
+        \item \(\norm*{\symbf{u} + \symbf{v}} \leq \norm*{\symbf{u}} + \norm*{\symbf{v}}\).
     \end{itemize}
     \underline{Examples:}
     \begin{itemize}
@@ -449,7 +519,7 @@ margin = 10mm
     \end{itemize}
     \subsection{Orthogonality}
     \begin{equation*}
-        \abracket*{\symbfit{v},\: \symbfit{v}} = 0.
+        \abracket*{\symbf{v},\: \symbf{v}} = 0.
     \end{equation*}
     \subsection{Orthogonal Complements of \texorpdfstring{\(\mathscr{M}_{n}\)}{Mn}}
     Given \(\symbf{P}_{\mathscr{S}_n} = \proj_{\mathscr{S}_n}\) and
@@ -469,30 +539,37 @@ margin = 10mm
               \(\vrank{\left( \symbf{A}^\top \symbf{A} \right) = \vrank{\left( \symbf{A} \right)}}\).
               \(\symbf{A}^\top \symbf{A}\) is positive definite and
               \(\symbf{A}^\top \symbf{A}\) is invertible when \(\nullity{\left( \symbf{A} \right)} = 0\).
-        \item When \(\symbf{A}\) is square and invertible, \(\left( \symbf{A}^\top \symbf{A} \right)^{-1} = \symbf{A}^{-1} \symbf{A}^{-\top}\) and \(\symbf{P} = \symbf{I}\)
-              otherwise \(\symbf{P} = \symbf{Q} \symbf{Q}^\top\) using QR\@.
+        \item When \(\symbf{A}\) is square and invertible, \(\left(
+              \symbf{A}^\top \symbf{A} \right)^{-1} = \symbf{A}^{-1}
+              \symbf{A}^{-\top}\) and \(\symbf{P} = \symbf{I}\)
+              otherwise \(\symbf{P} = \symbf{Q} \symbf{Q}^\top\) using
+              QR\@.
         \item \(\symbf{P}^2 = \symbf{P} \land \symbf{P}^\top = \symbf{P} \iff \symbf{P} = \proj_{\columnspace{P}}\).
-              \(\symbf{P} \symbfit{v} = \symbf{P}^2 \symbfit{v} \iff \lambda \symbfit{v} = \lambda^2 \symbfit{v}\) implies \(\lambda = 0,\: 1\).
+              \(\symbf{P} \symbf{v} = \symbf{P}^2 \symbf{v} \iff \lambda \symbf{v} = \lambda^2 \symbf{v}\) implies \(\lambda = 0,\: 1\).
         \item \(\symbf{A}^\top \symbf{A}\) and \(\symbf{A} \symbf{A}^\top\) share eigenvalues,
               \begin{align*}
-                  \symbf{A}^\top \symbf{A} \symbfit{v}                                         & = \lambda \symbfit{v}                           \\
-                  \left( \symbf{A} \symbf{A}^\top \right) \left( \symbf{A} \symbfit{v} \right) & = \lambda \left( \symbf{A} \symbfit{v} \right).
+                  \symbf{A}^\top \symbf{A} \symbf{v}                                         & = \lambda \symbf{v}                           \\
+                  \left( \symbf{A} \symbf{A}^\top \right) \left( \symbf{A} \symbf{v} \right) & = \lambda \left( \symbf{A} \symbf{v} \right).
               \end{align*}
-              \(\symbf{A} \symbfit{v} = \symbfup{0} \implies \lambda = 0\), else \(\symbfit{w} = \symbf{A} \symbfit{v}\) is an eigenvector of \(\symbf{A} \symbf{A}^\top\).
+              \(\symbf{A} \symbf{v} = \symbfup{0} \implies \lambda = 0\), else \(\symbf{w} = \symbf{A} \symbf{v}\) is an eigenvector of \(\symbf{A} \symbf{A}^\top\).
         \item For symmetric \(\symbf{S} \in \R^{n \times n}\):
               \begin{equation*}
-                  \symbf{S} = \sum_{i = 1}^n \lambda_i \symbfit{q}_i \symbfit{q}_i^\top = \sum_{i = 1}^n \lambda_i \proj_{\symbfit{q}_i}
+                  \symbf{S} = \sum_{i = 1}^n \lambda_i \symbf{q}_i \symbf{q}_i^\top = \sum_{i = 1}^n \lambda_i \proj_{\symbf{q}_i}
               \end{equation*}
-        \item For \(\symbf{W} = \symbfit{w} \in \R^{n \times 1}\):
+        \item For \(\symbf{W} = \symbf{w} \in \R^{n \times 1}\):
               \begin{align*}
-                  \symbf{W}         & = \begin{bmatrix*}
-                                            \hat{\symbfit{w}}
-                                        \end{bmatrix*} \begin{bmatrix*}
-                                                           \norm*{\symbfit{w}}
-                                                       \end{bmatrix*} \begin{bmatrix*}
-                                                                          1
-                                                                      \end{bmatrix*} \\
-                  \symbf{W}^\dagger & = \hat{\symbfit{w}}^\top / \norm*{\symbfit{w}}
+                  \symbf{W}         & =
+                                        \begin{bmatrix*}
+                                            \hat{\symbf{w}}
+                                        \end{bmatrix*}
+                  \begin{bmatrix*}
+                      \norm*{\symbf{w}}
+                  \end{bmatrix*}
+                  \begin{bmatrix*}
+                      1
+                  \end{bmatrix*}
+                  \\
+                  \symbf{W}^\dagger & = \hat{\symbf{w}}^\top / \norm*{\symbf{w}}
               \end{align*}
     \end{itemize}
     \section{Identities}
@@ -504,12 +581,13 @@ margin = 10mm
                   \symbf{A}^\top \left( \symbf{A}^{-1} \right)^\top & = \left( \symbf{A}^{-1} \symbf{A} \right)^\top = \symbf{I} \\
                   \left( \symbf{A}^{-1} \right)^\top \symbf{A}^\top & = \left( \symbf{A} \symbf{A}^{-1} \right)^\top = \symbf{I}
               \end{align*}
-        \item \(\abracket*{\symbf{A}\symbfit{x},\: \symbfit{y}} = \abracket*{\symbfit{x},\: \symbf{A}^\top \symbfit{y}}\):
+        \item \(\abracket*{\symbf{A}\symbf{x},\: \symbf{y}} = \abracket*{\symbf{x},\: \symbf{A}^\top \symbf{y}}\):
               \begin{equation*}
-                  \left( \symbf{A} \symbfit{x} \right)^\top \symbfit{y} = \symbfit{x}^\top \left( \symbf{A}^\top \symbfit{y} \right)
+                  \left( \symbf{A} \symbf{x} \right)^\top \symbf{y} = \symbf{x}^\top \left( \symbf{A}^\top \symbf{y} \right)
               \end{equation*}
         \item \(\det{\left( \symbf{A} \symbf{B} \right)} = \det{\left( \symbf{A} \right)} \det{\left( \symbf{B} \right)}\).
-        \item If \(\symbf{A}\) is triangular, \(\det{\left( \symbf{A} \right)} = \prod_{i = 1}^n a_{ii}\).
+        \item If \(\symbf{A}\) is triangular, \(\det{\left( \symbf{A}
+              \right)} = \prod_{i = 1}^n a_{ii}\).
         \item For \(\symbf{A} \in \R^{n \times n}\):
               \begin{align*}
                   \Tr{\left( \symbf{A} \right)}                 & = \sum_{i = 1}^n a_{ii} = \sum_{i = 1}^n \lambda_i              \\
